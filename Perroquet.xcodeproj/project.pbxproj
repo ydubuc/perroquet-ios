@@ -7,18 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED59020A2B7D2A460009851E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902092B7D2A460009851E /* AuthViewModel.swift */; };
+		ED59020D2B7D2B790009851E /* Dims.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59020C2B7D2B790009851E /* Dims.swift */; };
+		ED5902122B7D2E390009851E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902112B7D2E390009851E /* Color.swift */; };
+		ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902172B7D611F0009851E /* FormHeaderComponent.swift */; };
+		ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902192B7D625D0009851E /* FormTextfieldComponent.swift */; };
+		ED59021E2B7D697C0009851E /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59021D2B7D697C0009851E /* Themes.swift */; };
+		ED5902212B7D699D0009851E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902202B7D699D0009851E /* Theme.swift */; };
+		ED5902232B7D6A350009851E /* DarkTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902222B7D6A350009851E /* DarkTheme.swift */; };
+		ED5902252B7D6AEB0009851E /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902242B7D6AEB0009851E /* LightTheme.swift */; };
+		ED5902282B7D71200009851E /* FormTextfieldComponentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902272B7D71200009851E /* FormTextfieldComponentExtension.swift */; };
+		ED59022A2B7D72190009851E /* FormSecureTextfieldComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902292B7D72190009851E /* FormSecureTextfieldComponent.swift */; };
+		ED59022D2B7D94940009851E /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59022C2B7D94940009851E /* ApiError.swift */; };
+		ED5902302B7D95DD0009851E /* AccessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59022F2B7D95DD0009851E /* AccessInfo.swift */; };
+		ED5902322B7DB4700009851E /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902312B7DB4700009851E /* Config.swift */; };
+		ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902342B7DBB6A0009851E /* SigninDto.swift */; };
+		ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */; };
 		EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */; };
-		EDB8F05F2B72DBAC008A1CEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05E2B72DBAC008A1CEB /* ContentView.swift */; };
+		EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05E2B72DBAC008A1CEB /* MainView.swift */; };
 		EDB8F0612B72DBAD008A1CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */; };
 		EDB8F0642B72DBAD008A1CEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB8F0632B72DBAD008A1CEB /* Preview Assets.xcassets */; };
+		EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5452B7947E100551388 /* AppViewModel.swift */; };
+		EDC5F5492B7947FD00551388 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5482B7947FD00551388 /* AuthService.swift */; };
+		EDC5F54B2B7948AF00551388 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F54A2B7948AF00551388 /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED5902092B7D2A460009851E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		ED59020C2B7D2B790009851E /* Dims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dims.swift; sourceTree = "<group>"; };
+		ED5902112B7D2E390009851E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		ED5902172B7D611F0009851E /* FormHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormHeaderComponent.swift; sourceTree = "<group>"; };
+		ED5902192B7D625D0009851E /* FormTextfieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldComponent.swift; sourceTree = "<group>"; };
+		ED59021D2B7D697C0009851E /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
+		ED5902202B7D699D0009851E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		ED5902222B7D6A350009851E /* DarkTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTheme.swift; sourceTree = "<group>"; };
+		ED5902242B7D6AEB0009851E /* LightTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
+		ED5902272B7D71200009851E /* FormTextfieldComponentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldComponentExtension.swift; sourceTree = "<group>"; };
+		ED5902292B7D72190009851E /* FormSecureTextfieldComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSecureTextfieldComponent.swift; sourceTree = "<group>"; };
+		ED59022C2B7D94940009851E /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		ED59022F2B7D95DD0009851E /* AccessInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessInfo.swift; sourceTree = "<group>"; };
+		ED5902312B7DB4700009851E /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		ED5902342B7DBB6A0009851E /* SigninDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninDto.swift; sourceTree = "<group>"; };
+		ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninAppleDto.swift; sourceTree = "<group>"; };
 		EDB8F0592B72DBAC008A1CEB /* Perroquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perroquet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerroquetApp.swift; sourceTree = "<group>"; };
-		EDB8F05E2B72DBAC008A1CEB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EDB8F05E2B72DBAC008A1CEB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EDB8F0632B72DBAD008A1CEB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EDC5F5452B7947E100551388 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		EDC5F5482B7947FD00551388 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		EDC5F54A2B7948AF00551388 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		EDC5F54D2B79653200551388 /* Perroquet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Perroquet.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +71,111 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED5902082B7D2A300009851E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EDC5F54A2B7948AF00551388 /* AuthView.swift */,
+				ED5902092B7D2A460009851E /* AuthViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ED59020B2B7D2B580009851E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ED59021B2B7D69140009851E /* Themes */,
+				ED59020C2B7D2B790009851E /* Dims.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ED5902102B7D2E310009851E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED5902112B7D2E390009851E /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ED5902132B7D60D90009851E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ED5902162B7D61120009851E /* Form */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ED5902162B7D61120009851E /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				ED5902172B7D611F0009851E /* FormHeaderComponent.swift */,
+				ED5902292B7D72190009851E /* FormSecureTextfieldComponent.swift */,
+				ED5902192B7D625D0009851E /* FormTextfieldComponent.swift */,
+				ED5902262B7D71010009851E /* Extensions */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		ED59021B2B7D69140009851E /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				ED59021F2B7D69940009851E /* Protocols */,
+				ED59021C2B7D69720009851E /* Enums */,
+				ED5902222B7D6A350009851E /* DarkTheme.swift */,
+				ED5902242B7D6AEB0009851E /* LightTheme.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		ED59021C2B7D69720009851E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				ED59021D2B7D697C0009851E /* Themes.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		ED59021F2B7D69940009851E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				ED5902202B7D699D0009851E /* Theme.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ED5902262B7D71010009851E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ED5902272B7D71200009851E /* FormTextfieldComponentExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ED59022B2B7D94860009851E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED59022C2B7D94940009851E /* ApiError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ED59022E2B7D95D40009851E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ED59022F2B7D95DD0009851E /* AccessInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		ED5902332B7DBB610009851E /* Dtos */ = {
+			isa = PBXGroup;
+			children = (
+				ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */,
+				ED5902342B7DBB6A0009851E /* SigninDto.swift */,
+			);
+			path = Dtos;
+			sourceTree = "<group>";
+		};
 		EDB8F0502B72DBAC008A1CEB = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +195,10 @@
 		EDB8F05B2B72DBAC008A1CEB /* Perroquet */ = {
 			isa = PBXGroup;
 			children = (
-				EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */,
-				EDB8F05E2B72DBAC008A1CEB /* ContentView.swift */,
+				EDC5F54D2B79653200551388 /* Perroquet.entitlements */,
 				EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */,
+				EDC5F5442B7947D300551388 /* App */,
+				EDC5F5472B7947F200551388 /* Auth */,
 				EDB8F0622B72DBAD008A1CEB /* Preview Content */,
 			);
 			path = Perroquet;
@@ -65,6 +210,40 @@
 				EDB8F0632B72DBAD008A1CEB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EDC5F5442B7947D300551388 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EDC5F5452B7947E100551388 /* AppViewModel.swift */,
+				ED5902312B7DB4700009851E /* Config.swift */,
+				EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */,
+				ED5902132B7D60D90009851E /* Components */,
+				ED5902102B7D2E310009851E /* Extensions */,
+				ED59022B2B7D94860009851E /* Models */,
+				ED59020B2B7D2B580009851E /* Resources */,
+				EDC5F54C2B794B1D00551388 /* Views */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EDC5F5472B7947F200551388 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EDC5F5482B7947FD00551388 /* AuthService.swift */,
+				ED5902332B7DBB610009851E /* Dtos */,
+				ED59022E2B7D95D40009851E /* Models */,
+				ED5902082B7D2A300009851E /* Views */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EDC5F54C2B794B1D00551388 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EDB8F05E2B72DBAC008A1CEB /* MainView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +316,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB8F05F2B72DBAC008A1CEB /* ContentView.swift in Sources */,
+				EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */,
+				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
+				ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */,
+				EDC5F54B2B7948AF00551388 /* AuthView.swift in Sources */,
+				ED5902322B7DB4700009851E /* Config.swift in Sources */,
+				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
+				ED59022A2B7D72190009851E /* FormSecureTextfieldComponent.swift in Sources */,
+				ED59020A2B7D2A460009851E /* AuthViewModel.swift in Sources */,
+				ED5902232B7D6A350009851E /* DarkTheme.swift in Sources */,
+				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
+				ED59021E2B7D697C0009851E /* Themes.swift in Sources */,
+				ED59020D2B7D2B790009851E /* Dims.swift in Sources */,
+				ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */,
 				EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */,
+				ED5902282B7D71200009851E /* FormTextfieldComponentExtension.swift in Sources */,
+				EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */,
+				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
+				EDC5F5492B7947FD00551388 /* AuthService.swift in Sources */,
+				ED5902302B7D95DD0009851E /* AccessInfo.swift in Sources */,
+				ED5902252B7D6AEB0009851E /* LightTheme.swift in Sources */,
+				ED5902122B7D2E390009851E /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,12 +467,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Perroquet/Perroquet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Perroquet/Preview Content\"";
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -285,7 +485,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.greenknightlabs.Perroquet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -298,12 +498,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Perroquet/Perroquet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Perroquet/Preview Content\"";
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -314,7 +516,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.greenknightlabs.Perroquet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
