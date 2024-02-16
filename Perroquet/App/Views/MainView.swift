@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var appVm: AppViewModel
-    
     var body: some View {
         Text("Main View")
             .onTapGesture {
-                appVm.isLoggedIn = !appVm.isLoggedIn
+                
             }
     }
 }

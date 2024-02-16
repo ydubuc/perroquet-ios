@@ -8,7 +8,18 @@
 import Foundation
 
 class AppViewModel: ObservableObject {
-    @Published var isLoggedIn = false
-    
     @Published var theme: Theme = DarkTheme()
+    
+    private(set) var accessInfo: AccessInfo? = nil
+    
+    func onSignin(accessInfo: AccessInfo) {
+        print(accessInfo)
+        self.accessInfo = accessInfo
+        // cache
+    }
+    
+    func onSignout() {
+        // delete cache
+        self.accessInfo = nil
+    }
 }

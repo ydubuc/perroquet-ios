@@ -17,38 +17,38 @@ struct FormSecureTextfieldComponent: View {
         VStack(alignment: .leading, spacing: Dims.spacingSmall) {
             
             Text(placeholder.uppercased())
-                .font(.caption)
                 .foregroundColor(theme.fontDim)
+                .font(.footnote.weight(.bold))
             
             HStack(alignment: .center, spacing: 0) {
                 
                 SecureField("", text: $text)
-                    .font(.body)
                     .foregroundColor(theme.fontNormal)
+                    .font(.footnote.weight(.regular))
                     .lineLimit(1)
                     .placeholder(when: text.isEmpty) {
                         Text(placeholder)
-                            .font(.body)
                             .foregroundColor(theme.fontDim)
+                            .font(.body.weight(.regular))
                             .lineLimit(1)
                     }
                     .padding(Dims.spacingRegular)
+                    .disableAutocorrection(true)
                 
                 if !text.isEmpty {
                     Button {
                         text.removeAll()
                     } label: {
-                        Image(.cancel)
-                            .renderingMode(.template)
-                            .font(.body)
+                        Image(systemName: "xmark.circle")
                             .foregroundColor(theme.fontDim)
+                            .font(.body.weight(.regular))
                             .padding(Dims.spacingRegular)
                     }
                 }
                 
             } // HStack
             .background(theme.primaryDark)
-            .cornerRadius(Dims.defaultCornerRadius)
+            .cornerRadius(Dims.cornerRadius)
             
         } // VStack
         

@@ -8,71 +8,38 @@
 import Foundation
 
 class AuthService {
-    let url: URL
+    let url: String
+    let courier = Courier()
     
-    init(backendUrl: String) {
-        self.url = URL(string: backendUrl.appending("/auth"))!
-        print(url.absoluteString)
+    init(url: String) {
+        self.url = url.appending("/auth")
     }
     
     func signin(dto: SigninDto) async -> Result<AccessInfo, ApiError> {
-        var request = URLRequest(url: url.appending(path: "/signin"))
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            let encoder = JSONEncoder()
-            let payload = try encoder.encode(dto)
-            request.httpBody = payload
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            let decoder = JSONDecoder()
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
-                let apiError = try decoder.decode(ApiError.self, from: data)
-                throw apiError
-            }
-            
-            let accessInfo = try decoder.decode(AccessInfo.self, from: data)
+        guard let url = URL(string: url.appending("/signin")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+
+        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, body: dto)
+        switch result {
+        case .success(let accessInfo):
             return .success(accessInfo)
-        } catch let e as ApiError {
-            return .failure(e)
-        } catch let e {
-            return .failure(ApiError(code: 500, message: "An error occurred."))
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourrierError(courierError))
         }
     }
     
     func signinApple(dto: SigninAppleDto) async -> Result<AccessInfo, ApiError> {
-        var request = URLRequest(url: url.appending(path: "/signin/apple"))
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let url = URL(string: url.appending("/signin/apple")) else {
+            return .failure(ApiError.invalidUrl())
+        }
         
-        print(request.url)
-        
-        do {
-            let encoder = JSONEncoder()
-            let payload = try encoder.encode(dto)
-            request.httpBody = payload
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
-            let decoder = JSONDecoder()
-            
-            guard let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) else {
-                let apiError = try decoder.decode(ApiError.self, from: data)
-                throw apiError
-            }
-            
-            print(httpResponse.statusCode)
-            
-            let accessInfo = try decoder.decode(AccessInfo.self, from: data)
+        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, body: dto)
+        switch result {
+        case .success(let accessInfo):
             return .success(accessInfo)
-        } catch let e as ApiError {
-            return .failure(e)
-        } catch let e {
-            print(e.localizedDescription)
-            return .failure(ApiError(code: 500, message: "An error occurred."))
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourrierError(courierError))
         }
     }
 }

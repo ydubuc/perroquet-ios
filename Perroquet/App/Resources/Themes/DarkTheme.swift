@@ -17,7 +17,7 @@ struct DarkTheme: Theme {
 
     var fontBright: Color = Color(hex: 0x4AAEFF)
     var fontNormal: Color = Color(hex: 0xFFFFFF)
-    var fontDim: Color = Color(hex: 0x2E2F36)
+    var fontDim: Color = Color(hex: 0x444758)
 
     var colorScheme: ColorScheme = .dark
 }
