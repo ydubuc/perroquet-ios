@@ -13,10 +13,10 @@ struct PerroquetApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if appVm.accessInfo != nil {
-                MainView()
-            } else {
+            if !appVm.isLoggedIn {
                 SigninView(vm: SigninViewModel(appVm: appVm))
+            } else {
+                MainView()
             }
         }
     }

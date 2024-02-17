@@ -10,7 +10,7 @@ import SwiftUI
 struct FormTextfieldComponent: View {
     @Binding var text: String
     @Binding var placeholder: String
-    @Binding var theme: Theme
+    let theme: Theme
     
     var body: some View {
         
@@ -55,10 +55,28 @@ struct FormTextfieldComponent: View {
     }
 }
 
+extension View {
+    func placeholder<Content: View>(
+        when isVisible: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content
+    ) -> some View {
+
+        ZStack(alignment: alignment) {
+
+            placeholder().opacity(isVisible ? 1 : 0)
+
+            self
+
+        } // ZStack
+
+    }
+}
+
 #Preview {
     FormTextfieldComponent(
         text: .constant("Test"),
         placeholder: .constant("Testing"),
-        theme: .constant(DarkTheme())
+        theme: DarkTheme()
     )
 }

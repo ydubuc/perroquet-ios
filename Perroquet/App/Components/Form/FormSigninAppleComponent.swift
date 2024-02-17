@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct FormSigninAppleComponent: View {
-    @Binding var theme: Theme
+    enum TitleType: String {
+        case signin = "Sign in with Apple"
+        case signup = "Sign up with Apple"
+        case continueApple = "Continue with Apple"
+    }
+
+    @Binding var type: TitleType
+    let theme: Theme
     let onTapAction: () -> ()
     
     var body: some View {
@@ -23,7 +30,7 @@ struct FormSigninAppleComponent: View {
                     .foregroundColor(theme.colorScheme == .light ? .white : .black)
                     .font(.footnote)
                 
-                Text("Sign in with Apple")
+                Text(type.rawValue)
                     .foregroundColor(theme.colorScheme == .light ? .white : .black)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
@@ -40,7 +47,8 @@ struct FormSigninAppleComponent: View {
 
 #Preview {
     FormSigninAppleComponent(
-        theme: .constant(DarkTheme())
+        type: .constant(.signin),
+        theme: DarkTheme()
     ) {
         print("sign in with apple")
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FormSubmitComponent: View {
     @Binding var title: String
-    @Binding var theme: Theme
+    let theme: Theme
     let onTapAction: () -> ()
     
     var body: some View {
@@ -31,7 +31,10 @@ struct FormSubmitComponent: View {
 }
 
 #Preview {
-    FormSubmitComponent(title: .constant("Test"), theme: .constant(DarkTheme())) {
+    FormSubmitComponent(
+        title: .constant("Test"),
+        theme: DarkTheme()
+    ) {
         print("test")
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct FormSecureTextfieldComponent: View {
     @Binding var text: String
     @Binding var placeholder: String
-    @Binding var theme: Theme
+    let theme: Theme
     
     var body: some View {
         
@@ -59,6 +59,6 @@ struct FormSecureTextfieldComponent: View {
     FormSecureTextfieldComponent(
         text: .constant("Test"),
         placeholder: .constant("Testing"),
-        theme: .constant(DarkTheme())
+        theme: DarkTheme()
     )
 }

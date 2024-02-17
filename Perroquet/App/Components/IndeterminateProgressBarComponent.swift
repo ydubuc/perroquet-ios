@@ -48,6 +48,23 @@ struct IndeterminateProgressBarComponent: View {
     }
 }
 
+extension View {
+    func progressBar(isLoading: Bool) -> some View {
+        
+        ZStack(alignment: .top) {
+            
+            self
+
+            if isLoading {
+                IndeterminateProgressBarComponent()
+                    .zIndex(1)
+            }
+            
+        } // ZStack
+    }
+}
+
+
 #Preview {
     IndeterminateProgressBarComponent()
 }

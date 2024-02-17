@@ -1,14 +1,14 @@
 //
-//  SigninViewModel.swift
+//  SignupViewModel.swift
 //  Perroquet
 //
-//  Created by Yoan Dubuc on 2/14/24.
+//  Created by Yoan Dubuc on 2/16/24.
 //
 
 import Foundation
 import AuthenticationServices
 
-class SigninViewModel: NSObject, ObservableObject {
+class SignupViewModel: NSObject, ObservableObject {
     @Published private(set) var appVm: AppViewModel
     
     @Published var email: String = ""
@@ -17,7 +17,7 @@ class SigninViewModel: NSObject, ObservableObject {
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String = ""
     
-    @Published var isPresentingSignupView = false
+    @Published var isPresentingSafariView = false
     
     let authService: AuthService
     
@@ -42,17 +42,17 @@ class SigninViewModel: NSObject, ObservableObject {
     func clearErrorMessage() {
         errorMessage = ""
     }
-
-    func signin() {
+    
+    func signup() {
         lock(true)
         
         let email = email
         let passw = passw
         
-        let dto = SigninDto(email: email, passw: passw)
+        let dto = SignupDto(email: email, passw: passw)
         
         Task {
-            let result = await authService.signin(dto: dto)
+            let result = await authService.signup(dto: dto)
             
             DispatchQueue.main.async {
                 self.lock(false)
@@ -100,7 +100,7 @@ class SigninViewModel: NSObject, ObservableObject {
     }
 }
 
-extension SigninViewModel: ASAuthorizationControllerDelegate {
+extension SignupViewModel: ASAuthorizationControllerDelegate {
     func authorizationController(
         controller: ASAuthorizationController,
         didCompleteWithAuthorization authorization: ASAuthorization

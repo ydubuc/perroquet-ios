@@ -9,8 +9,8 @@ import Foundation
 
 struct AccessInfo: Codable {
     let accessToken: String
-    let refreshToken: String?
-    let deviceId: String?
+    let refreshToken: String
+    let deviceId: String
 
     enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"

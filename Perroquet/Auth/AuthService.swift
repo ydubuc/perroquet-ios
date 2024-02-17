@@ -15,17 +15,31 @@ class AuthService {
         self.url = url.appending("/auth")
     }
     
+    func signup(dto: SignupDto) async -> Result<AccessInfo, ApiError> {
+        guard let url = URL(string: url.appending("/signup")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+
+        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, headers: [:], body: dto)
+        switch result {
+        case .success(let accessInfo):
+            return .success(accessInfo)
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
+    
     func signin(dto: SigninDto) async -> Result<AccessInfo, ApiError> {
         guard let url = URL(string: url.appending("/signin")) else {
             return .failure(ApiError.invalidUrl())
         }
 
-        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, body: dto)
+        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, headers: [:], body: dto)
         switch result {
         case .success(let accessInfo):
             return .success(accessInfo)
         case .failure(let courierError):
-            return .failure(ApiError.fromCourrierError(courierError))
+            return .failure(ApiError.fromCourierError(courierError))
         }
     }
     
@@ -34,12 +48,26 @@ class AuthService {
             return .failure(ApiError.invalidUrl())
         }
         
-        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, body: dto)
+        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, headers: [:], body: dto)
         switch result {
         case .success(let accessInfo):
             return .success(accessInfo)
         case .failure(let courierError):
-            return .failure(ApiError.fromCourrierError(courierError))
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
+    
+    func refresh(dto: RefreshAccessInfoDto) async -> Result<AccessInfo, ApiError> {
+        guard let url = URL(string: url.appending("/refresh")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let result: Result<AccessInfo, CourierError> = await courier.post(url: url, headers: [:], body: dto)
+        switch result {
+        case .success(let accessInfo):
+            return .success(accessInfo)
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
         }
     }
 }

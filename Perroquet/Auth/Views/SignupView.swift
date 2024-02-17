@@ -1,17 +1,16 @@
 //
-//  SigninView.swift
+//  SignupView.swift
 //  Perroquet
 //
-//  Created by Yoan Dubuc on 2/11/24.
+//  Created by Yoan Dubuc on 2/16/24.
 //
 
 import SwiftUI
-import AuthenticationServices
 
-struct SigninView: View {
-    @StateObject var vm: SigninViewModel
+struct SignupView: View {
+    @StateObject var vm: SignupViewModel
     
-    init(vm: SigninViewModel) {
+    init(vm: SignupViewModel) {
         _vm = StateObject(wrappedValue: vm)
     }
     
@@ -23,7 +22,7 @@ struct SigninView: View {
                 
                 VStack(alignment: .center, spacing: Dims.spacingRegular) {
                     
-                    FormHeaderComponent(image: .login)
+                    FormHeaderComponent(image: .register)
                         .frame(maxWidth: Dims.formMaxWidth)
                         .frame(height: geometry.size.height * 0.33)
                     
@@ -42,6 +41,7 @@ struct SigninView: View {
                     .frame(maxWidth: Dims.formMaxWidth)
                     
                     HStack(alignment: .center, spacing: 0) {
+                        
                         Text(vm.errorMessage)
                             .foregroundColor(.red)
                             .font(.footnote.weight(.light))
@@ -52,14 +52,6 @@ struct SigninView: View {
                         
                         Spacer()
                         
-                        Button(action: {
-                            // present forgot password view
-                        }, label: {
-                            Text("Forgot password?")
-                                .foregroundColor(vm.appVm.theme.fontBright)
-                                .font(.footnote.weight(.bold))
-                                .lineLimit(1)
-                        })
                     } // HStack
                     .frame(maxWidth: Dims.formMaxWidth)
                     
@@ -67,49 +59,37 @@ struct SigninView: View {
                         .frame(maxWidth: Dims.formMaxWidth)
                         .frame(maxHeight: Dims.spacingLarge)
                     
+                    Button(action: {
+                        vm.isPresentingSafariView = true
+                    }, label: {
+                        Text("By signing up, you agree to the terms")
+                            .foregroundColor(vm.appVm.theme.fontBright)
+                            .font(.footnote.weight(.regular))
+                            .frame(maxWidth: Dims.formMaxWidth)
+                    })
+                    .sheet(isPresented: $vm.isPresentingSafariView) {
+                        SafariView(url: URL(string: Config.TERMS_URL)!, theme: vm.appVm.theme)
+                            .ignoresSafeArea(.all)
+                    }
+                    
                     FormSubmitComponent(
-                        title: .constant("Sign in with email"),
+                        title: .constant("Sign up with email"),
                         theme: vm.appVm.theme
                     ) {
-                        vm.signin()
+                        vm.signup()
                     }
                     
                     Text("or")
                         .foregroundColor(vm.appVm.theme.fontNormal)
                         .font(.body.weight(.regular))
+                        .frame(maxWidth: Dims.formMaxWidth)
                     
                     FormSigninAppleComponent(
-                        type: .constant(.signin),
+                        type: .constant(.signup),
                         theme: vm.appVm.theme
                     ) {
                         vm.requestSigninApple()
                     }
-                    
-                    Rectangle()
-                        .foregroundColor(vm.appVm.theme.primaryLight)
-                        .frame(maxWidth: Dims.formMaxWidth)
-                        .frame(height: 1)
-                    
-                    HStack(alignment: .center, spacing: Dims.spacingSmall) {
-                        Text("Don't have an account?")
-                            .foregroundColor(vm.appVm.theme.fontNormal)
-                            .font(.body.weight(.bold))
-                        
-                        Button(action: {
-                            vm.isPresentingSignupView = true
-                        }, label: {
-                            Text("Sign up")
-                                .foregroundColor(vm.appVm.theme.fontBright)
-                                .font(.body.weight(.bold))
-                                .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
-                                .cornerRadius(Dims.cornerRadius)
-                        })
-                        .sheet(isPresented: $vm.isPresentingSignupView) {
-                            SignupView(vm: SignupViewModel(appVm: vm.appVm))
-                        }
-                    }
-                    .frame(maxWidth: Dims.formMaxWidth)
                     
                 } // VStack
                 .padding(Dims.spacingRegular)
@@ -131,5 +111,5 @@ struct SigninView: View {
 }
 
 #Preview {
-    SigninView(vm: SigninViewModel(appVm: AppViewModel()))
+    SignupView(vm: SignupViewModel(appVm: AppViewModel()))
 }

@@ -22,7 +22,7 @@ extension ApiError {
         return ApiError(code: -1, message: "Invalid URL.")
     }
     
-    static func fromCourrierError(_ courierError: CourierError) -> ApiError {
+    static func fromCourierError(_ courierError: CourierError) -> ApiError {
         guard let (data, response) = courierError.data else {
             return ApiError(code: courierError.code, message: courierError.message)
         }
