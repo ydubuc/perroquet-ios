@@ -164,3 +164,9 @@ class Courier {
         }
     }
 }
+
+extension Courier {
+    func headerBearerToken(accessToken: String) -> [String: String] {
+        return ["Authorization": "Bearer \(accessToken)"]
+    }
+}

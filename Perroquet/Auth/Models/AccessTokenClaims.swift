@@ -9,8 +9,8 @@ import Foundation
 
 struct AccessTokenClaims: Codable {
     let id: String
-    let iat: TimeInterval
-    let exp: TimeInterval
+    let iat: Int
+    let exp: Int
     
     enum CodingKeys: String, CodingKey {
         case id = "id"

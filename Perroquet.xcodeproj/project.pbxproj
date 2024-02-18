@@ -20,8 +20,21 @@
 		ED317E762B801CC6008A6E52 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E752B801CC6008A6E52 /* AppError.swift */; };
 		ED317E792B80261A008A6E52 /* RemindersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E782B80261A008A6E52 /* RemindersService.swift */; };
 		ED317E7E2B80263D008A6E52 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E7D2B80263D008A6E52 /* Reminder.swift */; };
-		ED317E832B808022008A6E52 /* CandyBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E822B808022008A6E52 /* CandyBar.swift */; };
 		ED317E852B808087008A6E52 /* Stash.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E842B808087008A6E52 /* Stash.swift */; };
+		ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E862B8159B3008A6E52 /* SignoutDto.swift */; };
+		ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E882B815DBF008A6E52 /* Nothing.swift */; };
+		ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */; };
+		ED317E8D2B816110008A6E52 /* GetRemindersFilterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8C2B816110008A6E52 /* GetRemindersFilterDto.swift */; };
+		ED317E8F2B816164008A6E52 /* CreateReminderDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8E2B816164008A6E52 /* CreateReminderDto.swift */; };
+		ED317E912B8161AB008A6E52 /* EditReminderDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E902B8161AB008A6E52 /* EditReminderDto.swift */; };
+		ED317E942B816978008A6E52 /* QueryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E932B816978008A6E52 /* QueryDto.swift */; };
+		ED317E962B816BF6008A6E52 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E952B816BF6008A6E52 /* RemindersView.swift */; };
+		ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E982B816CFA008A6E52 /* DiscoverView.swift */; };
+		ED317E9B2B816F3F008A6E52 /* RemindersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */; };
+		ED317E9D2B817136008A6E52 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */; };
+		ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */; };
+		ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = ED317EA12B8174A1008A6E52 /* SimpleKeychain */; };
+		ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */; };
 		ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902092B7D2A460009851E /* SigninViewModel.swift */; };
 		ED59020D2B7D2B790009851E /* Dims.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59020C2B7D2B790009851E /* Dims.swift */; };
 		ED5902122B7D2E390009851E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902112B7D2E390009851E /* Color.swift */; };
@@ -61,8 +74,20 @@
 		ED317E752B801CC6008A6E52 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		ED317E782B80261A008A6E52 /* RemindersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersService.swift; sourceTree = "<group>"; };
 		ED317E7D2B80263D008A6E52 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
-		ED317E822B808022008A6E52 /* CandyBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandyBar.swift; sourceTree = "<group>"; };
 		ED317E842B808087008A6E52 /* Stash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stash.swift; sourceTree = "<group>"; };
+		ED317E862B8159B3008A6E52 /* SignoutDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutDto.swift; sourceTree = "<group>"; };
+		ED317E882B815DBF008A6E52 /* Nothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
+		ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		ED317E8C2B816110008A6E52 /* GetRemindersFilterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRemindersFilterDto.swift; sourceTree = "<group>"; };
+		ED317E8E2B816164008A6E52 /* CreateReminderDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderDto.swift; sourceTree = "<group>"; };
+		ED317E902B8161AB008A6E52 /* EditReminderDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminderDto.swift; sourceTree = "<group>"; };
+		ED317E932B816978008A6E52 /* QueryDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryDto.swift; sourceTree = "<group>"; };
+		ED317E952B816BF6008A6E52 /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
+		ED317E982B816CFA008A6E52 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModel.swift; sourceTree = "<group>"; };
+		ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
+		ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidget.swift; sourceTree = "<group>"; };
 		ED5902092B7D2A460009851E /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		ED59020C2B7D2B790009851E /* Dims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dims.swift; sourceTree = "<group>"; };
 		ED5902112B7D2E390009851E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -95,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +149,9 @@
 		ED317E7A2B802620008A6E52 /* Dtos */ = {
 			isa = PBXGroup;
 			children = (
+				ED317E8C2B816110008A6E52 /* GetRemindersFilterDto.swift */,
+				ED317E8E2B816164008A6E52 /* CreateReminderDto.swift */,
+				ED317E902B8161AB008A6E52 /* EditReminderDto.swift */,
 			);
 			path = Dtos;
 			sourceTree = "<group>";
@@ -138,16 +167,28 @@
 		ED317E7C2B80262B008A6E52 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ED317E982B816CFA008A6E52 /* DiscoverView.swift */,
+				ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */,
+				ED317E952B816BF6008A6E52 /* RemindersView.swift */,
+				ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		ED317E812B808009008A6E52 /* CandyBar */ = {
+		ED317E922B81696C008A6E52 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				ED317E822B808022008A6E52 /* CandyBar.swift */,
+				ED317E932B816978008A6E52 /* QueryDto.swift */,
 			);
-			path = CandyBar;
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ED317EA32B81BE09008A6E52 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		ED5902082B7D2A300009851E /* Views */ = {
@@ -174,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5902112B7D2E390009851E /* Color.swift */,
+				ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -183,7 +225,6 @@
 			children = (
 				ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */,
 				ED317E6C2B7FCF5C008A6E52 /* SafariView.swift */,
-				ED317E812B808009008A6E52 /* CandyBar */,
 				ED5902162B7D61120009851E /* Form */,
 			);
 			path = Components;
@@ -233,6 +274,7 @@
 			children = (
 				ED59022C2B7D94940009851E /* ApiError.swift */,
 				ED317E752B801CC6008A6E52 /* AppError.swift */,
+				ED317E882B815DBF008A6E52 /* Nothing.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,6 +294,7 @@
 				ED317E702B801C23008A6E52 /* RefreshAccessInfoDto.swift */,
 				ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */,
 				ED5902342B7DBB6A0009851E /* SigninDto.swift */,
+				ED317E862B8159B3008A6E52 /* SignoutDto.swift */,
 				ED317E6A2B7FC160008A6E52 /* SignupDto.swift */,
 			);
 			path = Dtos;
@@ -312,9 +355,11 @@
 				ED5902132B7D60D90009851E /* Components */,
 				ED5902102B7D2E310009851E /* Extensions */,
 				ED59022B2B7D94860009851E /* Models */,
+				ED317E922B81696C008A6E52 /* Protocols */,
 				ED59020B2B7D2B580009851E /* Resources */,
 				ED59023C2B7E7C3D0009851E /* Util */,
 				EDC5F54C2B794B1D00551388 /* Views */,
+				ED317EA32B81BE09008A6E52 /* Widgets */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -335,6 +380,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB8F05E2B72DBAC008A1CEB /* MainView.swift */,
+				ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +401,9 @@
 			dependencies = (
 			);
 			name = Perroquet;
+			packageProductDependencies = (
+				ED317EA12B8174A1008A6E52 /* SimpleKeychain */,
+			);
 			productName = Perroquet;
 			productReference = EDB8F0592B72DBAC008A1CEB /* Perroquet.app */;
 			productType = "com.apple.product-type.application";
@@ -383,6 +432,9 @@
 				Base,
 			);
 			mainGroup = EDB8F0502B72DBAC008A1CEB;
+			packageReferences = (
+				ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
+			);
 			productRefGroup = EDB8F05A2B72DBAC008A1CEB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -409,19 +461,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED317E942B816978008A6E52 /* QueryDto.swift in Sources */,
 				EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
+				ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */,
 				ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */,
 				ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */,
 				ED317E762B801CC6008A6E52 /* AppError.swift in Sources */,
 				ED317E852B808087008A6E52 /* Stash.swift in Sources */,
 				ED317E6D2B7FCF5C008A6E52 /* SafariView.swift in Sources */,
 				ED317E792B80261A008A6E52 /* RemindersService.swift in Sources */,
+				ED317E962B816BF6008A6E52 /* RemindersView.swift in Sources */,
 				EDC5F54B2B7948AF00551388 /* SigninView.swift in Sources */,
+				ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */,
 				ED5902322B7DB4700009851E /* Config.swift in Sources */,
 				ED5902392B7E6B2B0009851E /* Courier.swift in Sources */,
-				ED317E832B808022008A6E52 /* CandyBar.swift in Sources */,
 				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
+				ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */,
 				ED317E742B801C8D008A6E52 /* JwtDecoder.swift in Sources */,
 				ED317E712B801C23008A6E52 /* RefreshAccessInfoDto.swift in Sources */,
 				ED59022A2B7D72190009851E /* FormSecureTextfieldComponent.swift in Sources */,
@@ -435,14 +491,22 @@
 				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
 				ED317E6B2B7FC160008A6E52 /* SignupDto.swift in Sources */,
 				ED59021E2B7D697C0009851E /* Themes.swift in Sources */,
+				ED317E9B2B816F3F008A6E52 /* RemindersViewModel.swift in Sources */,
+				ED317E912B8161AB008A6E52 /* EditReminderDto.swift in Sources */,
 				ED59020D2B7D2B790009851E /* Dims.swift in Sources */,
+				ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */,
 				ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */,
 				EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */,
 				EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */,
+				ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */,
 				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
 				ED317E6F2B801BB5008A6E52 /* AccessTokenClaims.swift in Sources */,
+				ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */,
 				EDC5F5492B7947FD00551388 /* AuthService.swift in Sources */,
+				ED317E8F2B816164008A6E52 /* CreateReminderDto.swift in Sources */,
+				ED317E8D2B816110008A6E52 /* GetRemindersFilterDto.swift in Sources */,
 				ED5902302B7D95DD0009851E /* AccessInfo.swift in Sources */,
+				ED317E9D2B817136008A6E52 /* DiscoverViewModel.swift in Sources */,
 				ED5902252B7D6AEB0009851E /* LightTheme.swift in Sources */,
 				ED5902122B7D2E390009851E /* Color.swift in Sources */,
 			);
@@ -656,6 +720,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/SimpleKeychain.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED317EA12B8174A1008A6E52 /* SimpleKeychain */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */;
+			productName = SimpleKeychain;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EDB8F0512B72DBAC008A1CEB /* Project object */;
 }

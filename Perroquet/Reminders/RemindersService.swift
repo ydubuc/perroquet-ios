@@ -15,7 +15,79 @@ class RemindersService {
         self.url = url.appending("/reminders")
     }
     
-//    func getReminders() async -> Result<[Reminder], ApiError> {
-//        
-//    }
+    func createReminder(dto: CreateReminderDto, accessToken: String) async -> Result<Reminder, ApiError> {
+        guard let url = URL(string: url.appending("/reminders")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let headers = courier.headerBearerToken(accessToken: accessToken)
+        let result: Result<Reminder, CourierError> = await courier.post(url: url, headers: headers, body: dto)
+        switch result {
+        case .success(let reminder):
+            return .success(reminder)
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
+    
+    func getReminders(dto: GetRemindersFilterDto, accessToken: String) async -> Result<[Reminder], ApiError> {
+        guard let url = URL(string: url.appending("/reminders")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let headers = courier.headerBearerToken(accessToken: accessToken)
+        let queries = dto.toQueryItems()
+        let result: Result<[Reminder], CourierError> = await courier.get(url: url, headers: headers, queries: queries)
+        switch result {
+        case .success(let reminder):
+            return .success(reminder)
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
+    
+    func getReminder(id: String, accessToken: String) async -> Result<Reminder, ApiError> {
+        guard let url = URL(string: url.appending("/reminders/\(id)")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let headers = courier.headerBearerToken(accessToken: accessToken)
+        let result: Result<Reminder, CourierError> = await courier.get(url: url, headers: headers)
+        switch result {
+        case .success(let reminder):
+            return .success(reminder)
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
+    
+    func editReminder(id: String, dto: EditReminderDto, accessToken: String) async -> Result<Reminder, ApiError> {
+        guard let url = URL(string: url.appending("/reminders/\(id)")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let headers = courier.headerBearerToken(accessToken: accessToken)
+        let result: Result<Reminder, CourierError> = await courier.patch(url: url, headers: headers, body: dto)
+        switch result {
+        case .success(let reminder):
+            return .success(reminder)
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
+    
+    func deleteReminder(id: String, accessToken: String) async -> Result<(), ApiError> {
+        guard let url = URL(string: url.appending("/reminders/\(id)")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let headers = courier.headerBearerToken(accessToken: accessToken)
+        let result = await courier.delete(url: url, headers: headers)
+        switch result {
+        case .success(_):
+            return .success(())
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
 }

@@ -12,12 +12,14 @@ struct PerroquetApp: App {
     @StateObject var appVm = AppViewModel()
     
     var body: some Scene {
+        
         WindowGroup {
-            if !appVm.isLoggedIn {
-                SigninView(vm: SigninViewModel(appVm: appVm))
+            if appVm.isLoggedIn {
+                MainView(vm: MainViewModel(appVm: appVm))
             } else {
-                MainView()
+                SigninView(vm: SigninViewModel(appVm: appVm))
             }
         }
+        
     }
 }

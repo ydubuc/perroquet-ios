@@ -7,10 +7,12 @@
 
 import Foundation
 import SwiftUI
+import SimpleKeychain
 
 class AppViewModel: ObservableObject {
     @Published private(set) var theme: Theme
-    
+
+    private let simpleKeychain = SimpleKeychain()
     private var accessInfo: AccessInfo?
     private var accessTokenClaims: AccessTokenClaims?
     @Published private(set) var isLoggedIn: Bool
@@ -25,6 +27,10 @@ class AppViewModel: ObservableObject {
         self.isLoggedIn = false
         
         self.authService = AuthService(url: Config.BACKEND_URL)
+        
+        if let accessInfo = getCachedAccessInfo() {
+            onSignin(accessInfo: accessInfo)
+        }
     }
     
     func setTheme(theme: Theme) {
@@ -36,12 +42,10 @@ class AppViewModel: ObservableObject {
         
         switch accessTokenClaimsResult {
         case .success(let accessTokenClaims):
-            // cache
-            print(accessInfo)
-            print(accessTokenClaims)
             self.accessInfo = accessInfo
             self.accessTokenClaims = accessTokenClaims
             self.isLoggedIn = true
+            self.cacheAccessInfo(accessInfo: accessInfo)
         case .failure(let appError):
             print(appError)
         }
@@ -52,22 +56,20 @@ class AppViewModel: ObservableObject {
         
         switch accessTokenClaimsResult {
         case .success(let accessTokenClaims):
-            // cache
-            print(accessInfo)
-            print(accessTokenClaims)
             self.accessInfo = accessInfo
             self.accessTokenClaims = accessTokenClaims
             self.isLoggedIn = true
+            self.cacheAccessInfo(accessInfo: accessInfo)
         case .failure(let appError):
-            print(appError)
+            print(appError.localizedDescription)
         }
     }
 
     func onSignout() {
-        // delete cache
         self.accessInfo = nil
         self.accessTokenClaims = nil
         self.isLoggedIn = false
+        self.deleteCachedAccessInfo()
     }
     
     func accessToken() async -> String? {
@@ -77,7 +79,7 @@ class AppViewModel: ObservableObject {
             return nil
         }
         
-        guard (claims.exp - Date().timeIntervalSince1970) <= 0 else {
+        guard (claims.exp - Date().timeIntervalSince1970.milliseconds) <= 0 else {
             return accessInfo.accessToken
         }
         
@@ -89,8 +91,41 @@ class AppViewModel: ObservableObject {
             onRefresh(accessInfo: refreshedAccessInfo)
             return refreshedAccessInfo.accessToken
         case .failure(let apiError):
-            print(apiError)
+            print(apiError.localizedDescription)
             return nil
+        }
+    }
+    
+    private func cacheAccessInfo(accessInfo: AccessInfo) {
+        do {
+            try simpleKeychain.set(accessInfo.accessToken, forKey: "access_token")
+            try simpleKeychain.set(accessInfo.refreshToken, forKey: "refresh_token")
+            try simpleKeychain.set(accessInfo.deviceId, forKey: "device_id")
+        } catch let e {
+            print(e.localizedDescription)
+        }
+    }
+    
+    private func getCachedAccessInfo() -> AccessInfo? {
+        do {
+            let accessToken = try simpleKeychain.string(forKey: "access_token")
+            let refreshToken = try simpleKeychain.string(forKey: "refresh_token")
+            let deviceId = try simpleKeychain.string(forKey: "device_id")
+            
+            return AccessInfo(accessToken: accessToken, refreshToken: refreshToken, deviceId: deviceId)
+        } catch let e {
+            print(e.localizedDescription)
+            return nil
+        }
+    }
+    
+    private func deleteCachedAccessInfo() {
+        do {
+            try simpleKeychain.deleteItem(forKey: "access_token")
+            try simpleKeychain.deleteItem(forKey: "refresh_token")
+            try simpleKeychain.deleteItem(forKey: "device_id")
+        } catch let e {
+            print(e.localizedDescription)
         }
     }
 }

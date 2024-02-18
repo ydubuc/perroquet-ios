@@ -70,4 +70,19 @@ class AuthService {
             return .failure(ApiError.fromCourierError(courierError))
         }
     }
+    
+    func signout(dto: SignoutDto, accessToken: String) async -> Result<(), ApiError> {
+        guard let url = URL(string: url.appending("/signout")) else {
+            return .failure(ApiError.invalidUrl())
+        }
+        
+        let headers = ["Authorization": accessToken]
+        let result: Result<Nothing, CourierError> = await courier.post(url: url, headers: headers, body: dto)
+        switch result {
+        case.success(_):
+            return .success(())
+        case .failure(let courierError):
+            return .failure(ApiError.fromCourierError(courierError))
+        }
+    }
 }
