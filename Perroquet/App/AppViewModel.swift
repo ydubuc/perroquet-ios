@@ -13,8 +13,8 @@ class AppViewModel: ObservableObject {
     @Published private(set) var theme: Theme
 
     private let simpleKeychain = SimpleKeychain()
-    private var accessInfo: AccessInfo?
-    private var accessTokenClaims: AccessTokenClaims?
+    private(set) var accessInfo: AccessInfo?
+    private(set) var accessTokenClaims: AccessTokenClaims?
     @Published private(set) var isLoggedIn: Bool
     
     let authService: AuthService

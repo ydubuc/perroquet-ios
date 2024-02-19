@@ -51,6 +51,7 @@
 		ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902342B7DBB6A0009851E /* SigninDto.swift */; };
 		ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */; };
 		ED5902392B7E6B2B0009851E /* Courier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902382B7E6B2B0009851E /* Courier.swift */; };
+		ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7486292B83B28A006D7FDB /* ReminderComponent.swift */; };
 		EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */; };
 		EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05E2B72DBAC008A1CEB /* MainView.swift */; };
 		EDB8F0612B72DBAD008A1CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */; };
@@ -104,6 +105,7 @@
 		ED5902342B7DBB6A0009851E /* SigninDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninDto.swift; sourceTree = "<group>"; };
 		ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninAppleDto.swift; sourceTree = "<group>"; };
 		ED5902382B7E6B2B0009851E /* Courier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courier.swift; sourceTree = "<group>"; };
+		ED7486292B83B28A006D7FDB /* ReminderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderComponent.swift; sourceTree = "<group>"; };
 		EDB8F0592B72DBAC008A1CEB /* Perroquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perroquet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerroquetApp.swift; sourceTree = "<group>"; };
 		EDB8F05E2B72DBAC008A1CEB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				ED317E782B80261A008A6E52 /* RemindersService.swift */,
+				ED7486282B83B278006D7FDB /* Components */,
 				ED317E7A2B802620008A6E52 /* Dtos */,
 				ED317E7B2B802625008A6E52 /* Models */,
 				ED317E7C2B80262B008A6E52 /* Views */,
@@ -309,6 +312,14 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		ED7486282B83B278006D7FDB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ED7486292B83B28A006D7FDB /* ReminderComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		EDB8F0502B72DBAC008A1CEB = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +487,7 @@
 				ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */,
 				ED5902322B7DB4700009851E /* Config.swift in Sources */,
 				ED5902392B7E6B2B0009851E /* Courier.swift in Sources */,
+				ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */,
 				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
 				ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */,
 				ED317E742B801C8D008A6E52 /* JwtDecoder.swift in Sources */,

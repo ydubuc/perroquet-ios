@@ -8,8 +8,8 @@
 import Foundation
 
 class AuthService {
-    let url: String
-    let courier = Courier()
+    private let url: String
+    private let courier = Courier()
     
     init(url: String) {
         self.url = url.appending("/auth")

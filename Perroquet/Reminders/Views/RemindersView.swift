@@ -20,7 +20,9 @@ struct RemindersView: View {
             
             LazyVStack(alignment: .leading, spacing: 0) {
                 
-                Text("Reminders View")
+                ForEach(vm.reminders) { reminder in
+                    ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                }
                 
                 Button(action: {
                     vm.appVm.onSignout()
@@ -36,5 +38,11 @@ struct RemindersView: View {
 }
 
 #Preview {
-    RemindersView(vm: RemindersViewModel(appVm: AppViewModel()))
+    RemindersView(
+        vm: RemindersViewModel(
+            appVm: AppViewModel(),
+            reminders: [],
+            dto: GetRemindersFilterDto(id: nil, userId: nil, search: nil, sort: nil, cursor: nil, limit: nil)
+        )
+    )
 }
