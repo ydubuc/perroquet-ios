@@ -6,12 +6,21 @@
 //
 
 import Foundation
+import SwiftUI
 
 class MainViewModel: ObservableObject {
-    @Published private(set) var appVm: AppViewModel
-    @Published var currentTab = 0
+    let appVm: AppViewModel
+    let authMan: AuthMan
     
-    init(appVm: AppViewModel) {
+    @Published var currentTab: Int = 0
+    
+    @Published var isPresentingCreateReminderView = false
+    
+    init(
+        appVm: AppViewModel = AppViewModel.shared,
+        authMan: AuthMan = AuthMan.shared
+    ) {
         self.appVm = appVm
+        self.authMan = authMan
     }
 }

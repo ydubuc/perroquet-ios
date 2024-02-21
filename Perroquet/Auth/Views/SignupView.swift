@@ -10,8 +10,8 @@ import SwiftUI
 struct SignupView: View {
     @StateObject var vm: SignupViewModel
     
-    init(vm: SignupViewModel) {
-        _vm = StateObject(wrappedValue: vm)
+    init(vm: StateObject<SignupViewModel> = .init(wrappedValue: .init())) {
+        _vm = vm
     }
     
     var body: some View {
@@ -111,5 +111,5 @@ struct SignupView: View {
 }
 
 #Preview {
-    SignupView(vm: SignupViewModel(appVm: AppViewModel()))
+    SignupView()
 }

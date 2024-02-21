@@ -11,7 +11,7 @@ struct Reminder: Codable, Identifiable {
     let id: String
     let userId: String
     let title: String?
-    let content: String
+    let body: String
     let frequency: String?
     let triggerAt: Int
     let updatedAt: Int
@@ -21,10 +21,19 @@ struct Reminder: Codable, Identifiable {
         case id = "id"
         case userId = "user_id"
         case title = "title"
-        case content = "content"
+        case body = "body"
         case frequency = "frequency"
         case triggerAt = "trigger_at"
         case updatedAt = "updated_at"
         case createdAt = "created_at"
+    }
+    
+    func toLocalNotification() -> LocalNotification {
+        return LocalNotification(
+            id: self.id,
+            title: self.title ?? "Perroquet",
+            body: self.body,
+            triggerAt: self.triggerAt
+        )
     }
 }

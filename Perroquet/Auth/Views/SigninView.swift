@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import AuthenticationServices
 
 struct SigninView: View {
     @StateObject var vm: SigninViewModel
     
-    init(vm: SigninViewModel) {
-        _vm = StateObject(wrappedValue: vm)
+    init(vm: StateObject<SigninViewModel> = .init(wrappedValue: .init())) {
+        _vm = vm
     }
     
     var body: some View {
@@ -106,7 +105,7 @@ struct SigninView: View {
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         .sheet(isPresented: $vm.isPresentingSignupView) {
-                            SignupView(vm: SignupViewModel(appVm: vm.appVm))
+                            SignupView()
                         }
                     }
                     .frame(maxWidth: Dims.formMaxWidth)
@@ -131,5 +130,5 @@ struct SigninView: View {
 }
 
 #Preview {
-    SigninView(vm: SigninViewModel(appVm: AppViewModel()))
+    SigninView()
 }

@@ -10,8 +10,8 @@ import SwiftUI
 struct MainView: View {
     @StateObject var vm: MainViewModel
     
-    init(vm: MainViewModel) {
-        _vm = StateObject(wrappedValue: vm)
+    init(vm: StateObject<MainViewModel> = .init(wrappedValue: .init())) {
+        _vm = vm
     }
 
     var body: some View {
@@ -19,15 +19,18 @@ struct MainView: View {
         ZStack(alignment: .bottom) {
             
             RemindersView(
-                vm: RemindersViewModel(
-                    appVm: vm.appVm,
-                    reminders: [],
-                    dto: GetRemindersFilterDto(id: nil, userId: vm.appVm.accessTokenClaims?.id, search: nil, sort: nil, cursor: nil, limit: nil)
-                )
+                vm: .init(wrappedValue: .init(dto: .init(
+                    id: nil,
+                    userId: vm.authMan.accessTokenClaims?.id,
+                    search: nil,
+                    sort: "trigger_at,desc",
+                    cursor: nil,
+                    limit: nil
+                )))
             )
             .opacity(vm.currentTab == 0 ? 1 : 0)
             
-            DiscoverView(vm: DiscoverViewModel(appVm: vm.appVm))
+            DiscoverView()
                 .opacity(vm.currentTab == 2 ? 1 : 0)
             
             HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
@@ -41,11 +44,15 @@ struct MainView: View {
                 }
                 
                 Button {
-                    //
+                    vm.isPresentingCreateReminderView = true
                 } label: {
                     Image(systemName: "plus.square")
                         .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
                         .font(.body.weight(.bold))
+                }
+                .sheet(isPresented: $vm.isPresentingCreateReminderView) {
+                    CreateReminderView()
+                        .presentationDetents([.medium])
                 }
 
                 Button {
@@ -68,5 +75,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView(vm: MainViewModel(appVm: AppViewModel()))
+    MainView()
 }

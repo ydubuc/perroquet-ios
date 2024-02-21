@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 class DiscoverViewModel: ObservableObject {
-    @Published private(set) var appVm: AppViewModel
+    let appVm: AppViewModel
     
-    init(appVm: AppViewModel) {
+    init(
+        appVm: AppViewModel = AppViewModel.shared
+    ) {
         self.appVm = appVm
     }
 }

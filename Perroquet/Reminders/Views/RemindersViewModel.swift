@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 class RemindersViewModel: ObservableObject {
-    @Published private(set) var appVm: AppViewModel
+    let appVm: AppViewModel
+    let authMan: AuthMan
+    let notificator: Notificator
+    let remindersService: RemindersService
     
     @Published var reminders: [Reminder] = []
     
@@ -20,17 +24,17 @@ class RemindersViewModel: ObservableObject {
     
     @Published var errorMessage: String = ""
     
-    let remindersService: RemindersService
-    
     init(
-        appVm: AppViewModel,
-        reminders: [Reminder],
-        dto: GetRemindersFilterDto,
-        remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL)
+        appVm: AppViewModel = AppViewModel.shared,
+        authMan: AuthMan = AuthMan.shared,
+        notificator: Notificator = Notificator(),
+        remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
+        dto: GetRemindersFilterDto
     ) {
         self.appVm = appVm
-        
-        self.reminders = reminders
+        self.authMan = authMan
+        self.notificator = notificator
+        self.remindersService = remindersService
         
         self.userId = dto.userId
         self.search = dto.search
@@ -38,25 +42,36 @@ class RemindersViewModel: ObservableObject {
         self.cursor = dto.cursor
         self.limit = dto.limit
         
-        self.remindersService = remindersService
-        
-        self.load()
+        self.afterInit()
     }
     
-    func load() {
+    func afterInit() {
+        Task { await self.load() }
+    }
+    
+    func load() async {
+        guard let accessToken = await authMan.accessToken() else { return }
+        
+        let dto = GetRemindersFilterDto(id: nil, userId: userId, search: search, sort: sort, cursor: cursor, limit: limit)
+        let result = await remindersService.getReminders(dto: dto, accessToken: accessToken)
+        
+        DispatchQueue.main.async {
+            switch result {
+            case .success(let reminders):
+                self.reminders = reminders
+                print(reminders)
+                self.scheduleReminders()
+            case .failure(let apiError):
+                print(apiError.localizedDescription)
+                self.errorMessage = apiError.message
+            }
+        }
+    }
+    
+    private func scheduleReminders() {
         Task {
-            guard let accessToken = await appVm.accessToken() else { return }
-            let dto = GetRemindersFilterDto(id: nil, userId: userId, search: search, sort: sort, cursor: cursor, limit: limit)
-            let result = await remindersService.getReminders(dto: dto, accessToken: accessToken)
-            
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let reminders):
-                    self.reminders = reminders
-                case .failure(let apiError):
-                    print(apiError.localizedDescription)
-                    self.errorMessage = apiError.message
-                }
+            for reminder in reminders {
+                await notificator.schedule(notification: reminder.toLocalNotification())
             }
         }
     }

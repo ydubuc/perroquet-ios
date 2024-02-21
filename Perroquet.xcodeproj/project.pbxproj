@@ -20,7 +20,6 @@
 		ED317E762B801CC6008A6E52 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E752B801CC6008A6E52 /* AppError.swift */; };
 		ED317E792B80261A008A6E52 /* RemindersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E782B80261A008A6E52 /* RemindersService.swift */; };
 		ED317E7E2B80263D008A6E52 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E7D2B80263D008A6E52 /* Reminder.swift */; };
-		ED317E852B808087008A6E52 /* Stash.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E842B808087008A6E52 /* Stash.swift */; };
 		ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E862B8159B3008A6E52 /* SignoutDto.swift */; };
 		ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E882B815DBF008A6E52 /* Nothing.swift */; };
 		ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */; };
@@ -52,6 +51,17 @@
 		ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */; };
 		ED5902392B7E6B2B0009851E /* Courier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902382B7E6B2B0009851E /* Courier.swift */; };
 		ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7486292B83B28A006D7FDB /* ReminderComponent.swift */; };
+		ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED74862B2B83D301006D7FDB /* AuthMan.swift */; };
+		EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */; };
+		EDB1DA972B83FC6300FE8EBD /* CreateReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */; };
+		EDB1DA992B8416EF00FE8EBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */; };
+		EDB1DA9C2B8418C400FE8EBD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = EDB1DA9B2B8418C400FE8EBD /* FirebaseMessaging */; };
+		EDB1DAA12B85261000FE8EBD /* DevicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA02B85261000FE8EBD /* DevicesService.swift */; };
+		EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA42B85262500FE8EBD /* Device.swift */; };
+		EDB1DAA72B8526A600FE8EBD /* EditDeviceDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA62B8526A600FE8EBD /* EditDeviceDto.swift */; };
+		EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA92B85489000FE8EBD /* Notificator.swift */; };
+		EDB1DAAD2B8571FC00FE8EBD /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = EDB1DAAC2B8571FC00FE8EBD /* SQLite */; };
+		EDB1DAAF2B85720A00FE8EBD /* Stash.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAAE2B85720A00FE8EBD /* Stash.swift */; };
 		EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */; };
 		EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05E2B72DBAC008A1CEB /* MainView.swift */; };
 		EDB8F0612B72DBAD008A1CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */; };
@@ -75,7 +85,6 @@
 		ED317E752B801CC6008A6E52 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		ED317E782B80261A008A6E52 /* RemindersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersService.swift; sourceTree = "<group>"; };
 		ED317E7D2B80263D008A6E52 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
-		ED317E842B808087008A6E52 /* Stash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stash.swift; sourceTree = "<group>"; };
 		ED317E862B8159B3008A6E52 /* SignoutDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutDto.swift; sourceTree = "<group>"; };
 		ED317E882B815DBF008A6E52 /* Nothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
 		ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -106,6 +115,16 @@
 		ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninAppleDto.swift; sourceTree = "<group>"; };
 		ED5902382B7E6B2B0009851E /* Courier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courier.swift; sourceTree = "<group>"; };
 		ED7486292B83B28A006D7FDB /* ReminderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderComponent.swift; sourceTree = "<group>"; };
+		ED74862B2B83D301006D7FDB /* AuthMan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMan.swift; sourceTree = "<group>"; };
+		EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderView.swift; sourceTree = "<group>"; };
+		EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderViewModel.swift; sourceTree = "<group>"; };
+		EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EDB1DAA02B85261000FE8EBD /* DevicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesService.swift; sourceTree = "<group>"; };
+		EDB1DAA42B85262500FE8EBD /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		EDB1DAA62B8526A600FE8EBD /* EditDeviceDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDeviceDto.swift; sourceTree = "<group>"; };
+		EDB1DAA82B8531A100FE8EBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EDB1DAA92B85489000FE8EBD /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
+		EDB1DAAE2B85720A00FE8EBD /* Stash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stash.swift; sourceTree = "<group>"; };
 		EDB8F0592B72DBAC008A1CEB /* Perroquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perroquet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerroquetApp.swift; sourceTree = "<group>"; };
 		EDB8F05E2B72DBAC008A1CEB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -122,6 +141,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDB1DAAD2B8571FC00FE8EBD /* SQLite in Frameworks */,
+				EDB1DA9C2B8418C400FE8EBD /* FirebaseMessaging in Frameworks */,
 				ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				ED317E732B801C8D008A6E52 /* JwtDecoder.swift */,
+				ED74862B2B83D301006D7FDB /* AuthMan.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -174,6 +196,8 @@
 				ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */,
 				ED317E952B816BF6008A6E52 /* RemindersView.swift */,
 				ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */,
+				EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */,
+				EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,7 +331,8 @@
 			isa = PBXGroup;
 			children = (
 				ED5902382B7E6B2B0009851E /* Courier.swift */,
-				ED317E842B808087008A6E52 /* Stash.swift */,
+				EDB1DAA92B85489000FE8EBD /* Notificator.swift */,
+				EDB1DAAE2B85720A00FE8EBD /* Stash.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -318,6 +343,32 @@
 				ED7486292B83B28A006D7FDB /* ReminderComponent.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		EDB1DA9D2B8525F600FE8EBD /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				EDB1DAA02B85261000FE8EBD /* DevicesService.swift */,
+				EDB1DAA32B85261700FE8EBD /* Dtos */,
+				EDB1DAA22B85261300FE8EBD /* Models */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		EDB1DAA22B85261300FE8EBD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EDB1DAA42B85262500FE8EBD /* Device.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EDB1DAA32B85261700FE8EBD /* Dtos */ = {
+			isa = PBXGroup;
+			children = (
+				EDB1DAA62B8526A600FE8EBD /* EditDeviceDto.swift */,
+			);
+			path = Dtos;
 			sourceTree = "<group>";
 		};
 		EDB8F0502B72DBAC008A1CEB = {
@@ -340,9 +391,12 @@
 			isa = PBXGroup;
 			children = (
 				EDC5F54D2B79653200551388 /* Perroquet.entitlements */,
+				EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */,
+				EDB1DAA82B8531A100FE8EBD /* Info.plist */,
 				EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */,
 				EDC5F5442B7947D300551388 /* App */,
 				EDC5F5472B7947F200551388 /* Auth */,
+				EDB1DA9D2B8525F600FE8EBD /* Devices */,
 				EDB8F0622B72DBAD008A1CEB /* Preview Content */,
 				ED317E772B8025FC008A6E52 /* Reminders */,
 			);
@@ -414,6 +468,8 @@
 			name = Perroquet;
 			packageProductDependencies = (
 				ED317EA12B8174A1008A6E52 /* SimpleKeychain */,
+				EDB1DA9B2B8418C400FE8EBD /* FirebaseMessaging */,
+				EDB1DAAC2B8571FC00FE8EBD /* SQLite */,
 			);
 			productName = Perroquet;
 			productReference = EDB8F0592B72DBAC008A1CEB /* Perroquet.app */;
@@ -445,6 +501,8 @@
 			mainGroup = EDB8F0502B72DBAC008A1CEB;
 			packageReferences = (
 				ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
+				EDB1DA9A2B8418C400FE8EBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EDB1DAAB2B8571FC00FE8EBD /* XCRemoteSwiftPackageReference "SQLite" */,
 			);
 			productRefGroup = EDB8F05A2B72DBAC008A1CEB /* Products */;
 			projectDirPath = "";
@@ -462,6 +520,7 @@
 			files = (
 				EDB8F0642B72DBAD008A1CEB /* Preview Assets.xcassets in Resources */,
 				EDB8F0612B72DBAD008A1CEB /* Assets.xcassets in Resources */,
+				EDB1DA992B8416EF00FE8EBD /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,18 +533,22 @@
 			files = (
 				ED317E942B816978008A6E52 /* QueryDto.swift in Sources */,
 				EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */,
+				EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
+				EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */,
+				EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */,
 				ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */,
 				ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */,
 				ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */,
 				ED317E762B801CC6008A6E52 /* AppError.swift in Sources */,
-				ED317E852B808087008A6E52 /* Stash.swift in Sources */,
+				ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */,
 				ED317E6D2B7FCF5C008A6E52 /* SafariView.swift in Sources */,
 				ED317E792B80261A008A6E52 /* RemindersService.swift in Sources */,
 				ED317E962B816BF6008A6E52 /* RemindersView.swift in Sources */,
 				EDC5F54B2B7948AF00551388 /* SigninView.swift in Sources */,
 				ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */,
 				ED5902322B7DB4700009851E /* Config.swift in Sources */,
+				EDB1DAAF2B85720A00FE8EBD /* Stash.swift in Sources */,
 				ED5902392B7E6B2B0009851E /* Courier.swift in Sources */,
 				ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */,
 				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
@@ -499,7 +562,9 @@
 				ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */,
 				ED317E5C2B7EC77C008A6E52 /* FormSubmitComponent.swift in Sources */,
 				ED317E612B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift in Sources */,
+				EDB1DAA12B85261000FE8EBD /* DevicesService.swift in Sources */,
 				ED5902232B7D6A350009851E /* DarkTheme.swift in Sources */,
+				EDB1DA972B83FC6300FE8EBD /* CreateReminderViewModel.swift in Sources */,
 				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
 				ED317E6B2B7FC160008A6E52 /* SignupDto.swift in Sources */,
 				ED59021E2B7D697C0009851E /* Themes.swift in Sources */,
@@ -514,6 +579,7 @@
 				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
 				ED317E6F2B801BB5008A6E52 /* AccessTokenClaims.swift in Sources */,
 				ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */,
+				EDB1DAA72B8526A600FE8EBD /* EditDeviceDto.swift in Sources */,
 				EDC5F5492B7947FD00551388 /* AuthService.swift in Sources */,
 				ED317E8F2B816164008A6E52 /* CreateReminderDto.swift in Sources */,
 				ED317E8D2B816110008A6E52 /* GetRemindersFilterDto.swift in Sources */,
@@ -658,6 +724,7 @@
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Perroquet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -690,6 +757,7 @@
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Perroquet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -742,6 +810,22 @@
 				minimumVersion = 1.1.0;
 			};
 		};
+		EDB1DA9A2B8418C400FE8EBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
+		EDB1DAAB2B8571FC00FE8EBD /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +833,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */;
 			productName = SimpleKeychain;
+		};
+		EDB1DA9B2B8418C400FE8EBD /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDB1DA9A2B8418C400FE8EBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		EDB1DAAC2B8571FC00FE8EBD /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDB1DAAB2B8571FC00FE8EBD /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

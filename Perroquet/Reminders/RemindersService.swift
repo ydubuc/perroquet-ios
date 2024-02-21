@@ -16,7 +16,7 @@ class RemindersService {
     }
     
     func createReminder(dto: CreateReminderDto, accessToken: String) async -> Result<Reminder, ApiError> {
-        guard let url = URL(string: url.appending("/reminders")) else {
+        guard let url = URL(string: url) else {
             return .failure(ApiError.invalidUrl())
         }
         
@@ -26,12 +26,13 @@ class RemindersService {
         case .success(let reminder):
             return .success(reminder)
         case .failure(let courierError):
+            print(courierError.code)
             return .failure(ApiError.fromCourierError(courierError))
         }
     }
     
     func getReminders(dto: GetRemindersFilterDto, accessToken: String) async -> Result<[Reminder], ApiError> {
-        guard let url = URL(string: url.appending("/reminders")) else {
+        guard let url = URL(string: url) else {
             return .failure(ApiError.invalidUrl())
         }
         
@@ -47,7 +48,7 @@ class RemindersService {
     }
     
     func getReminder(id: String, accessToken: String) async -> Result<Reminder, ApiError> {
-        guard let url = URL(string: url.appending("/reminders/\(id)")) else {
+        guard let url = URL(string: url.appending("/\(id)")) else {
             return .failure(ApiError.invalidUrl())
         }
         
@@ -62,7 +63,7 @@ class RemindersService {
     }
     
     func editReminder(id: String, dto: EditReminderDto, accessToken: String) async -> Result<Reminder, ApiError> {
-        guard let url = URL(string: url.appending("/reminders/\(id)")) else {
+        guard let url = URL(string: url.appending("/\(id)")) else {
             return .failure(ApiError.invalidUrl())
         }
         
@@ -77,7 +78,7 @@ class RemindersService {
     }
     
     func deleteReminder(id: String, accessToken: String) async -> Result<(), ApiError> {
-        guard let url = URL(string: url.appending("/reminders/\(id)")) else {
+        guard let url = URL(string: url.appending("/\(id)")) else {
             return .failure(ApiError.invalidUrl())
         }
         

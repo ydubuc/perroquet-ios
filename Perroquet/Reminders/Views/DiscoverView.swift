@@ -10,8 +10,8 @@ import SwiftUI
 struct DiscoverView: View {
     @StateObject var vm: DiscoverViewModel
     
-    init(vm: DiscoverViewModel) {
-        _vm = StateObject(wrappedValue: vm)
+    init(vm: StateObject<DiscoverViewModel> = .init(wrappedValue: .init())) {
+        _vm = vm
     }
     
     var body: some View {
@@ -22,6 +22,12 @@ struct DiscoverView: View {
                 
                 Text("Discover View")
                 
+                Button(action: {
+                    AuthMan.shared.onSignout()
+                }, label: {
+                    Text("Sign out")
+                })
+                
             }
 
         }
@@ -30,5 +36,5 @@ struct DiscoverView: View {
 }
 
 #Preview {
-    DiscoverView(vm: DiscoverViewModel(appVm: AppViewModel()))
+    DiscoverView()
 }

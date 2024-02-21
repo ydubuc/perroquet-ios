@@ -10,39 +10,115 @@ import SwiftUI
 struct RemindersView: View {
     @StateObject var vm: RemindersViewModel
     
-    init(vm: RemindersViewModel) {
-        _vm = StateObject(wrappedValue: vm)
+    init(vm: StateObject<RemindersViewModel> = .init(wrappedValue: .init(dto: .init(
+        id: nil,
+        userId: nil,
+        search: nil,
+        sort: nil,
+        cursor: nil,
+        limit: nil
+    )))) {
+        _vm = vm
     }
     
     var body: some View {
         
-        ScrollView(.vertical, showsIndicators: true) {
+        let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
+        
+        GeometryReader { geometry in
             
-            LazyVStack(alignment: .leading, spacing: 0) {
+            ScrollView(.vertical, showsIndicators: true) {
                 
-                ForEach(vm.reminders) { reminder in
-                    ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
-                }
-                
-                Button(action: {
-                    vm.appVm.onSignout()
-                }, label: {
-                    Text("Logout")
-                })
-                
-            }
+                VStack(alignment: .leading, spacing: Dims.spacingRegular) {
+                    
+                    let upcomingReminders = vm.reminders.filter { $0.triggerAt >= currentTimeInMillis }
+                    
+                    Text("Upcoming (\(upcomingReminders.count))")
+                        .foregroundColor(vm.appVm.theme.fontNormal)
+                        .font(.body.weight(.bold))
+                        .lineLimit(1)
+                    
+                    if upcomingReminders.count > 0 {
+                        VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+                            ForEach(upcomingReminders) { reminder in
+                                ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                            }
+                        }
+                        .frame(maxWidth: Dims.viewMaxWidth1)
+                        .padding(Dims.spacingRegular)
+                        .background(vm.appVm.theme.primaryDark)
+                        .cornerRadius(Dims.cornerRadius)
+                    } else {
+                        HStack(alignment: .center, spacing: 0) {
+                         
+                            Text("All done here!")
+                                .foregroundColor(vm.appVm.theme.fontDim)
+                                .font(.body.weight(.regular))
+                                .lineLimit(1)
+                            
+                            Spacer()
+                            
+                        }
+                        .padding(Dims.spacingRegular)
+                        .background(vm.appVm.theme.primaryDark)
+                        .cornerRadius(Dims.cornerRadius)
+                    }
+                    
+                    let previousReminders = vm.reminders.filter { $0.triggerAt < currentTimeInMillis }
+                    
+                    Text("Previous (\(previousReminders.count))")
+                        .foregroundColor(vm.appVm.theme.fontNormal)
+                        .font(.body.weight(.bold))
+                        .lineLimit(1)
+                    
+                    if previousReminders.count > 0 {
+                        VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+                            ForEach(previousReminders) { reminder in
+                                ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                            }
+                        }
+                        .frame(maxWidth: Dims.viewMaxWidth1)
+                        .padding(Dims.spacingRegular)
+                        .background(vm.appVm.theme.primaryDark)
+                        .cornerRadius(Dims.cornerRadius)
+                    } else {
+                        HStack(alignment: .center, spacing: 0) {
+                         
+                            Text("Nothing going on here! 🎉")
+                                .foregroundColor(vm.appVm.theme.fontDim)
+                                .font(.body.weight(.regular))
+                                .lineLimit(1)
+                            
+                            Spacer()
+                            
+                        }
+                        .padding(Dims.spacingRegular)
+                        .background(vm.appVm.theme.primaryDark)
+                        .cornerRadius(Dims.cornerRadius)
+                    }
+                    
+                } // LazyVStack
+                .padding(Dims.spacingRegular)
 
-        }
+            } // ScrollView
+            .refreshable {
+                Task { await vm.load() }
+            }
+            
+        } // GeometryReader
         
     }
 }
 
 #Preview {
     RemindersView(
-        vm: RemindersViewModel(
-            appVm: AppViewModel(),
-            reminders: [],
-            dto: GetRemindersFilterDto(id: nil, userId: nil, search: nil, sort: nil, cursor: nil, limit: nil)
-        )
+        vm: .init(wrappedValue: .init(dto: .init(
+            id: nil,
+            userId: nil,
+            search: nil,
+            sort: nil,
+            cursor: nil,
+            limit: nil
+        )))
     )
 }

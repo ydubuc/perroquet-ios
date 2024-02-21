@@ -9,13 +9,13 @@ import Foundation
 
 struct CreateReminderDto: Codable {
     let title: String?
-    let content: String
+    let body: String
     let frequency: String?
     let triggerAt: Int
     
     enum CodingKeys: String, CodingKey {
         case title = "title"
-        case content = "content"
+        case body = "body"
         case frequency = "frequency"
         case triggerAt = "trigger_at"
     }

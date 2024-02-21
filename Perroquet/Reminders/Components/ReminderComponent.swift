@@ -13,17 +13,25 @@ struct ReminderComponent: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: Dims.spacingSmallest) {
             
-            Text(reminder.title ?? reminder.content)
-                .foregroundColor(theme.fontNormal)
-                .font(.body.weight(.regular))
+            HStack(alignment: .center, spacing: Dims.spacingRegular) {
+                    
+                Text(reminder.title ?? reminder.body)
+                    .foregroundColor(theme.fontNormal)
+                    .font(.body.weight(.regular))
+                    .lineLimit(1)
+                
+                Spacer()
+                
+            }
+            
+            Text("\(Date(timeIntervalSince1970: TimeInterval(reminder.triggerAt) / 1000).formatted())")
+                .foregroundColor(theme.fontBright)
+                .font(.caption.weight(.regular))
                 .lineLimit(1)
             
         }
-        .padding(Dims.spacingRegular)
-        .background(theme.primaryLight)
-        .cornerRadius(Dims.cornerRadius)
         
     }
 }
@@ -34,7 +42,7 @@ struct ReminderComponent: View {
             id: "123",
             userId: "321",
             title: nil,
-            content: "do the laundry",
+            body: "do the laundry",
             frequency: nil,
             triggerAt: 1708358620664,
             updatedAt: 1708358620664,

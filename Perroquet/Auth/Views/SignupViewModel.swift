@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 import AuthenticationServices
 
 class SignupViewModel: NSObject, ObservableObject {
-    @Published private(set) var appVm: AppViewModel
+    let appVm: AppViewModel
+    let authMan: AuthMan
+    let authService: AuthService
     
     @Published var email: String = ""
     @Published var passw: String = ""
@@ -19,13 +22,13 @@ class SignupViewModel: NSObject, ObservableObject {
     
     @Published var isPresentingSafariView = false
     
-    let authService: AuthService
-    
     init(
-        appVm: AppViewModel,
+        appVm: AppViewModel = AppViewModel.shared,
+        authMan: AuthMan = AuthMan.shared,
         authService: AuthService = AuthService(url: Config.BACKEND_URL)
     ) {
         self.appVm = appVm
+        self.authMan = authMan
         self.authService = authService
     }
     
@@ -59,7 +62,7 @@ class SignupViewModel: NSObject, ObservableObject {
                 
                 switch result {
                 case .success(let accessInfo):
-                    self.appVm.onSignin(accessInfo: accessInfo)
+                    self.authMan.onSignin(accessInfo: accessInfo)
                 case .failure(let apiError):
                     print(apiError.localizedDescription)
                     self.errorMessage = apiError.message
@@ -90,7 +93,7 @@ class SignupViewModel: NSObject, ObservableObject {
                 
                 switch result {
                 case .success(let accessInfo):
-                    self.appVm.onSignin(accessInfo: accessInfo)
+                    self.authMan.onSignin(accessInfo: accessInfo)
                 case .failure(let apiError):
                     print(apiError.localizedDescription)
                     self.errorMessage = apiError.message
