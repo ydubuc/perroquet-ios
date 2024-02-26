@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED216A262B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */; };
 		ED317E5C2B7EC77C008A6E52 /* FormSubmitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */; };
 		ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */; };
 		ED317E612B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */; };
@@ -62,6 +63,7 @@
 		EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA92B85489000FE8EBD /* Notificator.swift */; };
 		EDB1DAAD2B8571FC00FE8EBD /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = EDB1DAAC2B8571FC00FE8EBD /* SQLite */; };
 		EDB1DAAF2B85720A00FE8EBD /* Stash.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAAE2B85720A00FE8EBD /* Stash.swift */; };
+		EDB1DAB42B8694F600FE8EBD /* notification_perroquet.wav in Resources */ = {isa = PBXBuildFile; fileRef = EDB1DAB32B8694F600FE8EBD /* notification_perroquet.wav */; };
 		EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */; };
 		EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05E2B72DBAC008A1CEB /* MainView.swift */; };
 		EDB8F0612B72DBAD008A1CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDB8F0602B72DBAD008A1CEB /* Assets.xcassets */; };
@@ -72,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldMultilineComponent.swift; sourceTree = "<group>"; };
 		ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSubmitComponent.swift; sourceTree = "<group>"; };
 		ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSigninAppleComponent.swift; sourceTree = "<group>"; };
 		ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateProgressBarComponent.swift; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		EDB1DAA82B8531A100FE8EBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EDB1DAA92B85489000FE8EBD /* Notificator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificator.swift; sourceTree = "<group>"; };
 		EDB1DAAE2B85720A00FE8EBD /* Stash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stash.swift; sourceTree = "<group>"; };
+		EDB1DAB32B8694F600FE8EBD /* notification_perroquet.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notification_perroquet.wav; sourceTree = "<group>"; };
 		EDB8F0592B72DBAC008A1CEB /* Perroquet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perroquet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerroquetApp.swift; sourceTree = "<group>"; };
 		EDB8F05E2B72DBAC008A1CEB /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -192,12 +196,12 @@
 		ED317E7C2B80262B008A6E52 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */,
+				EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */,
 				ED317E982B816CFA008A6E52 /* DiscoverView.swift */,
 				ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */,
 				ED317E952B816BF6008A6E52 /* RemindersView.swift */,
 				ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */,
-				EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */,
-				EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,6 +236,7 @@
 		ED59020B2B7D2B580009851E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EDB1DAB22B8694E800FE8EBD /* Sounds */,
 				ED59021B2B7D69140009851E /* Themes */,
 				ED59020C2B7D2B790009851E /* Dims.swift */,
 			);
@@ -265,6 +270,7 @@
 				ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */,
 				ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */,
 				ED5902192B7D625D0009851E /* FormTextfieldComponent.swift */,
+				ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -369,6 +375,14 @@
 				EDB1DAA62B8526A600FE8EBD /* EditDeviceDto.swift */,
 			);
 			path = Dtos;
+			sourceTree = "<group>";
+		};
+		EDB1DAB22B8694E800FE8EBD /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				EDB1DAB32B8694F600FE8EBD /* notification_perroquet.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		EDB8F0502B72DBAC008A1CEB = {
@@ -521,6 +535,7 @@
 				EDB8F0642B72DBAD008A1CEB /* Preview Assets.xcassets in Resources */,
 				EDB8F0612B72DBAD008A1CEB /* Assets.xcassets in Resources */,
 				EDB1DA992B8416EF00FE8EBD /* GoogleService-Info.plist in Resources */,
+				EDB1DAB42B8694F600FE8EBD /* notification_perroquet.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,6 +569,7 @@
 				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
 				ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */,
 				ED317E742B801C8D008A6E52 /* JwtDecoder.swift in Sources */,
+				ED216A262B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift in Sources */,
 				ED317E712B801C23008A6E52 /* RefreshAccessInfoDto.swift in Sources */,
 				ED59022A2B7D72190009851E /* FormSecureTextfieldComponent.swift in Sources */,
 				ED317E672B7FBDDB008A6E52 /* SignupView.swift in Sources */,

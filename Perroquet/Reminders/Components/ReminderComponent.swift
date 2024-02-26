@@ -20,7 +20,6 @@ struct ReminderComponent: View {
                 Text(reminder.title ?? reminder.body)
                     .foregroundColor(theme.fontNormal)
                     .font(.body.weight(.regular))
-                    .lineLimit(1)
                 
                 Spacer()
                 
@@ -44,6 +43,7 @@ struct ReminderComponent: View {
             title: nil,
             body: "do the laundry",
             frequency: nil,
+            visibility: 0,
             triggerAt: 1708358620664,
             updatedAt: 1708358620664,
             createdAt: 1708358620664

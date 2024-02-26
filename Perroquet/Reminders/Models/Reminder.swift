@@ -13,6 +13,7 @@ struct Reminder: Codable, Identifiable {
     let title: String?
     let body: String
     let frequency: String?
+    let visibility: Int
     let triggerAt: Int
     let updatedAt: Int
     let createdAt: Int
@@ -23,6 +24,7 @@ struct Reminder: Codable, Identifiable {
         case title = "title"
         case body = "body"
         case frequency = "frequency"
+        case visibility = "visibility"
         case triggerAt = "trigger_at"
         case updatedAt = "updated_at"
         case createdAt = "created_at"

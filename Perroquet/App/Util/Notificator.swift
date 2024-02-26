@@ -20,6 +20,7 @@ class Notificator {
         let content = UNMutableNotificationContent()
         content.title = notification.title
         content.body = notification.body
+        content.sound = UNNotificationSound(named: .init("notification_perroquet.wav"))
         
         let timeInterval = TimeInterval(notification.triggerAt / 1000)
         let fireDate = Date(timeIntervalSince1970: timeInterval)

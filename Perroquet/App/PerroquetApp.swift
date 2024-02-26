@@ -37,11 +37,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        registerForRemoteNotifications()
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
-        
-        requestRegisterForNotifications()
         
         return true
     }
@@ -68,15 +67,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
     }
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("didRegisterForRemoteNotificationsWithDeviceToken")
-
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
         Messaging.messaging().apnsToken = deviceToken
     }
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        print("didReceiveRemoteNotification: \(userInfo)")
-
+    func application(
+        _ application: UIApplication,
+        didReceiveRemoteNotification userInfo: [AnyHashable: Any]
+    ) {
         Messaging.messaging().appDidReceiveMessage(userInfo)
     }
 
@@ -84,8 +85,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ application: UIApplication,
         didReceiveRemoteNotification userInfo: [AnyHashable: Any]
     ) async -> UIBackgroundFetchResult {
-        print("didReceiveRemoteNotification async: \(userInfo)")
-
         Messaging.messaging().appDidReceiveMessage(userInfo)
 
         return .newData
@@ -95,8 +94,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification
     ) async -> UNNotificationPresentationOptions {
-        print("userNotificationCenter willPresent: \(notification.request.content.userInfo)")
-
         Messaging.messaging().appDidReceiveMessage(notification.request.content.userInfo)
 
         return [[.banner, .sound]]
@@ -107,19 +104,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         didReceive response: UNNotificationResponse
     ) async {
         let userInfo = response.notification.request.content.userInfo
-        print("userNotificationCenter didReceive: \(userInfo)")
-
         Messaging.messaging().appDidReceiveMessage(userInfo)
     }
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        NotificationCenter.default.post(
-            name: Notification.Name("FCMToken"),
-            object: nil,
-            userInfo: ["token": fcmToken ?? ""]
-        )
+//        NotificationCenter.default.post(
+//            name: Notification.Name("FCMToken"),
+//            object: nil,
+//            userInfo: ["token": fcmToken ?? ""]
+//        )
 
         guard let messagingToken = fcmToken
         else {

@@ -20,6 +20,8 @@ class AuthMan: ObservableObject {
     var accessTokenClaims: AccessTokenClaims? = nil
     @Published var isLoggedIn: Bool = false
     
+    private var isRefreshing = false
+    
     private init(
         authService: AuthService = AuthService(url: Config.BACKEND_URL),
         devicesService: DevicesService = DevicesService(url: Config.BACKEND_URL),
@@ -95,6 +97,17 @@ class AuthMan: ObservableObject {
             return accessInfo.accessToken
         }
         
+        if isRefreshing {
+            do {
+                try await Task.sleep(nanoseconds: 1 * 1000000000)
+                return await accessToken()
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            isRefreshing = true
+        }
+        
         print("refreshing accessToken")
         let dto = RefreshAccessInfoDto(refreshToken: accessInfo.refreshToken)
         let result = await authService.refresh(dto: dto)
@@ -102,11 +115,15 @@ class AuthMan: ObservableObject {
         switch result {
         case .success(let refreshedAccessInfo):
             DispatchQueue.main.async {
-                self.onRefresh(accessInfo: refreshedAccessInfo)
+                if self.isLoggedIn {
+                    self.onRefresh(accessInfo: refreshedAccessInfo)
+                }
+                self.isRefreshing = false
             }
             return refreshedAccessInfo.accessToken
         case .failure(let apiError):
             print(apiError.message)
+            self.isRefreshing = false
             return nil
         }
     }

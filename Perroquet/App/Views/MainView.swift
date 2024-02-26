@@ -23,6 +23,7 @@ struct MainView: View {
                     id: nil,
                     userId: vm.authMan.accessTokenClaims?.id,
                     search: nil,
+                    visibility: nil,
                     sort: "trigger_at,desc",
                     cursor: nil,
                     limit: nil
@@ -30,8 +31,16 @@ struct MainView: View {
             )
             .opacity(vm.currentTab == 0 ? 1 : 0)
             
-            DiscoverView()
-                .opacity(vm.currentTab == 2 ? 1 : 0)
+            DiscoverView(vm: .init(wrappedValue: .init(dto: .init(
+                id: nil,
+                userId: nil,
+                search: nil,
+                visibility: 1,
+                sort: "trigger_at,desc",
+                cursor: nil,
+                limit: nil
+            ))))
+            .opacity(vm.currentTab == 2 ? 1 : 0)
             
             HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
                 
@@ -50,9 +59,13 @@ struct MainView: View {
                         .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
                         .font(.body.weight(.bold))
                 }
+//                .fullScreenCover(isPresented: $vm.isPresentingCreateReminderView) {
+//                    CreateReminderView()
+//                        .background(ClearBackgroundView())
+//                }
                 .sheet(isPresented: $vm.isPresentingCreateReminderView) {
                     CreateReminderView()
-                        .presentationDetents([.medium])
+                        .background(ClearBackgroundView())
                 }
 
                 Button {
@@ -70,6 +83,23 @@ struct MainView: View {
             
         }
         .background(vm.appVm.theme.primary)
+        
+    }
+}
+
+struct ClearBackgroundView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        return InnerView()
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+    
+    private class InnerView: UIView {
+        override func didMoveToWindow() {
+            super.didMoveToWindow()
+            
+            superview?.superview?.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.0)
+        }
         
     }
 }

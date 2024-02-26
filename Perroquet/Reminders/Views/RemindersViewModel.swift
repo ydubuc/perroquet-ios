@@ -11,6 +11,7 @@ import SwiftUI
 class RemindersViewModel: ObservableObject {
     let appVm: AppViewModel
     let authMan: AuthMan
+    let stash: Stash
     let notificator: Notificator
     let remindersService: RemindersService
     
@@ -18,6 +19,7 @@ class RemindersViewModel: ObservableObject {
     
     @Published var userId: String?
     @Published var search: String?
+    @Published var visibility: Int?
     @Published var sort: String?
     @Published var cursor: String?
     @Published var limit: Int?
@@ -27,17 +29,20 @@ class RemindersViewModel: ObservableObject {
     init(
         appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
+        stash: Stash = Stash.shared,
         notificator: Notificator = Notificator(),
         remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
         dto: GetRemindersFilterDto
     ) {
         self.appVm = appVm
         self.authMan = authMan
+        self.stash = stash
         self.notificator = notificator
         self.remindersService = remindersService
         
         self.userId = dto.userId
         self.search = dto.search
+        self.visibility = dto.visibility
         self.sort = dto.sort
         self.cursor = dto.cursor
         self.limit = dto.limit
@@ -46,22 +51,26 @@ class RemindersViewModel: ObservableObject {
     }
     
     func afterInit() {
+        if let reminders = stash.getReminders() {
+            self.reminders = reminders
+        }
         Task { await self.load() }
     }
     
     func load() async {
         guard let accessToken = await authMan.accessToken() else { return }
         
-        let dto = GetRemindersFilterDto(id: nil, userId: userId, search: search, sort: sort, cursor: cursor, limit: limit)
+        let dto = GetRemindersFilterDto(id: nil, userId: userId, search: search, visibility: visibility, sort: sort, cursor: cursor, limit: limit)
         let result = await remindersService.getReminders(dto: dto, accessToken: accessToken)
         
-        DispatchQueue.main.async {
-            switch result {
-            case .success(let reminders):
+        switch result {
+        case .success(let reminders):
+            DispatchQueue.main.async {
                 self.reminders = reminders
-                print(reminders)
                 self.scheduleReminders()
-            case .failure(let apiError):
+            }
+        case .failure(let apiError):
+            DispatchQueue.main.async {
                 print(apiError.localizedDescription)
                 self.errorMessage = apiError.message
             }
@@ -75,5 +84,4 @@ class RemindersViewModel: ObservableObject {
             }
         }
     }
-    
 }

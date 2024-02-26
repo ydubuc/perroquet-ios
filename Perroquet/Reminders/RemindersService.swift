@@ -10,6 +10,7 @@ import Foundation
 class RemindersService {
     private let url: String
     private let courier = Courier()
+    private let stash = Stash.shared
     
     init(url: String) {
         self.url = url.appending("/reminders")
@@ -24,6 +25,7 @@ class RemindersService {
         let result: Result<Reminder, CourierError> = await courier.post(url: url, headers: headers, body: dto)
         switch result {
         case .success(let reminder):
+            stash.cacheReminder(reminder: reminder)
             return .success(reminder)
         case .failure(let courierError):
             print(courierError.code)
@@ -40,8 +42,9 @@ class RemindersService {
         let queries = dto.toQueryItems()
         let result: Result<[Reminder], CourierError> = await courier.get(url: url, headers: headers, queries: queries)
         switch result {
-        case .success(let reminder):
-            return .success(reminder)
+        case .success(let reminders):
+            stash.cacheReminders(reminders: reminders)
+            return .success(reminders)
         case .failure(let courierError):
             return .failure(ApiError.fromCourierError(courierError))
         }
@@ -56,6 +59,7 @@ class RemindersService {
         let result: Result<Reminder, CourierError> = await courier.get(url: url, headers: headers)
         switch result {
         case .success(let reminder):
+            stash.cacheReminder(reminder: reminder)
             return .success(reminder)
         case .failure(let courierError):
             return .failure(ApiError.fromCourierError(courierError))
@@ -71,6 +75,7 @@ class RemindersService {
         let result: Result<Reminder, CourierError> = await courier.patch(url: url, headers: headers, body: dto)
         switch result {
         case .success(let reminder):
+            stash.updateReminder(reminder: reminder)
             return .success(reminder)
         case .failure(let courierError):
             return .failure(ApiError.fromCourierError(courierError))
@@ -86,6 +91,7 @@ class RemindersService {
         let result = await courier.delete(url: url, headers: headers)
         switch result {
         case .success(_):
+            stash.deleteReminder(id: id)
             return .success(())
         case .failure(let courierError):
             return .failure(ApiError.fromCourierError(courierError))
