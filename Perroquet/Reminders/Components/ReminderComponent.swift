@@ -25,7 +25,7 @@ struct ReminderComponent: View {
                 
             }
             
-            Text("\(Date(timeIntervalSince1970: TimeInterval(reminder.triggerAt) / 1000).formatted())")
+            Text("\(Date(timeIntervalSince1970: TimeInterval(reminder.triggerAt) / 1000).formatted(date: .abbreviated, time: .shortened))")
                 .foregroundColor(theme.fontBright)
                 .font(.caption.weight(.regular))
                 .lineLimit(1)
@@ -48,6 +48,6 @@ struct ReminderComponent: View {
             updatedAt: 1708358620664,
             createdAt: 1708358620664
         ),
-        theme: DarkTheme()
+        theme: LightTheme()
     )
 }

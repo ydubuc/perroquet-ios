@@ -11,6 +11,7 @@ class CreateReminderViewModel: ObservableObject {
     let appVm: AppViewModel
     let authMan: AuthMan
     let notificator: Notificator
+    let stash: Stash
     let remindersService: RemindersService
     
     @Published var title: String = ""
@@ -19,52 +20,61 @@ class CreateReminderViewModel: ObservableObject {
     @Published var visibility: Int = 0
     @Published var triggerAtDate: Date = Date.now
     
+    @Published var isPresentingDatePickerView = false
+    
     init(
         appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
         notificator: Notificator = Notificator(),
+        stash: Stash = Stash.shared,
         remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL)
     ) {
         self.appVm = appVm
         self.authMan = authMan
         self.notificator = notificator
+        self.stash = stash
         self.remindersService = remindersService
     }
     
     func createReminder() {
         Task {
-            let triggerAt = triggerAtDate.timeIntervalSince1970.milliseconds
-            let dto = CreateReminderDto(title: nil, body: body, frequency: nil, visibility: visibility, triggerAt: triggerAt)
-            
             let tempId = UUID().uuidString
-            await scheduleLocalNotification(id: tempId, triggerAt: triggerAt)
+            let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
+            let triggerAt = triggerAtDate.timeIntervalSince1970.milliseconds
+            let tempReminder = Reminder(
+                id: tempId,
+                userId: authMan.accessTokenClaims?.id ?? "",
+                title: title.isEmpty ? nil : title,
+                body: body,
+                frequency: frequency.isEmpty ? nil : frequency,
+                visibility: visibility,
+                triggerAt: triggerAt,
+                updatedAt: currentTimeInMillis,
+                createdAt: currentTimeInMillis
+            )
+            
+            stash.cacheReminder(reminder: tempReminder)
+            await notificator.schedule(notification: tempReminder.toLocalNotification())
+            
+            let dto = CreateReminderDto(
+                title: title.isEmpty ? nil : title,
+                body: body,
+                frequency: nil,
+                visibility: visibility,
+                triggerAt: triggerAt
+            )
             
             guard let accessToken = await authMan.accessToken() else { return }
             let result = await remindersService.createReminder(dto: dto, accessToken: accessToken)
             
             switch result {
             case .success(let reminder):
+                stash.deleteReminder(id: tempId)
                 self.notificator.delete(ids: [tempId])
                 await notificator.schedule(notification: reminder.toLocalNotification())
             case .failure(let apiError):
                 print(apiError.message)
             }
         }
-    }
-    
-    func scheduleLocalNotification(id: String, triggerAt: Int) async {
-        let currentTime = Date().timeIntervalSince1970.milliseconds
-        let localReminder = Reminder(
-            id: id,
-            userId: authMan.accessTokenClaims?.id ?? "",
-            title: title.isEmpty ? nil : title,
-            body: body,
-            frequency: frequency.isEmpty ? nil : frequency,
-            visibility: visibility,
-            triggerAt: triggerAt,
-            updatedAt: currentTime,
-            createdAt: currentTime
-        )
-        await notificator.schedule(notification: localReminder.toLocalNotification())
     }
 }

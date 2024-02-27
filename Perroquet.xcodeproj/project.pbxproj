@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED216A262B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */; };
+		ED2279F52B8E81160041FAD2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2279F42B8E81160041FAD2 /* DatePickerView.swift */; };
 		ED317E5C2B7EC77C008A6E52 /* FormSubmitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */; };
 		ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */; };
 		ED317E612B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldMultilineComponent.swift; sourceTree = "<group>"; };
+		ED2279F42B8E81160041FAD2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSubmitComponent.swift; sourceTree = "<group>"; };
 		ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSigninAppleComponent.swift; sourceTree = "<group>"; };
 		ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateProgressBarComponent.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */,
 				EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */,
+				ED2279F42B8E81160041FAD2 /* DatePickerView.swift */,
 				ED317E982B816CFA008A6E52 /* DiscoverView.swift */,
 				ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */,
 				ED317E952B816BF6008A6E52 /* RemindersView.swift */,
@@ -548,6 +551,7 @@
 			files = (
 				ED317E942B816978008A6E52 /* QueryDto.swift in Sources */,
 				EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */,
+				ED2279F52B8E81160041FAD2 /* DatePickerView.swift in Sources */,
 				EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
 				EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */,

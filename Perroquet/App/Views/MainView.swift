@@ -59,10 +59,6 @@ struct MainView: View {
                         .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
                         .font(.body.weight(.bold))
                 }
-//                .fullScreenCover(isPresented: $vm.isPresentingCreateReminderView) {
-//                    CreateReminderView()
-//                        .background(ClearBackgroundView())
-//                }
                 .sheet(isPresented: $vm.isPresentingCreateReminderView) {
                     CreateReminderView()
                         .background(ClearBackgroundView())
@@ -83,7 +79,18 @@ struct MainView: View {
             
         }
         .background(vm.appVm.theme.primary)
+        .onAppear {
+            setWindowBackgroundColor(vm.appVm.theme.primaryDark)
+        }
         
+    }
+    
+    private func setWindowBackgroundColor(_ color: Color) {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first
+        {
+            window.backgroundColor = UIColor(color)
+        }
     }
 }
 

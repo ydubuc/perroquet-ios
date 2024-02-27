@@ -47,14 +47,23 @@ class DiscoverViewModel: ObservableObject {
         self.afterInit()
     }
     
-    func afterInit() {
+    private func afterInit() {
         Task { await self.load() }
     }
     
     func load() async {
         guard let accessToken = await authMan.accessToken() else { return }
         
-        let dto = GetRemindersFilterDto(id: nil, userId: userId, search: search, visibility: visibility, sort: sort, cursor: cursor, limit: limit)
+        let dto = GetRemindersFilterDto(
+            id: nil,
+            userId: userId,
+            search: search,
+            visibility: visibility,
+            sort: sort,
+            cursor: cursor,
+            limit: limit
+        )
+        
         let result = await remindersService.getReminders(dto: dto, accessToken: accessToken)
         
         switch result {
