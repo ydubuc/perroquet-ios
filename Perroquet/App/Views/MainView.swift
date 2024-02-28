@@ -83,7 +83,9 @@ struct MainView: View {
             UIApplication.setWindowBackgroundColor(UIColor(vm.appVm.theme.primaryDark))
         }
         .onOpenURL { url in
-            print("on open url in main view \(url)")
+            if url.scheme == "widget" && url.host == "com.beamcove.perroquet.create-reminder" {
+                vm.isPresentingCreateReminderView = true
+            }
         }
         
     }

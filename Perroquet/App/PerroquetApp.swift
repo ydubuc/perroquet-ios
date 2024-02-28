@@ -20,14 +20,13 @@ struct PerroquetApp: App {
     var body: some Scene {
         
         WindowGroup {
+            
             if authMan.isLoggedIn {
                 MainView()
-                    .onOpenURL { url in
-                        print("received url in app \(url)")
-                    }
             } else {
                 SigninView()
             }
+            
         }
         
     }
@@ -113,12 +112,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        NotificationCenter.default.post(
-//            name: Notification.Name("FCMToken"),
-//            object: nil,
-//            userInfo: ["token": fcmToken ?? ""]
-//        )
-
         guard let messagingToken = fcmToken
         else {
             AuthMan.shared.deleteCachedMessagingToken()

@@ -51,13 +51,13 @@ class RemindersViewModel: ObservableObject {
     }
     
     func afterInit() {
-//        if let reminders = stash.getReminders() {
-//            self.reminders = reminders.sorted { $0.triggerAt > $1.triggerAt }
-//            self.sort = "updated_at,asc"
-//            self.cursor = "\(reminders.first!.updatedAt),\(reminders.first!.id)"
-//        }
-//        
-//        Task { await self.load() }
+        if let reminders = stash.getReminders() {
+            self.reminders = reminders.sorted { $0.triggerAt > $1.triggerAt }
+            self.sort = "updated_at,asc"
+            self.cursor = "\(reminders.first!.updatedAt),\(reminders.first!.id)"
+        }
+        
+        Task { await self.load() }
     }
     
     func load() async {
@@ -89,6 +89,10 @@ class RemindersViewModel: ObservableObject {
                 self.errorMessage = apiError.message
             }
         }
+    }
+    
+    func insertReminder(reminder: Reminder) {
+        reminders.insert(reminder, at: 0)
     }
     
     private func insertAndOrderNewReminders(newReminders: [Reminder]) -> [Reminder] {

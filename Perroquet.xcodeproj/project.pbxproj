@@ -36,6 +36,12 @@
 		ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */; };
 		ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = ED317EA12B8174A1008A6E52 /* SimpleKeychain */; };
 		ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */; };
+		ED3537682B8FA4C000B65707 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3537672B8FA4C000B65707 /* WidgetKit.framework */; };
+		ED35376A2B8FA4C000B65707 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3537692B8FA4C000B65707 /* SwiftUI.framework */; };
+		ED35376D2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */; };
+		ED35376F2B8FA4C000B65707 /* CreateReminderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376E2B8FA4C000B65707 /* CreateReminderWidget.swift */; };
+		ED3537712B8FA4C100B65707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3537702B8FA4C100B65707 /* Assets.xcassets */; };
+		ED3537752B8FA4C100B65707 /* CreateReminderWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902092B7D2A460009851E /* SigninViewModel.swift */; };
 		ED59020D2B7D2B790009851E /* Dims.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59020C2B7D2B790009851E /* Dims.swift */; };
 		ED5902122B7D2E390009851E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902112B7D2E390009851E /* Color.swift */; };
@@ -76,6 +82,30 @@
 		EDC5F54B2B7948AF00551388 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F54A2B7948AF00551388 /* SigninView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		ED3537732B8FA4C100B65707 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EDB8F0512B72DBAC008A1CEB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED3537642B8FA4C000B65707;
+			remoteInfo = CreateReminderWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ED3537762B8FA4C100B65707 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				ED3537752B8FA4C100B65707 /* CreateReminderWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldMultilineComponent.swift; sourceTree = "<group>"; };
 		ED2279F42B8E81160041FAD2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
@@ -105,6 +135,13 @@
 		ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidget.swift; sourceTree = "<group>"; };
+		ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CreateReminderWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED3537672B8FA4C000B65707 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		ED3537692B8FA4C000B65707 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidgetBundle.swift; sourceTree = "<group>"; };
+		ED35376E2B8FA4C000B65707 /* CreateReminderWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidget.swift; sourceTree = "<group>"; };
+		ED3537702B8FA4C100B65707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED3537722B8FA4C100B65707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED5902092B7D2A460009851E /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		ED59020C2B7D2B790009851E /* Dims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dims.swift; sourceTree = "<group>"; };
 		ED5902112B7D2E390009851E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -147,6 +184,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ED3537622B8FA4C000B65707 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED35376A2B8FA4C000B65707 /* SwiftUI.framework in Frameworks */,
+				ED3537682B8FA4C000B65707 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDB8F0562B72DBAC008A1CEB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,6 +273,26 @@
 				ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		ED3537662B8FA4C000B65707 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ED3537672B8FA4C000B65707 /* WidgetKit.framework */,
+				ED3537692B8FA4C000B65707 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED35376B2B8FA4C000B65707 /* CreateReminderWidget */ = {
+			isa = PBXGroup;
+			children = (
+				ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */,
+				ED35376E2B8FA4C000B65707 /* CreateReminderWidget.swift */,
+				ED3537702B8FA4C100B65707 /* Assets.xcassets */,
+				ED3537722B8FA4C100B65707 /* Info.plist */,
+			);
+			path = CreateReminderWidget;
 			sourceTree = "<group>";
 		};
 		ED5902082B7D2A300009851E /* Views */ = {
@@ -397,6 +463,8 @@
 			isa = PBXGroup;
 			children = (
 				EDB8F05B2B72DBAC008A1CEB /* Perroquet */,
+				ED35376B2B8FA4C000B65707 /* CreateReminderWidget */,
+				ED3537662B8FA4C000B65707 /* Frameworks */,
 				EDB8F05A2B72DBAC008A1CEB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -405,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB8F0592B72DBAC008A1CEB /* Perroquet.app */,
+				ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,6 +545,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		ED3537642B8FA4C000B65707 /* CreateReminderWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED3537792B8FA4C100B65707 /* Build configuration list for PBXNativeTarget "CreateReminderWidgetExtension" */;
+			buildPhases = (
+				ED3537612B8FA4C000B65707 /* Sources */,
+				ED3537622B8FA4C000B65707 /* Frameworks */,
+				ED3537632B8FA4C000B65707 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CreateReminderWidgetExtension;
+			productName = CreateReminderWidgetExtension;
+			productReference = ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EDB8F0582B72DBAC008A1CEB /* Perroquet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDB8F0672B72DBAD008A1CEB /* Build configuration list for PBXNativeTarget "Perroquet" */;
@@ -483,10 +569,12 @@
 				EDB8F0552B72DBAC008A1CEB /* Sources */,
 				EDB8F0562B72DBAC008A1CEB /* Frameworks */,
 				EDB8F0572B72DBAC008A1CEB /* Resources */,
+				ED3537762B8FA4C100B65707 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ED3537742B8FA4C100B65707 /* PBXTargetDependency */,
 			);
 			name = Perroquet;
 			packageProductDependencies = (
@@ -508,6 +596,9 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					ED3537642B8FA4C000B65707 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					EDB8F0582B72DBAC008A1CEB = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -532,11 +623,20 @@
 			projectRoot = "";
 			targets = (
 				EDB8F0582B72DBAC008A1CEB /* Perroquet */,
+				ED3537642B8FA4C000B65707 /* CreateReminderWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ED3537632B8FA4C000B65707 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED3537712B8FA4C100B65707 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDB8F0572B72DBAC008A1CEB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -551,6 +651,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ED3537612B8FA4C000B65707 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED35376D2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift in Sources */,
+				ED35376F2B8FA4C000B65707 /* CreateReminderWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EDB8F0552B72DBAC008A1CEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -620,7 +729,69 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		ED3537742B8FA4C100B65707 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED3537642B8FA4C000B65707 /* CreateReminderWidgetExtension */;
+			targetProxy = ED3537732B8FA4C100B65707 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		ED3537772B8FA4C100B65707 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UKJX8BM7T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CreateReminderWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CreateReminderWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet.CreateReminderWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED3537782B8FA4C100B65707 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7UKJX8BM7T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CreateReminderWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CreateReminderWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet.CreateReminderWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		EDB8F0652B72DBAD008A1CEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -743,6 +914,7 @@
 		EDB8F0682B72DBAD008A1CEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Perroquet/Perroquet.entitlements;
@@ -776,6 +948,7 @@
 		EDB8F0692B72DBAD008A1CEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Perroquet/Perroquet.entitlements;
@@ -809,6 +982,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ED3537792B8FA4C100B65707 /* Build configuration list for PBXNativeTarget "CreateReminderWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED3537772B8FA4C100B65707 /* Debug */,
+				ED3537782B8FA4C100B65707 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EDB8F0542B72DBAC008A1CEB /* Build configuration list for PBXProject "Perroquet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
