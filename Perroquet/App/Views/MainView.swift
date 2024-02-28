@@ -72,40 +72,18 @@ struct MainView: View {
                         .font(.body.weight(.bold))
                 }
                 
-            }
+            } // HStack
             .padding(Dims.spacingRegular)
             .background(vm.appVm.theme.primaryDark)
             .cornerRadius(Dims.cornerRadius)
             
-        }
+        } // ZStack
         .background(vm.appVm.theme.primary)
         .onAppear {
-            setWindowBackgroundColor(vm.appVm.theme.primaryDark)
+            UIApplication.setWindowBackgroundColor(UIColor(vm.appVm.theme.primaryDark))
         }
-        
-    }
-    
-    private func setWindowBackgroundColor(_ color: Color) {
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = windowScene.windows.first
-        {
-            window.backgroundColor = UIColor(color)
-        }
-    }
-}
-
-struct ClearBackgroundView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIView {
-        return InnerView()
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-    
-    private class InnerView: UIView {
-        override func didMoveToWindow() {
-            super.didMoveToWindow()
-            
-            superview?.superview?.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.0)
+        .onOpenURL { url in
+            print("on open url in main view \(url)")
         }
         
     }

@@ -28,27 +28,40 @@ struct DiscoverView: View {
         
         ScrollView(.vertical, showsIndicators: true) {
             
-            LazyVStack(alignment: .leading, spacing: Dims.spacingRegular) {
+            LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {
                 
                 Text("Discover")
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                     .foregroundColor(vm.appVm.theme.fontNormal)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
                 
-                VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                    ForEach(vm.reminders) { reminder in
-                        ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                if !vm.reminders.isEmpty {
+                    VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+                        ForEach(vm.reminders) { reminder in
+                            ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                        }
                     }
+                    .padding(Dims.spacingRegular)
+                    .background(vm.appVm.theme.primaryDark)
+                    .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+                } else {
+                    HStack(alignment: .center, spacing: Dims.spacingRegular) {
+                        
+                        Text("Nothing here")
+                        
+                        Spacer()
+                        
+                    }
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 }
-                .frame(maxWidth: Dims.viewMaxWidth1)
-                .padding(Dims.spacingRegular)
-                .background(vm.appVm.theme.primaryDark)
-                .cornerRadius(Dims.cornerRadius)
                 
                 Button(action: {
                     AuthMan.shared.onSignout()
                 }, label: {
                     Text("Sign out")
+                        .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 })
                 
             } // LazyVStack

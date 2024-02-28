@@ -28,11 +28,12 @@ struct RemindersView: View {
         
         ScrollView(.vertical, showsIndicators: true) {
             
-            VStack(alignment: .leading, spacing: Dims.spacingRegular) {
+            VStack(alignment: .center, spacing: Dims.spacingRegular) {
                 
                 let upcomingReminders = vm.reminders.filter { $0.triggerAt >= currentTimeInMillis }
                 
                 Text("Upcoming (\(upcomingReminders.count))")
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                     .foregroundColor(vm.appVm.theme.fontNormal)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
@@ -43,10 +44,10 @@ struct RemindersView: View {
                             ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
                         }
                     }
-                    .frame(maxWidth: Dims.viewMaxWidth1)
                     .padding(Dims.spacingRegular)
                     .background(vm.appVm.theme.primaryDark)
                     .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 } else {
                     HStack(alignment: .center, spacing: 0) {
                      
@@ -61,11 +62,13 @@ struct RemindersView: View {
                     .padding(Dims.spacingRegular)
                     .background(vm.appVm.theme.primaryDark)
                     .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 }
                 
                 let previousReminders = vm.reminders.filter { $0.triggerAt < currentTimeInMillis }
                 
                 Text("Previous (\(previousReminders.count))")
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                     .foregroundColor(vm.appVm.theme.fontNormal)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
@@ -76,10 +79,10 @@ struct RemindersView: View {
                             ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
                         }
                     }
-                    .frame(maxWidth: Dims.viewMaxWidth1)
                     .padding(Dims.spacingRegular)
                     .background(vm.appVm.theme.primaryDark)
                     .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 } else {
                     HStack(alignment: .center, spacing: 0) {
                      
@@ -94,6 +97,7 @@ struct RemindersView: View {
                     .padding(Dims.spacingRegular)
                     .background(vm.appVm.theme.primaryDark)
                     .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 }
                 
             } // VStack

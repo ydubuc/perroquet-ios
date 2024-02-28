@@ -51,13 +51,13 @@ class RemindersViewModel: ObservableObject {
     }
     
     func afterInit() {
-        if let reminders = stash.getReminders() {
-            self.reminders = reminders.sorted { $0.triggerAt > $1.triggerAt }
-            self.sort = "updated_at,asc"
-            self.cursor = "\(reminders.first!.updatedAt),\(reminders.first!.id)"
-        }
-        
-        Task { await self.load() }
+//        if let reminders = stash.getReminders() {
+//            self.reminders = reminders.sorted { $0.triggerAt > $1.triggerAt }
+//            self.sort = "updated_at,asc"
+//            self.cursor = "\(reminders.first!.updatedAt),\(reminders.first!.id)"
+//        }
+//        
+//        Task { await self.load() }
     }
     
     func load() async {
@@ -69,7 +69,7 @@ class RemindersViewModel: ObservableObject {
             search: search,
             visibility: visibility,
             sort: sort,
-            cursor: cursor,
+            cursor: cursor, // TODO: calculate cursor depending on sort
             limit: limit
         )
         
@@ -92,14 +92,14 @@ class RemindersViewModel: ObservableObject {
     }
     
     private func insertAndOrderNewReminders(newReminders: [Reminder]) -> [Reminder] {
-        var idSet = Set<String>(newReminders.map { $0.id })
+        let idSet = Set(newReminders.map { $0.id })
         
         var array = self.reminders.filter { !idSet.contains($0.id) }
         array.append(contentsOf: newReminders)
         
         return array.sorted { $0.triggerAt > $1.triggerAt }
     }
-    
+
     private func scheduleReminders() {
         Task {
             let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds

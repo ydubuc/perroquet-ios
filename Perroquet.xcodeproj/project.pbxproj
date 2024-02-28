@@ -54,6 +54,8 @@
 		ED5902392B7E6B2B0009851E /* Courier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902382B7E6B2B0009851E /* Courier.swift */; };
 		ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7486292B83B28A006D7FDB /* ReminderComponent.swift */; };
 		ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED74862B2B83D301006D7FDB /* AuthMan.swift */; };
+		EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */; };
+		EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */; };
 		EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */; };
 		EDB1DA972B83FC6300FE8EBD /* CreateReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */; };
 		EDB1DA992B8416EF00FE8EBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */; };
@@ -121,6 +123,8 @@
 		ED5902382B7E6B2B0009851E /* Courier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courier.swift; sourceTree = "<group>"; };
 		ED7486292B83B28A006D7FDB /* ReminderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderComponent.swift; sourceTree = "<group>"; };
 		ED74862B2B83D301006D7FDB /* AuthMan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMan.swift; sourceTree = "<group>"; };
+		EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
 		EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderView.swift; sourceTree = "<group>"; };
 		EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderViewModel.swift; sourceTree = "<group>"; };
 		EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 			children = (
 				ED5902112B7D2E390009851E /* Color.swift */,
 				ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */,
+				EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 			children = (
 				EDB8F05E2B72DBAC008A1CEB /* MainView.swift */,
 				ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */,
+				EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -552,8 +558,10 @@
 				ED317E942B816978008A6E52 /* QueryDto.swift in Sources */,
 				EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */,
 				ED2279F52B8E81160041FAD2 /* DatePickerView.swift in Sources */,
+				EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */,
 				EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
+				EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */,
 				EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */,
 				EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */,
 				ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */,
@@ -749,8 +757,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -782,8 +790,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

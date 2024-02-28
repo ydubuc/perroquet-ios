@@ -22,6 +22,9 @@ struct PerroquetApp: App {
         WindowGroup {
             if authMan.isLoggedIn {
                 MainView()
+                    .onOpenURL { url in
+                        print("received url in app \(url)")
+                    }
             } else {
                 SigninView()
             }
