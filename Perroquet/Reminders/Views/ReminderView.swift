@@ -1,20 +1,19 @@
 //
-//  CreateReminderView.swift
+//  ReminderView.swift
 //  Perroquet
 //
-//  Created by Yoan Dubuc on 2/19/24.
+//  Created by Yoan Dubuc on 2/29/24.
 //
 
 import SwiftUI
 
-struct CreateReminderView: View {
+struct ReminderView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var vm: CreateReminderViewModel
+    @StateObject var vm: ReminderViewModel
     
     @FocusState var isFocusingTextfield: Bool
-    @State private var bottomPadding: CGFloat = 0
     
-    init(vm: StateObject<CreateReminderViewModel> = .init(wrappedValue: .init())) {
+    init(vm: StateObject<ReminderViewModel>) {
         _vm = vm
     }
     
@@ -23,14 +22,6 @@ struct CreateReminderView: View {
         GeometryReader { geometry in
             
             VStack(alignment: .center, spacing: 0) {
-                
-                Rectangle()
-                    .foregroundColor(.clear)
-                    .frame(maxHeight: .infinity)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                    }
                 
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
                     
@@ -42,9 +33,6 @@ struct CreateReminderView: View {
                     )
                     .focused($isFocusingTextfield)
                     .frame(maxWidth: Dims.formMaxWidth)
-                    .onAppear {
-                        isFocusingTextfield = true
-                    }
                     .onChange(of: vm.body, perform: { value in
                         DispatchQueue.main.async {
                             let dates = vm.body.findDates()
@@ -74,7 +62,7 @@ struct CreateReminderView: View {
                         Spacer()
                         
                         Button(action: {
-                            vm.createReminder()
+                            vm.editReminder()
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Text("Save")
@@ -88,6 +76,8 @@ struct CreateReminderView: View {
                     }
                     .frame(maxWidth: Dims.formMaxWidth)
                     
+                    Spacer()
+                    
                 } // VStack
                 .padding(Dims.spacingRegular)
                 .frame(width: geometry.size.width)
@@ -98,9 +88,18 @@ struct CreateReminderView: View {
         } // GeometryReader
         
     }
-    
 }
 
 #Preview {
-    CreateReminderView()
+    ReminderView(vm: .init(wrappedValue: .init(reminder: .init(
+        id: "123",
+        userId: "321",
+        title: nil,
+        body: "Hello, World!",
+        frequency: nil,
+        visibility: 0,
+        triggerAt: 1709222686678,
+        updatedAt: 1709222686678,
+        createdAt: 1709222686678
+    ))))
 }

@@ -39,6 +39,7 @@ struct FormTextfieldMultilineComponent: View {
                     }
                     .padding(Dims.spacingRegular)
                     .disableAutocorrection(true)
+                    .multilineTextAlignment(.leading)
                 
             }
             .background(theme.primaryDark)

@@ -57,13 +57,6 @@ struct DiscoverView: View {
                     .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 }
                 
-                Button(action: {
-                    AuthMan.shared.onSignout()
-                }, label: {
-                    Text("Sign out")
-                        .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                })
-                
             } // LazyVStack
             .padding(Dims.spacingRegular)
 

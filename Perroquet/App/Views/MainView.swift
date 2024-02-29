@@ -20,15 +20,18 @@ struct MainView: View {
             
             LazyView(loadWhen: $vm.shouldLoadRemindersView) {
                 RemindersView(
-                    vm: .init(wrappedValue: .init(dto: .init(
-                        id: nil,
-                        userId: vm.authMan.accessTokenClaims?.id,
-                        search: nil,
-                        visibility: nil,
-                        sort: "trigger_at,desc",
-                        cursor: nil,
-                        limit: nil
-                    )))
+                    vm: .init(wrappedValue: .init(
+                        reminders: vm.stash.getReminders(),
+                        dto: .init(
+                            id: nil,
+                            userId: vm.authMan.accessTokenClaims?.id,
+                            search: nil,
+                            visibility: nil,
+                            sort: nil,
+                            cursor: nil,
+                            limit: nil
+                        )
+                    ))
                 )
             }
             .opacity(vm.currentTab == 0 ? 1 : 0)
@@ -44,41 +47,67 @@ struct MainView: View {
                     limit: nil
                 ))))
             }
-            .opacity(vm.currentTab == 2 ? 1 : 0)
+            .opacity(vm.currentTab == 1 ? 1 : 0)
+            
+            LazyView(loadWhen: $vm.shouldLoadRemindersView) {
+                Text("requests")
+            }
+            .opacity(vm.currentTab == 3 ? 1 : 0)
+            
+            LazyView(loadWhen: $vm.shouldLoadProfileView) {
+                ProfileView()
+            }
+            .opacity(vm.currentTab == 4 ? 1 : 0)
             
             HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
                 
                 Button {
                     vm.switchToTab(0)
                 } label: {
-                    Image(systemName: "list.bullet.rectangle.portrait")
-                        .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
+                    Image(systemName: "list.bullet.circle")
+                        .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                        .font(.body.weight(.bold))
+                }
+                
+                Button {
+                    vm.switchToTab(1)
+                } label: {
+                    Image(systemName: "safari")
+                        .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                         .font(.body.weight(.bold))
                 }
                 
                 Button {
                     vm.isPresentingCreateReminderView = true
                 } label: {
-                    Image(systemName: "plus.square")
-                        .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                         .font(.body.weight(.bold))
                 }
                 .sheet(isPresented: $vm.isPresentingCreateReminderView) {
                     CreateReminderView()
                         .background(ClearBackgroundView())
                 }
-
+                
                 Button {
-                    vm.switchToTab(2)
+                    vm.switchToTab(3)
                 } label: {
-                    Image(systemName: "safari")
-                        .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
+                    Image(systemName: "at.circle")
+                        .foregroundColor(vm.currentTab == 3 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                        .font(.body.weight(.bold))
+                }
+                
+                Button {
+                    vm.switchToTab(4)
+                } label: {
+                    Image(systemName: "person.crop.circle")
+                        .foregroundColor(vm.currentTab == 4 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                         .font(.body.weight(.bold))
                 }
                 
             } // HStack
             .padding(Dims.spacingRegular)
-            .background(vm.appVm.theme.primaryDark)
+            .background(vm.appVm.theme.primaryLight)
             .cornerRadius(Dims.cornerRadius)
             
         } // ZStack

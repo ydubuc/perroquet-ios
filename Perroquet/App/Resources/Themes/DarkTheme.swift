@@ -11,7 +11,7 @@ import SwiftUI
 struct DarkTheme: Theme {
 //    var displayName: String = "Dark"
 
-    var primaryLight: Color = Color(hex: 0x444758)
+    var primaryLight: Color = Color(hex: 0x2E2F36)
     var primary: Color = Color(hex: 0x1c1d22)
     var primaryDark: Color = Color(hex: 0x111216)
 

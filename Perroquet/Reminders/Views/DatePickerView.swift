@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DatePickerView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Binding var date: Date
     let theme: Theme
     
@@ -21,13 +22,21 @@ struct DatePickerView: View {
                     .foregroundColor(.clear)
                     .frame(maxHeight: .infinity)
                     .contentShape(Rectangle())
+                    .onTapGesture {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
                     
                     DatePicker("at", selection: $date, displayedComponents: [.date])
+                        .labelsHidden()
                         .datePickerStyle(.graphical)
                         .colorScheme(theme.colorScheme)
+                        .padding(Dims.spacingRegular)
+                        .frame(minWidth: 320)
                         .frame(maxWidth: Dims.formMaxWidth)
+                        .background(theme.primaryDark)
+                        .cornerRadius(Dims.cornerRadius)
                     
                     HStack(alignment: .center, spacing: Dims.spacingRegular) {
                         

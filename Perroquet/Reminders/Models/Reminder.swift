@@ -38,4 +38,20 @@ struct Reminder: Codable, Identifiable, Hashable {
             triggerAt: self.triggerAt
         )
     }
+    
+    static func randomPlaceholder() -> String {
+        return [
+            "drink more water",
+            "do laundry",
+            "mow the lawn",
+            "redeem points",
+            "rate Perroquet",
+            "feed Perroquet",
+            "thaw food",
+            "water plants",
+            "take out the trash",
+            "replace filter",
+            "clean room"
+        ].randomElement()!
+    }
 }
