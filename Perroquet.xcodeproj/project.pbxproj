@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED1ACB382B9014E400BABE9C /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1ACB372B9014E400BABE9C /* LazyView.swift */; };
+		ED1ACB3C2B902F1A00BABE9C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1ACB3B2B902F1A00BABE9C /* String.swift */; };
 		ED216A262B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */; };
 		ED2279F52B8E81160041FAD2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2279F42B8E81160041FAD2 /* DatePickerView.swift */; };
 		ED317E5C2B7EC77C008A6E52 /* FormSubmitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */; };
@@ -35,7 +37,6 @@
 		ED317E9D2B817136008A6E52 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */; };
 		ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */; };
 		ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = ED317EA12B8174A1008A6E52 /* SimpleKeychain */; };
-		ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */; };
 		ED3537682B8FA4C000B65707 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3537672B8FA4C000B65707 /* WidgetKit.framework */; };
 		ED35376A2B8FA4C000B65707 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3537692B8FA4C000B65707 /* SwiftUI.framework */; };
 		ED35376D2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */; };
@@ -107,6 +108,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ED1ACB372B9014E400BABE9C /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		ED1ACB3B2B902F1A00BABE9C /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldMultilineComponent.swift; sourceTree = "<group>"; };
 		ED2279F42B8E81160041FAD2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSubmitComponent.swift; sourceTree = "<group>"; };
@@ -134,7 +137,6 @@
 		ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModel.swift; sourceTree = "<group>"; };
 		ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
-		ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidget.swift; sourceTree = "<group>"; };
 		ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CreateReminderWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3537672B8FA4C000B65707 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		ED3537692B8FA4C000B65707 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -267,14 +269,6 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		ED317EA32B81BE09008A6E52 /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				ED317EA42B81BE1B008A6E52 /* CreateReminderWidget.swift */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
 		ED3537662B8FA4C000B65707 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +316,7 @@
 				ED5902112B7D2E390009851E /* Color.swift */,
 				ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */,
 				EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */,
+				ED1ACB3B2B902F1A00BABE9C /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -515,7 +510,6 @@
 				ED59020B2B7D2B580009851E /* Resources */,
 				ED59023C2B7E7C3D0009851E /* Util */,
 				EDC5F54C2B794B1D00551388 /* Views */,
-				ED317EA32B81BE09008A6E52 /* Widgets */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -535,9 +529,10 @@
 		EDC5F54C2B794B1D00551388 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */,
+				ED1ACB372B9014E400BABE9C /* LazyView.swift */,
 				EDB8F05E2B72DBAC008A1CEB /* MainView.swift */,
 				ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */,
-				EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -668,12 +663,12 @@
 				EDB8F05F2B72DBAC008A1CEB /* MainView.swift in Sources */,
 				ED2279F52B8E81160041FAD2 /* DatePickerView.swift in Sources */,
 				EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */,
+				ED1ACB3C2B902F1A00BABE9C /* String.swift in Sources */,
 				EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
 				EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */,
 				EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */,
 				EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */,
-				ED317EA52B81BE1B008A6E52 /* CreateReminderWidget.swift in Sources */,
 				ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */,
 				ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */,
 				ED317E762B801CC6008A6E52 /* AppError.swift in Sources */,
@@ -713,6 +708,7 @@
 				EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */,
 				EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */,
 				ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */,
+				ED1ACB382B9014E400BABE9C /* LazyView.swift in Sources */,
 				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
 				ED317E6F2B801BB5008A6E52 /* AccessTokenClaims.swift in Sources */,
 				ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */,

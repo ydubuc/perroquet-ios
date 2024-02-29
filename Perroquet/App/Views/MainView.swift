@@ -18,34 +18,38 @@ struct MainView: View {
         
         ZStack(alignment: .bottom) {
             
-            RemindersView(
-                vm: .init(wrappedValue: .init(dto: .init(
+            LazyView(loadWhen: $vm.shouldLoadRemindersView) {
+                RemindersView(
+                    vm: .init(wrappedValue: .init(dto: .init(
+                        id: nil,
+                        userId: vm.authMan.accessTokenClaims?.id,
+                        search: nil,
+                        visibility: nil,
+                        sort: "trigger_at,desc",
+                        cursor: nil,
+                        limit: nil
+                    )))
+                )
+            }
+            .opacity(vm.currentTab == 0 ? 1 : 0)
+            
+            LazyView(loadWhen: $vm.shouldLoadDiscoverView) {
+                DiscoverView(vm: .init(wrappedValue: .init(dto: .init(
                     id: nil,
-                    userId: vm.authMan.accessTokenClaims?.id,
+                    userId: nil,
                     search: nil,
-                    visibility: nil,
+                    visibility: 1,
                     sort: "trigger_at,desc",
                     cursor: nil,
                     limit: nil
-                )))
-            )
-            .opacity(vm.currentTab == 0 ? 1 : 0)
-            
-            DiscoverView(vm: .init(wrappedValue: .init(dto: .init(
-                id: nil,
-                userId: nil,
-                search: nil,
-                visibility: 1,
-                sort: "trigger_at,desc",
-                cursor: nil,
-                limit: nil
-            ))))
+                ))))
+            }
             .opacity(vm.currentTab == 2 ? 1 : 0)
             
             HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
                 
                 Button {
-                    vm.currentTab = 0
+                    vm.switchToTab(0)
                 } label: {
                     Image(systemName: "list.bullet.rectangle.portrait")
                         .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)
@@ -65,7 +69,7 @@ struct MainView: View {
                 }
 
                 Button {
-                    vm.currentTab = 2
+                    vm.switchToTab(2)
                 } label: {
                     Image(systemName: "safari")
                         .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontDim)

@@ -13,6 +13,8 @@ class MainViewModel: ObservableObject {
     let authMan: AuthMan
     
     @Published var currentTab: Int = 0
+    @Published var shouldLoadRemindersView = true
+    @Published var shouldLoadDiscoverView = false
     
     @Published var isPresentingCreateReminderView = false
     
@@ -22,5 +24,18 @@ class MainViewModel: ObservableObject {
     ) {
         self.appVm = appVm
         self.authMan = authMan
+    }
+    
+    func switchToTab(_ tab: Int) {
+        switch tab {
+        case 0:
+            shouldLoadRemindersView = true
+        case 2:
+            shouldLoadDiscoverView = true
+        default:
+            fatalError("Tab not implemented.")
+        }
+        
+        currentTab = tab
     }
 }

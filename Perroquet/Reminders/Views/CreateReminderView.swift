@@ -33,7 +33,7 @@ struct CreateReminderView: View {
                     
                     FormTextfieldMultilineComponent(
                         text: $vm.body,
-                        title: .constant("Reminder me to..."),
+                        title: .constant("Remind me to..."),
                         placeholder: .constant("cut the grass in 1 hour"),
                         theme: vm.appVm.theme
                     )
