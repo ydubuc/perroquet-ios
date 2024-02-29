@@ -24,6 +24,7 @@ class ReminderViewModel: ObservableObject {
     
     @Published var placeholder = Reminder.randomPlaceholder()
     
+    @Published var isPresentingReminderActionsView = false
     @Published var isPresentingDatePickerView = false
     
     init(

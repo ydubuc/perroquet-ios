@@ -24,152 +24,85 @@ struct RemindersView: View {
     
     var body: some View {
         
-        let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
-        
         ScrollView(.vertical, showsIndicators: true) {
             
-            VStack(alignment: .center, spacing: Dims.spacingRegular) {
+            LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {
                 
-                Text("Today")
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                    .foregroundColor(vm.appVm.theme.fontNormal)
-                    .font(.body.weight(.bold))
-                    .lineLimit(1)
+                reminderSection(
+                    title: "Today",
+                    placeholder: "All done here! 🦜",
+                    reminders: vm.todayReminders
+                )
                 
-                if vm.todayReminders.count > 0 {
-                    VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                        ForEach(vm.todayReminders) { reminder in
-                            ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
-                        }
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                } else {
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("All done here!")
-                            .foregroundColor(vm.appVm.theme.fontDim)
-                            .font(.body.weight(.regular))
-                            .lineLimit(1)
-                        
-                        Spacer()
-                        
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                }
+                reminderSection(
+                    title: "In the next 7 days",
+                    placeholder: "Smooth sailing ahead! ⛵️",
+                    reminders: vm.sevenDaysReminders
+                )
                 
-                Text("In next 7 days")
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                    .foregroundColor(vm.appVm.theme.fontNormal)
-                    .font(.body.weight(.bold))
-                    .lineLimit(1)
+                reminderSection(
+                    title: "Later",
+                    placeholder: "Nothing planned! 🎉",
+                    reminders: vm.laterReminders
+                )
                 
-                if vm.sevenDaysReminders.count > 0 {
-                    VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                        ForEach(vm.sevenDaysReminders) { reminder in
-                            ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
-                        }
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                } else {
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("Smooth sailing ahead! 🦜")
-                            .foregroundColor(vm.appVm.theme.fontDim)
-                            .font(.body.weight(.regular))
-                            .lineLimit(1)
-                        
-                        Spacer()
-                        
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                }
-                
-                Text("Later")
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                    .foregroundColor(vm.appVm.theme.fontNormal)
-                    .font(.body.weight(.bold))
-                    .lineLimit(1)
-                
-                if vm.laterReminders.count > 0 {
-                    VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                        ForEach(vm.laterReminders) { reminder in
-                            ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
-                        }
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                } else {
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("Nothing planned! 🎉")
-                            .foregroundColor(vm.appVm.theme.fontDim)
-                            .font(.body.weight(.regular))
-                            .lineLimit(1)
-                        
-                        Spacer()
-                        
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                }
-                
-                Text("Previous")
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                    .foregroundColor(vm.appVm.theme.fontNormal)
-                    .font(.body.weight(.bold))
-                    .lineLimit(1)
-                
-                if vm.previousReminders.count > 0 {
-                    VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                        ForEach(vm.previousReminders) { reminder in
-                            ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
-                        }
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                } else {
-                    HStack(alignment: .center, spacing: 0) {
-                     
-                        Text("Nothing going on here!")
-                            .foregroundColor(vm.appVm.theme.fontDim)
-                            .font(.body.weight(.regular))
-                            .lineLimit(1)
-                        
-                        Spacer()
-                        
-                    }
-                    .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
-                    .cornerRadius(Dims.cornerRadius)
-                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                }
+                reminderSection(
+                    title: "Previous",
+                    placeholder: "I can tell this is the beginning of an incredible friendship!",
+                    reminders: vm.previousReminders
+                )
                 
             } // VStack
             .padding(Dims.spacingRegular)
+            .padding(.bottom, 200)
 
         } // ScrollView
         .refreshable {
             await vm.load()
         }
         
+    }
+    
+    func reminderSection(
+        title: String,
+        placeholder: String,
+        reminders: [Reminder]
+    ) -> some View {
+        Group {
+         
+            Text(title)
+                .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+                .foregroundColor(vm.appVm.theme.fontNormal)
+                .font(.body.weight(.bold))
+                .lineLimit(2)
+            
+            if reminders.count > 0 {
+                VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+                    ForEach(reminders) { reminder in
+                        ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                    }
+                }
+                .padding(Dims.spacingRegular)
+                .background(vm.appVm.theme.primaryDark)
+                .cornerRadius(Dims.cornerRadius)
+                .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+            } else {
+                HStack(alignment: .center, spacing: 0) {
+                 
+                    Text(placeholder)
+                        .foregroundColor(vm.appVm.theme.fontDim)
+                        .font(.body.weight(.regular))
+                    
+                    Spacer()
+                    
+                }
+                .padding(Dims.spacingRegular)
+                .background(vm.appVm.theme.primaryDark)
+                .cornerRadius(Dims.cornerRadius)
+                .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+            }
+            
+        }
     }
 }
 

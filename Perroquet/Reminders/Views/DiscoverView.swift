@@ -24,8 +24,6 @@ struct DiscoverView: View {
     
     var body: some View {
         
-        let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
-        
         ScrollView(.vertical, showsIndicators: true) {
             
             LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {

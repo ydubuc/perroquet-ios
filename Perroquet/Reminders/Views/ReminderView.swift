@@ -25,6 +25,24 @@ struct ReminderView: View {
                 
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
                     
+                    HStack(alignment: .center, spacing: Dims.spacingRegular) {
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            vm.isPresentingReminderActionsView = true
+                        }, label: {
+                            Image(systemName: "ellipsis.circle")
+                                .foregroundColor(vm.appVm.theme.fontDim)
+                                .font(.title2.weight(.bold))
+                        })
+                        .sheet(isPresented: $vm.isPresentingReminderActionsView) {
+                            Text("hello")
+                        }
+                        
+                    } // HStack
+                    .frame(maxWidth: Dims.formMaxWidth)
+                    
                     FormTextfieldMultilineComponent(
                         text: $vm.body,
                         title: .constant("Remind me to..."),
@@ -73,7 +91,7 @@ struct ReminderView: View {
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         
-                    }
+                    } // HStack
                     .frame(maxWidth: Dims.formMaxWidth)
                     
                     Spacer()

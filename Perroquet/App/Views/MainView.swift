@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
     @StateObject var vm: MainViewModel
     
     init(vm: StateObject<MainViewModel> = .init(wrappedValue: .init())) {
@@ -16,7 +17,7 @@ struct MainView: View {
 
     var body: some View {
         
-        ZStack(alignment: .bottom) {
+        ZStack(alignment: .center) {
             
             LazyView(loadWhen: $vm.shouldLoadRemindersView) {
                 RemindersView(
@@ -59,57 +60,67 @@ struct MainView: View {
             }
             .opacity(vm.currentTab == 4 ? 1 : 0)
             
-            HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
+            VStack(alignment: .center, spacing: 0) {
                 
-                Button {
-                    vm.switchToTab(0)
-                } label: {
-                    Image(systemName: "list.bullet.circle")
-                        .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
-                        .font(.body.weight(.bold))
-                }
+                vm.appVm.theme.primary
+                    .frame(height: safeAreaInsets.top)
+                    .ignoresSafeArea()
+
+                Spacer()
                 
-                Button {
-                    vm.switchToTab(1)
-                } label: {
-                    Image(systemName: "safari")
-                        .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
-                        .font(.body.weight(.bold))
-                }
+                HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
+                    
+                    Button {
+                        vm.switchToTab(0)
+                    } label: {
+                        Image(systemName: "list.bullet.circle")
+                            .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .font(.body.weight(.bold))
+                    }
+                    
+                    Button {
+                        vm.switchToTab(1)
+                    } label: {
+                        Image(systemName: "safari")
+                            .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .font(.body.weight(.bold))
+                    }
+                    
+                    Button {
+                        vm.isPresentingCreateReminderView = true
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .font(.body.weight(.bold))
+                    }
+                    .sheet(isPresented: $vm.isPresentingCreateReminderView) {
+                        CreateReminderView()
+                            .background(ClearBackgroundView())
+                    }
+                    
+                    Button {
+                        vm.switchToTab(3)
+                    } label: {
+                        Image(systemName: "at.circle")
+                            .foregroundColor(vm.currentTab == 3 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .font(.body.weight(.bold))
+                    }
+                    
+                    Button {
+                        vm.switchToTab(4)
+                    } label: {
+                        Image(systemName: "person.crop.circle")
+                            .foregroundColor(vm.currentTab == 4 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .font(.body.weight(.bold))
+                    }
+                    
+                } // HStack
+                .padding(Dims.spacingRegular)
+                .background(vm.appVm.theme.primaryLight)
+                .cornerRadius(Dims.cornerRadius)
                 
-                Button {
-                    vm.isPresentingCreateReminderView = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
-                        .font(.body.weight(.bold))
-                }
-                .sheet(isPresented: $vm.isPresentingCreateReminderView) {
-                    CreateReminderView()
-                        .background(ClearBackgroundView())
-                }
-                
-                Button {
-                    vm.switchToTab(3)
-                } label: {
-                    Image(systemName: "at.circle")
-                        .foregroundColor(vm.currentTab == 3 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
-                        .font(.body.weight(.bold))
-                }
-                
-                Button {
-                    vm.switchToTab(4)
-                } label: {
-                    Image(systemName: "person.crop.circle")
-                        .foregroundColor(vm.currentTab == 4 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
-                        .font(.body.weight(.bold))
-                }
-                
-            } // HStack
-            .padding(Dims.spacingRegular)
-            .background(vm.appVm.theme.primaryLight)
-            .cornerRadius(Dims.cornerRadius)
-            
+            }
+                        
         } // ZStack
         .background(vm.appVm.theme.primary)
         .onAppear {
