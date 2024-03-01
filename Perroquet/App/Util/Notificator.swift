@@ -11,7 +11,7 @@ import UserNotifications
 struct LocalNotification {
     let id: String
     let title: String
-    let body: String
+    let description: String
     let triggerAt: Int
 }
 
@@ -19,7 +19,7 @@ class Notificator {
     func schedule(notification: LocalNotification) async {
         let content = UNMutableNotificationContent()
         content.title = notification.title
-        content.body = notification.body
+        content.body = notification.description
         content.sound = UNNotificationSound(named: .init("notification_perroquet.wav"))
         
         let timeInterval = TimeInterval(notification.triggerAt / 1000)

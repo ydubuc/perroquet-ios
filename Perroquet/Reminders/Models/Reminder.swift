@@ -10,8 +10,9 @@ import Foundation
 struct Reminder: Codable, Identifiable, Hashable {
     let id: String
     let userId: String
-    let title: String?
-    let body: String
+    let title: String
+    let description: String?
+    let tags: [String]?
     let frequency: String?
     let visibility: Int
     let triggerAt: Int
@@ -22,7 +23,8 @@ struct Reminder: Codable, Identifiable, Hashable {
         case id = "id"
         case userId = "user_id"
         case title = "title"
-        case body = "body"
+        case description = "description"
+        case tags = "tags"
         case frequency = "frequency"
         case visibility = "visibility"
         case triggerAt = "trigger_at"
@@ -33,8 +35,8 @@ struct Reminder: Codable, Identifiable, Hashable {
     func toLocalNotification() -> LocalNotification {
         return LocalNotification(
             id: self.id,
-            title: self.title ?? "Perroquet",
-            body: self.body,
+            title: self.description == nil ? "Perroquet" : self.title,
+            description: self.description == nil ? self.title : self.description!,
             triggerAt: self.triggerAt
         )
     }
@@ -42,16 +44,16 @@ struct Reminder: Codable, Identifiable, Hashable {
     static func randomPlaceholder() -> String {
         return [
             "drink more water",
-            "do laundry",
-            "mow the lawn",
-            "redeem points",
+            "do laundry in 2 hours",
+            "mow the lawn this afternoon",
+            "redeem points tomorrow",
             "rate Perroquet",
-            "feed Perroquet",
-            "thaw food",
-            "water plants",
-            "take out the trash",
-            "replace filter",
-            "clean room"
+            "feed parrot",
+            "thaw food by noon",
+            "water plants in 15 minutes",
+            "take out the trash tonight",
+            "replace filter at 2:30 pm",
+            "clean room on thursday"
         ].randomElement()!
     }
 }

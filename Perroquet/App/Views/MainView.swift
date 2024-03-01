@@ -27,8 +27,9 @@ struct MainView: View {
                             id: nil,
                             userId: vm.authMan.accessTokenClaims?.id,
                             search: nil,
+                            tags: nil,
                             visibility: nil,
-                            sort: nil,
+                            sort: "trigger_at,desc",
                             cursor: nil,
                             limit: nil
                         )
@@ -42,9 +43,10 @@ struct MainView: View {
                     id: nil,
                     userId: nil,
                     search: nil,
+                    tags: nil,
                     visibility: 1,
-                    sort: "trigger_at,desc",
-                    cursor: nil,
+                    sort: "trigger_at,asc",
+                    cursor: "\(Date().timeIntervalSince1970.milliseconds),\(UUID().uuidString)",
                     limit: nil
                 ))))
             }
@@ -68,7 +70,7 @@ struct MainView: View {
 
                 Spacer()
                 
-                HStack(alignment: .center, spacing: Dims.spacingRegular * 3) {
+                HStack(alignment: .center, spacing: 0) {
                     
                     Button {
                         vm.switchToTab(0)
@@ -76,6 +78,8 @@ struct MainView: View {
                         Image(systemName: "list.bullet.circle")
                             .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
+                            .dynamicTypeSize(.xSmall ... .accessibility1)
+                            .padding(Dims.spacingRegular)
                     }
                     
                     Button {
@@ -84,6 +88,8 @@ struct MainView: View {
                         Image(systemName: "safari")
                             .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
+                            .dynamicTypeSize(.xSmall ... .accessibility1)
+                            .padding(Dims.spacingRegular)
                     }
                     
                     Button {
@@ -92,6 +98,8 @@ struct MainView: View {
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
+                            .dynamicTypeSize(.xSmall ... .accessibility1)
+                            .padding(Dims.spacingRegular)
                     }
                     .sheet(isPresented: $vm.isPresentingCreateReminderView) {
                         CreateReminderView()
@@ -104,6 +112,8 @@ struct MainView: View {
                         Image(systemName: "at.circle")
                             .foregroundColor(vm.currentTab == 3 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
+                            .dynamicTypeSize(.xSmall ... .accessibility1)
+                            .padding(Dims.spacingRegular)
                     }
                     
                     Button {
@@ -112,10 +122,11 @@ struct MainView: View {
                         Image(systemName: "person.crop.circle")
                             .foregroundColor(vm.currentTab == 4 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
+                            .dynamicTypeSize(.xSmall ... .accessibility1)
+                            .padding(Dims.spacingRegular)
                     }
                     
                 } // HStack
-                .padding(Dims.spacingRegular)
                 .background(vm.appVm.theme.primaryLight)
                 .cornerRadius(Dims.cornerRadius)
                 

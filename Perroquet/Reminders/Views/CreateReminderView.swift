@@ -35,7 +35,7 @@ struct CreateReminderView: View {
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
                     
                     FormTextfieldMultilineComponent(
-                        text: $vm.body,
+                        text: $vm.title,
                         title: .constant("Remind me to..."),
                         placeholder: $vm.placeholder,
                         theme: vm.appVm.theme
@@ -45,9 +45,9 @@ struct CreateReminderView: View {
                     .onAppear {
                         isFocusingTextfield = true
                     }
-                    .onChange(of: vm.body, perform: { value in
+                    .onChange(of: vm.title, perform: { value in
                         DispatchQueue.main.async {
-                            let dates = vm.body.findDates()
+                            let dates = vm.title.findDates()
                             if let date = dates.last {
                                 vm.triggerAtDate = date
                             }
@@ -87,6 +87,21 @@ struct CreateReminderView: View {
                         
                     }
                     .frame(maxWidth: Dims.formMaxWidth)
+                    
+                    HStack(alignment: .center, spacing: Dims.spacingRegular) {
+                        
+                        Button(action: {
+                            vm.visibility = vm.visibility == 0 ? 1 : 0
+                        }, label: {
+                            Text(vm.visibility == 0 ? "Private" : "Public")
+                                .foregroundColor(vm.visibility == 0 ? vm.appVm.theme.fontDim : vm.appVm.theme.fontNormal)
+                                .font(.body.weight(.medium))
+                                .padding(Dims.spacingSmall)
+                                .background(vm.appVm.theme.primaryDark)
+                                .cornerRadius(Dims.cornerRadius)
+                        })
+                        
+                    }
                     
                 } // VStack
                 .padding(Dims.spacingRegular)

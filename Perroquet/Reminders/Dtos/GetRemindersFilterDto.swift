@@ -11,6 +11,7 @@ struct GetRemindersFilterDto: QueryDto {
     let id: String?
     let userId: String?
     let search: String?
+    let tags: String?
     let visibility: Int?
     let sort: String?
     let cursor: String?
@@ -27,6 +28,9 @@ struct GetRemindersFilterDto: QueryDto {
         }
         if let search = search {
             queries.append(.init(name: "search", value: search))
+        }
+        if let tags = tags {
+            queries.append(.init(name: "tags", value: tags))
         }
         if let visibility = visibility {
             queries.append(.init(name: "visibility", value: "\(visibility)"))

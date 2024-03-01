@@ -16,11 +16,12 @@ class ReminderViewModel: ObservableObject {
     
     let reminder: Reminder
     
-    @Published var title: String = ""
-    @Published var body: String = ""
-    @Published var frequency: String = ""
-    @Published var visibility: Int = 0
-    @Published var triggerAtDate: Date = Date.now
+    @Published var title: String
+    @Published var description: String
+    @Published var tags: [String]
+    @Published var frequency: String
+    @Published var visibility: Int
+    @Published var triggerAtDate: Date
     
     @Published var placeholder = Reminder.randomPlaceholder()
     
@@ -43,8 +44,9 @@ class ReminderViewModel: ObservableObject {
         
         self.reminder = reminder
         
-        self.title = reminder.title ?? ""
-        self.body = reminder.body
+        self.title = reminder.title
+        self.description = reminder.description ?? ""
+        self.tags = reminder.tags ?? []
         self.frequency = reminder.frequency ?? ""
         self.visibility = reminder.visibility
         self.triggerAtDate = Date(timeIntervalSince1970: TimeInterval(reminder.triggerAt / 1000))
@@ -57,8 +59,9 @@ class ReminderViewModel: ObservableObject {
             let tempReminder = Reminder(
                 id: reminder.id,
                 userId: reminder.userId,
-                title: title.isEmpty ? nil : title,
-                body: body,
+                title: title,
+                description: description.isEmpty ? nil : description,
+                tags: tags.isEmpty ? nil : tags,
                 frequency: frequency.isEmpty ? nil : frequency,
                 visibility: visibility,
                 triggerAt: triggerAt,
@@ -66,13 +69,14 @@ class ReminderViewModel: ObservableObject {
                 createdAt: reminder.createdAt
             )
             
-            stash.cacheReminder(reminder: tempReminder)
+            stash.insertReminder(reminder: tempReminder)
             await notificator.schedule(notification: tempReminder.toLocalNotification())
             
             let dto = EditReminderDto(
-                title: title.isEmpty ? nil : title,
-                body: body,
-                frequency: frequency,
+                title: title,
+                description: description.isEmpty ? nil : description,
+                tags: tags.isEmpty ? nil : tags,
+                frequency: frequency.isEmpty ? nil : frequency,
                 visibility: visibility,
                 triggerAt: triggerAt
             )
@@ -81,7 +85,24 @@ class ReminderViewModel: ObservableObject {
             let result = await remindersService.editReminder(id: reminder.id, dto: dto, accessToken: accessToken)
             
             switch result {
-            case .success(let reminder):
+            case .success(_):
+                print("success")
+            case .failure(let apiError):
+                print(apiError.message)
+            }
+        }
+    }
+    
+    func deleteReminder() {
+        Task {
+            stash.deleteReminder(id: reminder.id)
+            notificator.delete(ids: [reminder.id])
+            
+            guard let accessToken = await authMan.accessToken() else { return }
+            let result = await remindersService.deleteReminder(id: reminder.id, accessToken: accessToken)
+            
+            switch result {
+            case .success(_):
                 print("success")
             case .failure(let apiError):
                 print(apiError.message)

@@ -14,6 +14,7 @@ struct DiscoverView: View {
         id: nil,
         userId: nil,
         search: nil,
+        tags: nil,
         visibility: nil,
         sort: nil,
         cursor: nil,

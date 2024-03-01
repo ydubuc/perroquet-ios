@@ -23,6 +23,7 @@ class RemindersViewModel: ObservableObject {
     
     @Published var userId: String?
     @Published var search: String?
+    @Published var tags: String?
     @Published var visibility: Int?
     @Published var sort: String?
     @Published var cursor: String?
@@ -45,8 +46,8 @@ class RemindersViewModel: ObservableObject {
         self.notificator = notificator
         self.remindersService = remindersService
         
-        let reminders = reminders?.sorted { $0.triggerAt > $1.triggerAt } ?? []
-        self.reminders = reminders
+        let reminders = reminders ?? []
+        self.reminders = reminders.isEmpty ? reminders : reminders.sorted { $0.updatedAt > $1.updatedAt }
         
         let currentTimestamp = Date().timeIntervalSince1970.milliseconds
         let endOfDayTimestamp = Calendar.endOfDayTimestamp()
@@ -63,9 +64,11 @@ class RemindersViewModel: ObservableObject {
             .sorted { $0.triggerAt < $1.triggerAt }
         self.previousReminders = reminders
             .filter { $0.triggerAt < currentTimestamp }
+            .sorted { $0.triggerAt > $1.triggerAt }
         
         self.userId = dto.userId
         self.search = dto.search
+        self.tags = dto.tags
         self.visibility = dto.visibility
         self.sort = dto.sort
         self.cursor = dto.cursor
@@ -89,6 +92,7 @@ class RemindersViewModel: ObservableObject {
             id: nil,
             userId: userId,
             search: search,
+            tags: tags,
             visibility: visibility,
             sort: sort,
             cursor: getCursor(sort: sort),
@@ -112,7 +116,7 @@ class RemindersViewModel: ObservableObject {
     }
     
     private func getCursor(sort: String?) -> String? {
-        guard !reminders.isEmpty else { return nil }
+        guard !reminders.isEmpty else { return cursor }
 
         switch sort {
         case "trigger_at,asc":
@@ -140,9 +144,14 @@ class RemindersViewModel: ObservableObject {
         let idSet = Set(newReminders.map { $0.id })
         
         var array = self.reminders.filter { !idSet.contains($0.id) }
-        array.append(contentsOf: newReminders)
         
-        self.reminders = array.sorted { $0.triggerAt > $1.triggerAt }
+        if sort?.hasSuffix("asc") == true {
+            array.insert(contentsOf: newReminders, at: 0)
+        } else {
+            array.append(contentsOf: newReminders)
+        }
+        
+        self.reminders = array
         
         let currentTimestamp = Date().timeIntervalSince1970.milliseconds
         let endOfDayTimestamp = Calendar.endOfDayTimestamp()
@@ -159,6 +168,7 @@ class RemindersViewModel: ObservableObject {
             .sorted { $0.triggerAt < $1.triggerAt }
         self.previousReminders = self.reminders
             .filter { $0.triggerAt < currentTimestamp }
+            .sorted { $0.triggerAt > $1.triggerAt }
     }
 
     private func scheduleReminders() {

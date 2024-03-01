@@ -14,6 +14,7 @@ struct RemindersView: View {
         id: nil,
         userId: nil,
         search: nil,
+        tags: nil,
         visibility: nil,
         sort: nil,
         cursor: nil,
@@ -48,7 +49,7 @@ struct RemindersView: View {
                 
                 reminderSection(
                     title: "Previous",
-                    placeholder: "I can tell this is the beginning of an incredible friendship!",
+                    placeholder: "Well well well...",
                     reminders: vm.previousReminders
                 )
                 
@@ -113,8 +114,9 @@ struct RemindersView: View {
                 Reminder(
                     id: "1",
                     userId: "321",
-                    title: nil,
-                    body: "Hello, World! 1",
+                    title: "Hello, World! 1",
+                    description: "This is a test",
+                    tags: ["test", "one", "two"],
                     frequency: nil,
                     visibility: 0,
                     triggerAt: 1709231354445,
@@ -124,8 +126,9 @@ struct RemindersView: View {
                 Reminder(
                     id: "2",
                     userId: "321",
-                    title: nil,
-                    body: "Hello, World! 2",
+                    title: "Hello, World! 2",
+                    description: "This is a test",
+                    tags: ["test", "one", "two"],
                     frequency: nil,
                     visibility: 0,
                     triggerAt: 1709231354445,
@@ -135,8 +138,9 @@ struct RemindersView: View {
                 Reminder(
                     id: "3",
                     userId: "321",
-                    title: nil,
-                    body: "Hello, World! 3 This one goes over multiple lines to test whether or not it is aligned properly therefore it needs to be very long like this",
+                    title: "Hello, World! 3 This one goes over multiple lines to test whether or not it is aligned properly therefore it needs to be very long like this",
+                    description: "This is a test that goes over multiple lines to test whether or not it is aligned properly therefore it needs to be very long like this",
+                    tags: ["test", "one", "two"],
                     frequency: nil,
                     visibility: 0,
                     triggerAt: 1709231354445,
@@ -146,8 +150,9 @@ struct RemindersView: View {
                 Reminder(
                     id: "4",
                     userId: "321",
-                    title: nil,
-                    body: "Hello, World! 4",
+                    title: "Hello, World! 4",
+                    description: "This is a test",
+                    tags: ["test", "one", "two"],
                     frequency: nil,
                     visibility: 0,
                     triggerAt: 1709231354445,
@@ -159,6 +164,7 @@ struct RemindersView: View {
                 id: nil,
                 userId: nil,
                 search: nil,
+                tags: nil,
                 visibility: nil,
                 sort: nil,
                 cursor: nil,

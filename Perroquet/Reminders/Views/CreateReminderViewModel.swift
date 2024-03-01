@@ -15,7 +15,8 @@ class CreateReminderViewModel: ObservableObject {
     let remindersService: RemindersService
     
     @Published var title: String = ""
-    @Published var body: String = ""
+    @Published var description: String = ""
+    @Published var tags: [String] = []
     @Published var frequency: String = ""
     @Published var visibility: Int = 0
     @Published var triggerAtDate: Date = Date.now
@@ -46,8 +47,9 @@ class CreateReminderViewModel: ObservableObject {
             let tempReminder = Reminder(
                 id: tempId,
                 userId: authMan.accessTokenClaims?.id ?? "",
-                title: title.isEmpty ? nil : title,
-                body: body,
+                title: title,
+                description: description.isEmpty ? nil : description,
+                tags: tags.isEmpty ? nil : tags,
                 frequency: frequency.isEmpty ? nil : frequency,
                 visibility: visibility,
                 triggerAt: triggerAt,
@@ -55,13 +57,14 @@ class CreateReminderViewModel: ObservableObject {
                 createdAt: currentTimeInMillis
             )
             
-            stash.cacheReminder(reminder: tempReminder)
+            stash.insertReminder(reminder: tempReminder)
             await notificator.schedule(notification: tempReminder.toLocalNotification())
             
             let dto = CreateReminderDto(
-                title: title.isEmpty ? nil : title,
-                body: body,
-                frequency: nil,
+                title: title,
+                description: description.isEmpty ? nil : description,
+                tags: tags.isEmpty ? nil : tags,
+                frequency: frequency.isEmpty ? nil : frequency,
                 visibility: visibility,
                 triggerAt: triggerAt
             )

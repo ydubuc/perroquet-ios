@@ -29,31 +29,33 @@ struct ReminderView: View {
                         
                         Spacer()
                         
-                        Button(action: {
-                            vm.isPresentingReminderActionsView = true
-                        }, label: {
+                        Menu {
+                            Button(action: {
+                                vm.deleteReminder()
+                                presentationMode.wrappedValue.dismiss()
+                            }, label: {
+                                Label("Delete reminder", systemImage: "trash.circle")
+                            })
+                        } label: {
                             Image(systemName: "ellipsis.circle")
                                 .foregroundColor(vm.appVm.theme.fontDim)
                                 .font(.title2.weight(.bold))
-                        })
-                        .sheet(isPresented: $vm.isPresentingReminderActionsView) {
-                            Text("hello")
                         }
                         
                     } // HStack
                     .frame(maxWidth: Dims.formMaxWidth)
                     
                     FormTextfieldMultilineComponent(
-                        text: $vm.body,
+                        text: $vm.title,
                         title: .constant("Remind me to..."),
                         placeholder: $vm.placeholder,
                         theme: vm.appVm.theme
                     )
                     .focused($isFocusingTextfield)
                     .frame(maxWidth: Dims.formMaxWidth)
-                    .onChange(of: vm.body, perform: { value in
+                    .onChange(of: vm.title, perform: { value in
                         DispatchQueue.main.async {
-                            let dates = vm.body.findDates()
+                            let dates = vm.title.findDates()
                             if let date = dates.last {
                                 vm.triggerAtDate = date
                             }
@@ -112,8 +114,9 @@ struct ReminderView: View {
     ReminderView(vm: .init(wrappedValue: .init(reminder: .init(
         id: "123",
         userId: "321",
-        title: nil,
-        body: "Hello, World!",
+        title: "Hello, World!",
+        description: "Testing one two",
+        tags: ["test", "one", "two"],
         frequency: nil,
         visibility: 0,
         triggerAt: 1709222686678,
