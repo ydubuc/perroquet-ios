@@ -48,3 +48,16 @@ struct GetRemindersFilterDto: QueryDto {
         return queries
     }
 }
+
+extension GetRemindersFilterDto {
+    init() {
+        self.id = nil
+        self.userId = nil
+        self.search = nil
+        self.tags = nil
+        self.visibility = nil
+        self.sort = nil
+        self.cursor = nil
+        self.limit = nil
+    }
+}

@@ -12,7 +12,6 @@ struct CreateReminderView: View {
     @StateObject var vm: CreateReminderViewModel
     
     @FocusState var isFocusingTextfield: Bool
-    @State private var bottomPadding: CGFloat = 0
     
     init(vm: StateObject<CreateReminderViewModel> = .init(wrappedValue: .init())) {
         _vm = vm
@@ -71,6 +70,51 @@ struct CreateReminderView: View {
                                 .background(ClearBackgroundView())
                         }
                         
+                        Menu {
+                            Button {
+                                vm.frequency = ""
+                            } label: {
+                                Text("Once")
+                            }
+                            
+                            Button {
+                                vm.frequency = "hourly"
+                            } label: {
+                                Text("Hourly")
+                            }
+                            
+                            Button {
+                                vm.frequency = "daily"
+                            } label: {
+                                Text("Daily")
+                            }
+                            
+                            Button {
+                                vm.frequency = "weekly"
+                            } label: {
+                                Text("Weekly")
+                            }
+                            
+                            Button {
+                                vm.frequency = "monthly"
+                            } label: {
+                                Text("Monthly")
+                            }
+                            
+                            Button {
+                                vm.frequency = "yearly"
+                            } label: {
+                                Text("Yearly")
+                            }
+                        } label: {
+                            Text("\(vm.frequency.isEmpty ? "Repeat" : vm.frequency.capitalized)")
+                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .font(.body.weight(.medium))
+                                .padding(Dims.spacingSmall)
+                                .background(vm.appVm.theme.primaryDark)
+                                .cornerRadius(Dims.cornerRadius)
+                        }
+                        
                         Spacer()
                         
                         Button(action: {
@@ -107,6 +151,7 @@ struct CreateReminderView: View {
                 .padding(Dims.spacingRegular)
                 .frame(width: geometry.size.width)
                 .background(vm.appVm.theme.primary.ignoresSafeArea(.all))
+                .animation(.easeInOut(duration: 0.1), value: vm.title)
                 
             } // VStack
             

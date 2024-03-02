@@ -151,15 +151,15 @@ struct Provider: TimelineProvider {
     }
 }
 
-#Preview(as: .systemSmall) {
-    CreateReminderWidget()
-} timeline: {
-    MainEntry(
-        quote: Provider.quotes.randomElement()!,
-        placeholder: Provider.placeholders.randomElement()!,
-        date: .now
-    )
-}
+//#Preview(as: .systemSmall) {
+//    CreateReminderWidget()
+//} timeline: {
+//    MainEntry(
+//        quote: Provider.quotes.randomElement()!,
+//        placeholder: Provider.placeholders.randomElement()!,
+//        date: .now
+//    )
+//}
 
 extension Color {
     init(hex: Int, opacity: Double = 1) {

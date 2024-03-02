@@ -41,7 +41,6 @@ class AuthMan: ObservableObject {
         
         switch accessTokenClaimsResult {
         case .success(let accessTokenClaims):
-            print("onSignin success")
             self.accessInfo = accessInfo
             self.accessTokenClaims = accessTokenClaims
             self.isLoggedIn = true
@@ -51,7 +50,6 @@ class AuthMan: ObservableObject {
                 self.onNewMessagingToken(messagingToken: messagingToken)
             }
         case .failure(let appError):
-            print("onSignin failure")
             print(appError)
         }
     }
@@ -61,19 +59,15 @@ class AuthMan: ObservableObject {
         
         switch accessTokenClaimsResult {
         case .success(let accessTokenClaims):
-            print("onRefresh success")
             self.accessInfo = accessInfo
             self.accessTokenClaims = accessTokenClaims
             self.cacheAccessInfo(accessInfo: accessInfo)
         case .failure(let appError):
-            print("onRefresh failure")
             print(appError.localizedDescription)
         }
     }
 
     func onSignout() {
-        print("onSignout")
-        
         // send delete device request
         
         self.notificator.clearAllNotifications()
@@ -93,7 +87,6 @@ class AuthMan: ObservableObject {
         }
         
         guard (claims.exp - Date().timeIntervalSince1970.seconds) <= 0 else {
-            print("accessToken not expired")
             return accessInfo.accessToken
         }
         
@@ -108,7 +101,6 @@ class AuthMan: ObservableObject {
             isRefreshing = true
         }
         
-        print("refreshing accessToken")
         let dto = RefreshAccessInfoDto(refreshToken: accessInfo.refreshToken)
         let result = await authService.refresh(dto: dto)
         

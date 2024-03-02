@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
+import BackgroundTasks
 
 @main
 struct PerroquetApp: App {
@@ -28,7 +29,10 @@ struct PerroquetApp: App {
             }
             
         }
-        
+        .backgroundTask(.appRefresh("com.beamcove.Perroquet.refresh")) {
+            await appVm.refreshApp(authMan: authMan)
+        }
+
     }
 }
 
@@ -44,7 +48,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         
+        scheduleAppRefresh()
+        
         return true
+    }
+    
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.beamcove.Perroquet.refresh")
+        request.earliestBeginDate = Calendar.current.date(byAdding: .minute, value: 5, to: Date())
+        
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            print(error)
+        }
     }
 }
 

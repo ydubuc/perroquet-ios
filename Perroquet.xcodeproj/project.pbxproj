@@ -62,6 +62,7 @@
 		ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7486292B83B28A006D7FDB /* ReminderComponent.swift */; };
 		ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED74862B2B83D301006D7FDB /* AuthMan.swift */; };
 		ED88C3A92B9125EB0020CC08 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED88C3A82B9125EB0020CC08 /* Calendar.swift */; };
+		ED92850B2B92B7EF00CFDFC4 /* SQLiteSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED92850A2B92B7EF00CFDFC4 /* SQLiteSwift */; };
 		EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */; };
 		EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */; };
 		EDAF59A62B90E9E7006BD197 /* ReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59A52B90E9E7006BD197 /* ReminderViewModel.swift */; };
@@ -78,7 +79,6 @@
 		EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA42B85262500FE8EBD /* Device.swift */; };
 		EDB1DAA72B8526A600FE8EBD /* EditDeviceDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA62B8526A600FE8EBD /* EditDeviceDto.swift */; };
 		EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA92B85489000FE8EBD /* Notificator.swift */; };
-		EDB1DAAD2B8571FC00FE8EBD /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = EDB1DAAC2B8571FC00FE8EBD /* SQLite */; };
 		EDB1DAAF2B85720A00FE8EBD /* Stash.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAAE2B85720A00FE8EBD /* Stash.swift */; };
 		EDB1DAB42B8694F600FE8EBD /* notification_perroquet.wav in Resources */ = {isa = PBXBuildFile; fileRef = EDB1DAB32B8694F600FE8EBD /* notification_perroquet.wav */; };
 		EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */; };
@@ -213,9 +213,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDB1DAAD2B8571FC00FE8EBD /* SQLite in Frameworks */,
 				EDB1DA9C2B8418C400FE8EBD /* FirebaseMessaging in Frameworks */,
 				ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */,
+				ED92850B2B92B7EF00CFDFC4 /* SQLiteSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,7 +612,7 @@
 			packageProductDependencies = (
 				ED317EA12B8174A1008A6E52 /* SimpleKeychain */,
 				EDB1DA9B2B8418C400FE8EBD /* FirebaseMessaging */,
-				EDB1DAAC2B8571FC00FE8EBD /* SQLite */,
+				ED92850A2B92B7EF00CFDFC4 /* SQLiteSwift */,
 			);
 			productName = Perroquet;
 			productReference = EDB8F0592B72DBAC008A1CEB /* Perroquet.app */;
@@ -648,7 +648,7 @@
 			packageReferences = (
 				ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */,
 				EDB1DA9A2B8418C400FE8EBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				EDB1DAAB2B8571FC00FE8EBD /* XCRemoteSwiftPackageReference "SQLite" */,
+				ED9285092B92B71500CFDFC4 /* XCRemoteSwiftPackageReference "SQLiteSwift" */,
 			);
 			productRefGroup = EDB8F05A2B72DBAC008A1CEB /* Products */;
 			projectDirPath = "";
@@ -790,6 +790,7 @@
 				INFOPLIST_FILE = CreateReminderWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CreateReminderWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -817,6 +818,7 @@
 				INFOPLIST_FILE = CreateReminderWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = CreateReminderWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1060,20 +1062,20 @@
 				minimumVersion = 1.1.0;
 			};
 		};
+		ED9285092B92B71500CFDFC4 /* XCRemoteSwiftPackageReference "SQLiteSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LuminiCode/SQLiteSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 		EDB1DA9A2B8418C400FE8EBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.21.0;
-			};
-		};
-		EDB1DAAB2B8571FC00FE8EBD /* XCRemoteSwiftPackageReference "SQLite" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.14.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1084,15 +1086,15 @@
 			package = ED317EA02B8174A1008A6E52 /* XCRemoteSwiftPackageReference "SimpleKeychain" */;
 			productName = SimpleKeychain;
 		};
+		ED92850A2B92B7EF00CFDFC4 /* SQLiteSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED9285092B92B71500CFDFC4 /* XCRemoteSwiftPackageReference "SQLiteSwift" */;
+			productName = SQLiteSwift;
+		};
 		EDB1DA9B2B8418C400FE8EBD /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EDB1DA9A2B8418C400FE8EBD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
-		};
-		EDB1DAAC2B8571FC00FE8EBD /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EDB1DAAB2B8571FC00FE8EBD /* XCRemoteSwiftPackageReference "SQLite" */;
-			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class RemindersViewModel: ObservableObject {
+class RemindersViewModel: ObservableObject {    
     let appVm: AppViewModel
     let authMan: AuthMan
     let stash: Stash
@@ -38,7 +38,7 @@ class RemindersViewModel: ObservableObject {
         notificator: Notificator = Notificator(),
         remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
         reminders: [Reminder]? = nil,
-        dto: GetRemindersFilterDto
+        dto: GetRemindersFilterDto = .init()
     ) {
         self.appVm = appVm
         self.authMan = authMan

@@ -37,6 +37,7 @@ struct Reminder: Codable, Identifiable, Hashable {
             id: self.id,
             title: self.description == nil ? "Perroquet" : self.title,
             description: self.description == nil ? self.title : self.description!,
+            frequency: self.frequency,
             triggerAt: self.triggerAt
         )
     }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SQLite
+import SQLiteSwift
 
 class Stash {
     static let shared = Stash()

@@ -41,6 +41,12 @@ struct ProfileView: View {
                 }
                 .frame(maxWidth: Dims.viewMaxWidth2)
                 
+                Button(action: {
+                    AuthMan.shared.onSignout()
+                }, label: {
+                    Text("sign out")
+                })
+                
             } // LazyVStack
             .padding(Dims.spacingRegular)
 

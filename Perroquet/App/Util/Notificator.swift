@@ -12,6 +12,7 @@ struct LocalNotification {
     let id: String
     let title: String
     let description: String
+    let frequency: String?
     let triggerAt: Int
 }
 
@@ -25,8 +26,26 @@ class Notificator {
         let timeInterval = TimeInterval(notification.triggerAt / 1000)
         let fireDate = Date(timeIntervalSince1970: timeInterval)
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: fireDate)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let componentsSet: Set<Calendar.Component>
+        
+        switch notification.frequency {
+        case "hourly":
+            componentsSet = [.minute, .second]
+        case "daily":
+            componentsSet = [.hour, .minute, .second]
+        case "weekly":
+            componentsSet = [.day, .hour, .minute, .second]
+        case "monthly":
+            componentsSet = [.month, .day, .hour, .minute, .second]
+        case "yearly":
+            componentsSet = [.year, .month, .day, .hour, .minute, .second]
+        default:
+            componentsSet = [.year, .month, .day, .hour, .minute, .second]
+        }
+        
+        let components = calendar.dateComponents(componentsSet, from: fireDate)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: notification.frequency != nil)
         let request = UNNotificationRequest(identifier: notification.id, content: content, trigger: trigger)
 
         let notificationCenter = UNUserNotificationCenter.current()

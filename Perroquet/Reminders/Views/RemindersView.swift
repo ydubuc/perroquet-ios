@@ -10,16 +10,7 @@ import SwiftUI
 struct RemindersView: View {
     @StateObject var vm: RemindersViewModel
     
-    init(vm: StateObject<RemindersViewModel> = .init(wrappedValue: .init(dto: .init(
-        id: nil,
-        userId: nil,
-        search: nil,
-        tags: nil,
-        visibility: nil,
-        sort: nil,
-        cursor: nil,
-        limit: nil
-    )))) {
+    init(vm: StateObject<RemindersViewModel> = .init(wrappedValue: .init())) {
         _vm = vm
     }
     
