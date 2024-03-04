@@ -8,8 +8,7 @@
 import Foundation
 import SwiftUI
 
-class RemindersViewModel: ObservableObject {    
-    let appVm: AppViewModel
+class RemindersViewModel: ObservableObject, ReminderListener {
     let authMan: AuthMan
     let stash: Stash
     let notificator: Notificator
@@ -32,7 +31,6 @@ class RemindersViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     
     init(
-        appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
         stash: Stash = Stash.shared,
         notificator: Notificator = Notificator(),
@@ -40,7 +38,6 @@ class RemindersViewModel: ObservableObject {
         reminders: [Reminder]? = nil,
         dto: GetRemindersFilterDto = .init()
     ) {
-        self.appVm = appVm
         self.authMan = authMan
         self.stash = stash
         self.notificator = notificator
@@ -136,10 +133,6 @@ class RemindersViewModel: ObservableObject {
         }
     }
     
-    func insertReminder(reminder: Reminder) {
-        reminders.insert(reminder, at: 0)
-    }
-    
     func insertAndOrderReminders(newReminders: [Reminder]) {
         let idSet = Set(newReminders.map { $0.id })
         
@@ -175,11 +168,27 @@ class RemindersViewModel: ObservableObject {
         Task {
             let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
             let reminders = reminders.filter { reminder in
-                reminder.triggerAt > currentTimeInMillis
+                reminder.triggerAt > currentTimeInMillis || reminder.frequency != nil
             }
             for reminder in reminders {
                 await notificator.schedule(notification: reminder.toLocalNotification())
             }
         }
+    }
+    
+    func onCreateReminder(_ reminder: Reminder) {
+        insertAndOrderReminders(newReminders: [reminder])
+    }
+    
+    func onEditReminder(_ reminder: Reminder) {
+        insertAndOrderReminders(newReminders: [reminder])
+    }
+    
+    func onDeleteReminder(_ reminder: Reminder) {
+        self.reminders = self.reminders.filter { $0.id != reminder.id }
+        self.todayReminders = self.todayReminders.filter { $0.id != reminder.id }
+        self.sevenDaysReminders = self.sevenDaysReminders.filter { $0.id != reminder.id }
+        self.laterReminders = self.laterReminders.filter { $0.id != reminder.id }
+        self.previousReminders = self.previousReminders.filter { $0.id != reminder.id }
     }
 }

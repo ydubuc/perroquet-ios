@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: ProfileViewModel
     
     @ScaledMetric var scale: CGFloat = 1
@@ -33,7 +34,7 @@ struct ProfileView: View {
                         .cornerRadius(imageSize / 2)
                     
                     Text(vm.quote)
-                        .foregroundColor(vm.appVm.theme.fontNormal)
+                        .foregroundColor(appVm.theme.fontNormal)
                         .font(.body.weight(.regular))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)

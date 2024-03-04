@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CreateReminderView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: CreateReminderViewModel
     
     @FocusState var isFocusingTextfield: Bool
     
-    init(vm: StateObject<CreateReminderViewModel> = .init(wrappedValue: .init())) {
+    init(vm: StateObject<CreateReminderViewModel> = .init(wrappedValue: .init(listener: nil))) {
         _vm = vm
     }
     
@@ -37,7 +38,7 @@ struct CreateReminderView: View {
                         text: $vm.title,
                         title: .constant("Remind me to..."),
                         placeholder: $vm.placeholder,
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     )
                     .focused($isFocusingTextfield)
                     .frame(maxWidth: Dims.formMaxWidth)
@@ -59,14 +60,14 @@ struct CreateReminderView: View {
                             vm.isPresentingDatePickerView = true
                         }, label: {
                             Text("on \(vm.triggerAtDate.formatted(date: .abbreviated, time: .shortened))")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         .sheet(isPresented: $vm.isPresentingDatePickerView) {
-                            DatePickerView(date: $vm.triggerAtDate, theme: vm.appVm.theme)
+                            DatePickerView(date: $vm.triggerAtDate, theme: appVm.theme)
                                 .background(ClearBackgroundView())
                         }
                         
@@ -108,10 +109,10 @@ struct CreateReminderView: View {
                             }
                         } label: {
                             Text("\(vm.frequency.isEmpty ? "Repeat" : vm.frequency.capitalized)")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         }
                         
@@ -122,10 +123,10 @@ struct CreateReminderView: View {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Text("Save")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         
@@ -138,10 +139,10 @@ struct CreateReminderView: View {
                             vm.visibility = vm.visibility == 0 ? 1 : 0
                         }, label: {
                             Text(vm.visibility == 0 ? "Private" : "Public")
-                                .foregroundColor(vm.visibility == 0 ? vm.appVm.theme.fontDim : vm.appVm.theme.fontNormal)
+                                .foregroundColor(vm.visibility == 0 ? appVm.theme.fontDim : appVm.theme.fontNormal)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         
@@ -150,7 +151,7 @@ struct CreateReminderView: View {
                 } // VStack
                 .padding(Dims.spacingRegular)
                 .frame(width: geometry.size.width)
-                .background(vm.appVm.theme.primary.ignoresSafeArea(.all))
+                .background(appVm.theme.primary.ignoresSafeArea(.all))
                 .animation(.easeInOut(duration: 0.1), value: vm.title)
                 
             } // VStack

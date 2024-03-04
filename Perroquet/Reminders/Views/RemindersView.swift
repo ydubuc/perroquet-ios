@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RemindersView: View {
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: RemindersViewModel
     
     init(vm: StateObject<RemindersViewModel> = .init(wrappedValue: .init())) {
@@ -52,6 +53,16 @@ struct RemindersView: View {
         .refreshable {
             await vm.load()
         }
+        .sheet(isPresented: $appVm.isPresentingCreateReminderView) {
+            CreateReminderView(vm: .init(wrappedValue: .init(listener: vm)))
+                .environmentObject(appVm)
+                .background(ClearBackgroundView())
+        }
+        .onOpenURL { url in
+            if url.scheme == "widget" && url.host == "com.beamcove.perroquet.create-reminder" {
+                appVm.isPresentingCreateReminderView = true
+            }
+        }
         
     }
     
@@ -64,32 +75,32 @@ struct RemindersView: View {
          
             Text(title)
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                .foregroundColor(vm.appVm.theme.fontNormal)
+                .foregroundColor(appVm.theme.fontNormal)
                 .font(.body.weight(.bold))
                 .lineLimit(2)
             
             if reminders.count > 0 {
                 VStack(alignment: .leading, spacing: Dims.spacingSmall) {
                     ForEach(reminders) { reminder in
-                        ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                        ReminderComponent(reminder: reminder, listener: vm, theme: appVm.theme)
                     }
                 }
                 .padding(Dims.spacingRegular)
-                .background(vm.appVm.theme.primaryDark)
+                .background(appVm.theme.primaryDark)
                 .cornerRadius(Dims.cornerRadius)
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
             } else {
                 HStack(alignment: .center, spacing: 0) {
                  
                     Text(placeholder)
-                        .foregroundColor(vm.appVm.theme.fontDim)
+                        .foregroundColor(appVm.theme.fontDim)
                         .font(.body.weight(.regular))
                     
                     Spacer()
                     
                 }
                 .padding(Dims.spacingRegular)
-                .background(vm.appVm.theme.primaryDark)
+                .background(appVm.theme.primaryDark)
                 .cornerRadius(Dims.cornerRadius)
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
             }

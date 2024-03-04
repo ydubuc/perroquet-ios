@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SigninView: View {
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: SigninViewModel
     
     init(vm: StateObject<SigninViewModel> = .init(wrappedValue: .init())) {
@@ -29,14 +30,14 @@ struct SigninView: View {
                     FormTextfieldComponent(
                         text: $vm.email,
                         placeholder: .constant("email"),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     )
                     .frame(maxWidth: Dims.formMaxWidth)
                     
                     FormSecureTextfieldComponent(
                         text: $vm.passw,
                         placeholder: .constant("password"),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     )
                     .frame(maxWidth: Dims.formMaxWidth)
                     
@@ -55,7 +56,7 @@ struct SigninView: View {
                             // present forgot password view
                         }, label: {
                             Text("Forgot password?")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.footnote.weight(.bold))
                                 .lineLimit(1)
                         })
@@ -68,44 +69,45 @@ struct SigninView: View {
                     
                     FormSubmitComponent(
                         title: .constant("Sign in with email"),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     ) {
                         vm.signin()
                     }
                     
                     Text("or")
-                        .foregroundColor(vm.appVm.theme.fontNormal)
+                        .foregroundColor(appVm.theme.fontNormal)
                         .font(.body.weight(.regular))
                     
                     FormSigninAppleComponent(
                         type: .constant(.signin),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     ) {
                         vm.requestSigninApple()
                     }
                     
                     Rectangle()
-                        .foregroundColor(vm.appVm.theme.primaryLight)
+                        .foregroundColor(appVm.theme.primaryLight)
                         .frame(maxWidth: Dims.formMaxWidth)
                         .frame(height: 1)
                     
                     HStack(alignment: .center, spacing: Dims.spacingSmall) {
                         Text("Don't have an account?")
-                            .foregroundColor(vm.appVm.theme.fontNormal)
+                            .foregroundColor(appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
                         
                         Button(action: {
                             vm.isPresentingSignupView = true
                         }, label: {
                             Text("Sign up")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.bold))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         .sheet(isPresented: $vm.isPresentingSignupView) {
                             SignupView()
+                                .environmentObject(appVm)
                         }
                     }
                     .frame(maxWidth: Dims.formMaxWidth)
@@ -116,11 +118,11 @@ struct SigninView: View {
                 .frame(minHeight: geometry.size.height)
                 
             } // ScrollView
-            .background(vm.appVm.theme.primary)
+            .background(appVm.theme.primary)
             
             Rectangle()
                 .frame(width: geometry.size.width, height: geometry.safeAreaInsets.top)
-                .foregroundColor(vm.appVm.theme.primary)
+                .foregroundColor(appVm.theme.primary)
                 .ignoresSafeArea()
             
         } // GeometryReader

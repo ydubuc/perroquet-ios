@@ -15,7 +15,7 @@ import BackgroundTasks
 struct PerroquetApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject var appVm = AppViewModel.shared
+    @StateObject var appVm = AppViewModel()
     @StateObject var authMan = AuthMan.shared
     
     var body: some Scene {
@@ -24,8 +24,10 @@ struct PerroquetApp: App {
             
             if authMan.isLoggedIn {
                 MainView()
+                    .environmentObject(appVm)
             } else {
                 SigninView()
+                    .environmentObject(appVm)
             }
             
         }

@@ -10,7 +10,6 @@ import SwiftUI
 import AuthenticationServices
 
 class SigninViewModel: NSObject, ObservableObject {
-    let appVm: AppViewModel
     let authMan: AuthMan
     let authService: AuthService
     
@@ -23,11 +22,9 @@ class SigninViewModel: NSObject, ObservableObject {
     @Published var isPresentingSignupView = false
     
     init(
-        appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
         authService: AuthService = AuthService(url: Config.BACKEND_URL)
     ) {
-        self.appVm = appVm
         self.authMan = authMan
         self.authService = authService
     }

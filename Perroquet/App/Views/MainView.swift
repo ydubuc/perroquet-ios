@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: MainViewModel
     
     init(vm: StateObject<MainViewModel> = .init(wrappedValue: .init())) {
@@ -64,7 +65,7 @@ struct MainView: View {
             
             VStack(alignment: .center, spacing: 0) {
                 
-                vm.appVm.theme.primary
+                appVm.theme.primary
                     .frame(height: safeAreaInsets.top)
                     .ignoresSafeArea()
 
@@ -76,7 +77,7 @@ struct MainView: View {
                         vm.switchToTab(0)
                     } label: {
                         Image(systemName: "list.bullet.circle")
-                            .foregroundColor(vm.currentTab == 0 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .foregroundColor(vm.currentTab == 0 ? appVm.theme.fontBright : appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
@@ -86,31 +87,27 @@ struct MainView: View {
                         vm.switchToTab(1)
                     } label: {
                         Image(systemName: "safari")
-                            .foregroundColor(vm.currentTab == 1 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .foregroundColor(vm.currentTab == 1 ? appVm.theme.fontBright : appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
                     
                     Button {
-                        vm.isPresentingCreateReminderView = true
+                        appVm.isPresentingCreateReminderView = true
                     } label: {
                         Image(systemName: "plus.circle.fill")
-                            .foregroundColor(vm.currentTab == 2 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .foregroundColor(vm.currentTab == 2 ? appVm.theme.fontBright : appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
-                    }
-                    .sheet(isPresented: $vm.isPresentingCreateReminderView) {
-                        CreateReminderView()
-                            .background(ClearBackgroundView())
                     }
                     
                     Button {
                         vm.switchToTab(3)
                     } label: {
                         Image(systemName: "at.circle")
-                            .foregroundColor(vm.currentTab == 3 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .foregroundColor(vm.currentTab == 3 ? appVm.theme.fontBright : appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
@@ -120,27 +117,23 @@ struct MainView: View {
                         vm.switchToTab(4)
                     } label: {
                         Image(systemName: "person.crop.circle")
-                            .foregroundColor(vm.currentTab == 4 ? vm.appVm.theme.fontBright : vm.appVm.theme.fontNormal)
+                            .foregroundColor(vm.currentTab == 4 ? appVm.theme.fontBright : appVm.theme.fontNormal)
                             .font(.body.weight(.bold))
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
                     
                 } // HStack
-                .background(vm.appVm.theme.primaryLight)
+                .background(appVm.theme.primaryLight)
                 .cornerRadius(Dims.cornerRadius)
                 
             }
                         
         } // ZStack
-        .background(vm.appVm.theme.primary)
+        .environmentObject(appVm)
+        .background(appVm.theme.primary)
         .onAppear {
-            UIApplication.setWindowBackgroundColor(UIColor(vm.appVm.theme.primaryDark))
-        }
-        .onOpenURL { url in
-            if url.scheme == "widget" && url.host == "com.beamcove.perroquet.create-reminder" {
-                vm.isPresentingCreateReminderView = true
-            }
+            UIApplication.setWindowBackgroundColor(UIColor(appVm.theme.primaryDark))
         }
         
     }

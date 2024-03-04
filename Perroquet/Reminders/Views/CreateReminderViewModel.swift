@@ -8,11 +8,12 @@
 import Foundation
 
 class CreateReminderViewModel: ObservableObject {
-    let appVm: AppViewModel
     let authMan: AuthMan
     let notificator: Notificator
     let stash: Stash
     let remindersService: RemindersService
+    
+    var listener: ReminderListener?
     
     @Published var title: String = ""
     @Published var description: String = ""
@@ -26,17 +27,18 @@ class CreateReminderViewModel: ObservableObject {
     @Published var isPresentingDatePickerView = false
     
     init(
-        appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
         notificator: Notificator = Notificator(),
         stash: Stash = Stash.shared,
-        remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL)
+        remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
+        listener: ReminderListener?
     ) {
-        self.appVm = appVm
         self.authMan = authMan
         self.notificator = notificator
         self.stash = stash
         self.remindersService = remindersService
+        
+        self.listener = listener
     }
     
     func createReminder() {
@@ -59,6 +61,10 @@ class CreateReminderViewModel: ObservableObject {
             
             stash.insertReminder(reminder: tempReminder)
             await notificator.schedule(notification: tempReminder.toLocalNotification())
+            
+            DispatchQueue.main.async {
+                self.listener?.onCreateReminder(tempReminder)
+            }
             
             let dto = CreateReminderDto(
                 title: title,

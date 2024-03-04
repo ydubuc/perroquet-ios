@@ -8,8 +8,7 @@
 import Foundation
 import SwiftUI
 
-class DiscoverViewModel: ObservableObject {
-    let appVm: AppViewModel
+class DiscoverViewModel: ObservableObject, ReminderListener {
     let authMan: AuthMan
     let notificator: Notificator
     let remindersService: RemindersService
@@ -27,13 +26,11 @@ class DiscoverViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     
     init(
-        appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
         notificator: Notificator = Notificator(),
         remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
         dto: GetRemindersFilterDto
     ) {
-        self.appVm = appVm
         self.authMan = authMan
         self.notificator = notificator
         self.remindersService = remindersService
@@ -110,5 +107,17 @@ class DiscoverViewModel: ObservableObject {
         array.append(contentsOf: newReminders)
         
         self.reminders = array.sorted { $0.triggerAt > $1.triggerAt }
+    }
+    
+    func onCreateReminder(_ reminder: Reminder) {
+        print("on create")
+    }
+    
+    func onEditReminder(_ reminder: Reminder) {
+        print("on edit")
+    }
+    
+    func onDeleteReminder(_ reminder: Reminder) {
+        print("on delete")
     }
 }

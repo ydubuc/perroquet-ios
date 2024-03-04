@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DiscoverView: View {
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: DiscoverViewModel
     
     init(vm: StateObject<DiscoverViewModel> = .init(wrappedValue: .init(dto: .init(
@@ -31,18 +32,18 @@ struct DiscoverView: View {
                 
                 Text("Discover")
                     .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                    .foregroundColor(vm.appVm.theme.fontNormal)
+                    .foregroundColor(appVm.theme.fontNormal)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
                 
                 if !vm.reminders.isEmpty {
                     VStack(alignment: .leading, spacing: Dims.spacingSmall) {
                         ForEach(vm.reminders) { reminder in
-                            ReminderComponent(reminder: reminder, theme: vm.appVm.theme)
+                            ReminderComponent(reminder: reminder, listener: vm, theme: appVm.theme)
                         }
                     }
                     .padding(Dims.spacingRegular)
-                    .background(vm.appVm.theme.primaryDark)
+                    .background(appVm.theme.primaryDark)
                     .cornerRadius(Dims.cornerRadius)
                     .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 } else {

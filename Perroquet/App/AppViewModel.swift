@@ -10,16 +10,16 @@ import SwiftUI
 import SimpleKeychain
 
 class AppViewModel: ObservableObject {
-    static let shared = AppViewModel()
-    
     let notificator: Notificator
     let remindersService: RemindersService
     
     @Published var theme: Theme
     
+    @Published var isPresentingCreateReminderView = false
+    
     private var lastAppRefresh = Date().timeIntervalSince1970.milliseconds
     
-    private init(
+    init(
         notificator: Notificator = Notificator(),
         remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL)
     ) {

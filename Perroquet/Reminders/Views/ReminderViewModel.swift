@@ -7,14 +7,20 @@
 
 import Foundation
 
+protocol ReminderListener {
+    func onCreateReminder(_ reminder: Reminder)
+    func onEditReminder(_ reminder: Reminder)
+    func onDeleteReminder(_ reminder: Reminder)
+}
+
 class ReminderViewModel: ObservableObject {
-    let appVm: AppViewModel
     let authMan: AuthMan
     let notificator: Notificator
     let stash: Stash
     let remindersService: RemindersService
     
     let reminder: Reminder
+    let listener: ReminderListener?
     
     @Published var title: String
     @Published var description: String
@@ -29,20 +35,20 @@ class ReminderViewModel: ObservableObject {
     @Published var isPresentingDatePickerView = false
     
     init(
-        appVm: AppViewModel = AppViewModel.shared,
         authMan: AuthMan = AuthMan.shared,
         notificator: Notificator = Notificator(),
         stash: Stash = Stash.shared,
         remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
-        reminder: Reminder
+        reminder: Reminder,
+        listener: ReminderListener?
     ) {
-        self.appVm = appVm
         self.authMan = authMan
         self.notificator = notificator
         self.stash = stash
         self.remindersService = remindersService
         
         self.reminder = reminder
+        self.listener = listener
         
         self.title = reminder.title
         self.description = reminder.description ?? ""
@@ -72,6 +78,10 @@ class ReminderViewModel: ObservableObject {
             stash.insertReminder(reminder: tempReminder)
             await notificator.schedule(notification: tempReminder.toLocalNotification())
             
+            DispatchQueue.main.async {
+                self.listener?.onEditReminder(tempReminder)
+            }
+            
             let dto = EditReminderDto(
                 title: title,
                 description: description.isEmpty ? nil : description,
@@ -97,6 +107,10 @@ class ReminderViewModel: ObservableObject {
         Task {
             stash.deleteReminder(id: reminder.id)
             notificator.delete(ids: [reminder.id])
+            
+            DispatchQueue.main.async {
+                self.listener?.onDeleteReminder(self.reminder)
+            }
             
             guard let accessToken = await authMan.accessToken() else { return }
             let result = await remindersService.deleteReminder(id: reminder.id, accessToken: accessToken)

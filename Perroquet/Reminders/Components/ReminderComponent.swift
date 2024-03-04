@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ReminderComponent: View {
     let reminder: Reminder
+    let listener: ReminderListener?
     let theme: Theme
     
     @State private var isPresentingReminderView = false
@@ -34,7 +35,7 @@ struct ReminderComponent: View {
             }
         })
         .sheet(isPresented: $isPresentingReminderView) {
-            ReminderView(vm: .init(wrappedValue: .init(reminder: reminder)))
+            ReminderView(vm: .init(wrappedValue: .init(reminder: reminder, listener: listener)))
                 .presentationDetents([.medium, .large])
         }
         
@@ -55,6 +56,7 @@ struct ReminderComponent: View {
             updatedAt: 1708358620664,
             createdAt: 1708358620664
         ),
+        listener: nil,
         theme: DarkTheme()
     )
 }

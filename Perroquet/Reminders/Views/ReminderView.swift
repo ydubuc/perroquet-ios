@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ReminderView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: ReminderViewModel
     
     @FocusState var isFocusingTextfield: Bool
@@ -38,7 +39,7 @@ struct ReminderView: View {
                             })
                         } label: {
                             Image(systemName: "ellipsis.circle")
-                                .foregroundColor(vm.appVm.theme.fontDim)
+                                .foregroundColor(appVm.theme.fontDim)
                                 .font(.title2.weight(.bold))
                         }
                         
@@ -49,7 +50,7 @@ struct ReminderView: View {
                         text: $vm.title,
                         title: .constant("Remind me to..."),
                         placeholder: $vm.placeholder,
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     )
                     .focused($isFocusingTextfield)
                     .frame(maxWidth: Dims.formMaxWidth)
@@ -68,14 +69,14 @@ struct ReminderView: View {
                             vm.isPresentingDatePickerView = true
                         }, label: {
                             Text("on \(vm.triggerAtDate.formatted(date: .abbreviated, time: .shortened))")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         .sheet(isPresented: $vm.isPresentingDatePickerView) {
-                            DatePickerView(date: $vm.triggerAtDate, theme: vm.appVm.theme)
+                            DatePickerView(date: $vm.triggerAtDate, theme: appVm.theme)
                                 .background(ClearBackgroundView())
                         }
                         
@@ -86,10 +87,10 @@ struct ReminderView: View {
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Text("Save")
-                                .foregroundColor(vm.appVm.theme.fontBright)
+                                .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)
-                                .background(vm.appVm.theme.primaryDark)
+                                .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
                         
@@ -101,7 +102,7 @@ struct ReminderView: View {
                 } // VStack
                 .padding(Dims.spacingRegular)
                 .frame(width: geometry.size.width)
-                .background(vm.appVm.theme.primary.ignoresSafeArea(.all))
+                .background(appVm.theme.primary.ignoresSafeArea(.all))
                 
             } // VStack
             
@@ -111,16 +112,19 @@ struct ReminderView: View {
 }
 
 #Preview {
-    ReminderView(vm: .init(wrappedValue: .init(reminder: .init(
-        id: "123",
-        userId: "321",
-        title: "Hello, World!",
-        description: "Testing one two",
-        tags: ["test", "one", "two"],
-        frequency: nil,
-        visibility: 0,
-        triggerAt: 1709222686678,
-        updatedAt: 1709222686678,
-        createdAt: 1709222686678
-    ))))
+    ReminderView(vm: .init(wrappedValue: .init(
+        reminder: .init(
+            id: "123",
+            userId: "321",
+            title: "Hello, World!",
+            description: "Testing one two",
+            tags: ["test", "one", "two"],
+            frequency: nil,
+            visibility: 0,
+            triggerAt: 1709222686678,
+            updatedAt: 1709222686678,
+            createdAt: 1709222686678
+        ),
+        listener: nil
+    )))
 }

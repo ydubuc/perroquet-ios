@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignupView: View {
+    @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: SignupViewModel
     
     init(vm: StateObject<SignupViewModel> = .init(wrappedValue: .init())) {
@@ -29,14 +30,14 @@ struct SignupView: View {
                     FormTextfieldComponent(
                         text: $vm.email,
                         placeholder: .constant("email"),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     )
                     .frame(maxWidth: Dims.formMaxWidth)
                     
                     FormSecureTextfieldComponent(
                         text: $vm.passw,
                         placeholder: .constant("password"),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     )
                     .frame(maxWidth: Dims.formMaxWidth)
                     
@@ -63,30 +64,30 @@ struct SignupView: View {
                         vm.isPresentingSafariView = true
                     }, label: {
                         Text("By signing up, you agree to the terms")
-                            .foregroundColor(vm.appVm.theme.fontBright)
+                            .foregroundColor(appVm.theme.fontBright)
                             .font(.footnote.weight(.regular))
                             .frame(maxWidth: Dims.formMaxWidth)
                     })
                     .sheet(isPresented: $vm.isPresentingSafariView) {
-                        SafariView(url: URL(string: Config.TERMS_URL)!, theme: vm.appVm.theme)
+                        SafariView(url: URL(string: Config.TERMS_URL)!, theme: appVm.theme)
                             .ignoresSafeArea(.all)
                     }
                     
                     FormSubmitComponent(
                         title: .constant("Sign up with email"),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     ) {
                         vm.signup()
                     }
                     
                     Text("or")
-                        .foregroundColor(vm.appVm.theme.fontNormal)
+                        .foregroundColor(appVm.theme.fontNormal)
                         .font(.body.weight(.regular))
                         .frame(maxWidth: Dims.formMaxWidth)
                     
                     FormSigninAppleComponent(
                         type: .constant(.signup),
-                        theme: vm.appVm.theme
+                        theme: appVm.theme
                     ) {
                         vm.requestSigninApple()
                     }
@@ -97,11 +98,11 @@ struct SignupView: View {
                 .frame(minHeight: geometry.size.height)
                 
             } // ScrollView
-            .background(vm.appVm.theme.primary)
+            .background(appVm.theme.primary)
             
             Rectangle()
                 .frame(width: geometry.size.width, height: geometry.safeAreaInsets.top)
-                .foregroundColor(vm.appVm.theme.primary)
+                .foregroundColor(appVm.theme.primary)
                 .ignoresSafeArea()
             
         } // GeometryReader
