@@ -17,8 +17,26 @@ struct MainEntry: TimelineEntry {
 struct CreateReminderWidgetEntryView: View {
     var entry: Provider.Entry
 
+    @Environment(\.widgetFamily) private var family
+
     var body: some View {
 
+        switch family {
+        case .accessoryCircular:
+            accessoryCircularWidget()
+        default:
+            smallWidget()
+        }
+
+    }
+
+    func accessoryCircularWidget() -> some View {
+        Image(systemName: "plus.circle")
+            .resizable()
+            .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-reminder")!)
+    }
+
+    func smallWidget() -> some View {
         VStack(alignment: .leading, spacing: 8) {
 
             HStack(alignment: .center, spacing: 8) {
@@ -53,7 +71,6 @@ struct CreateReminderWidgetEntryView: View {
 
         } // VStack
         .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-reminder")!)
-
     }
 }
 
@@ -72,7 +89,7 @@ struct CreateReminderWidget: Widget {
         }
         .configurationDisplayName("Create Reminder")
         .description("Remind me to...")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular])
     }
 }
 
@@ -151,15 +168,15 @@ struct Provider: TimelineProvider {
     }
 }
 
-// #Preview(as: .systemSmall) {
-//    CreateReminderWidget()
-// } timeline: {
-//    MainEntry(
-//        quote: Provider.quotes.randomElement()!,
-//        placeholder: Provider.placeholders.randomElement()!,
-//        date: .now
-//    )
-// }
+ #Preview(as: .accessoryCircular) {
+    CreateReminderWidget()
+ } timeline: {
+    MainEntry(
+        quote: Provider.quotes.randomElement()!,
+        placeholder: Provider.placeholders.randomElement()!,
+        date: .now
+    )
+ }
 
 extension Color {
     init(hex: Int, opacity: Double = 1) {
