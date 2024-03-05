@@ -10,10 +10,10 @@ import SwiftUI
 struct FormSubmitComponent: View {
     @Binding var title: String
     let theme: Theme
-    let onTapAction: () -> ()
-    
+    let onTapAction: () -> Void
+
     var body: some View {
-        
+
         Button(action: {
             onTapAction()
         }, label: {
@@ -26,7 +26,7 @@ struct FormSubmitComponent: View {
                 .background(theme.fontBright)
                 .cornerRadius(Dims.cornerRadius)
         })
-        
+
     }
 }
 

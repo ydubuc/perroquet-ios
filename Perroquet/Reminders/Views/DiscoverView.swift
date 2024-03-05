@@ -10,7 +10,7 @@ import SwiftUI
 struct DiscoverView: View {
     @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: DiscoverViewModel
-    
+
     init(vm: StateObject<DiscoverViewModel> = .init(wrappedValue: .init(dto: .init(
         id: nil,
         userId: nil,
@@ -23,23 +23,24 @@ struct DiscoverView: View {
     )))) {
         _vm = vm
     }
-    
+
     var body: some View {
-        
+
         ScrollView(.vertical, showsIndicators: true) {
-            
+
             LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {
-                
+
                 Text("Discover")
                     .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                     .foregroundColor(appVm.theme.fontNormal)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
-                
+
                 if !vm.reminders.isEmpty {
                     VStack(alignment: .leading, spacing: Dims.spacingSmall) {
                         ForEach(vm.reminders) { reminder in
-                            ReminderComponent(reminder: reminder, listener: vm, theme: appVm.theme)
+                            ReminderComponent(reminder: reminder, listener: vm)
+                                .environmentObject(appVm)
                         }
                     }
                     .padding(Dims.spacingRegular)
@@ -48,15 +49,15 @@ struct DiscoverView: View {
                     .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 } else {
                     HStack(alignment: .center, spacing: Dims.spacingRegular) {
-                        
+
                         Text("Nothing here")
-                        
+
                         Spacer()
-                        
+
                     }
                     .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 }
-                
+
             } // LazyVStack
             .padding(Dims.spacingRegular)
 
@@ -64,7 +65,7 @@ struct DiscoverView: View {
         .refreshable {
             await vm.load()
         }
-        
+
     }
 }
 

@@ -18,7 +18,7 @@ struct Reminder: Codable, Identifiable, Hashable {
     let triggerAt: Int
     let updatedAt: Int
     let createdAt: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case userId = "user_id"
@@ -31,17 +31,17 @@ struct Reminder: Codable, Identifiable, Hashable {
         case updatedAt = "updated_at"
         case createdAt = "created_at"
     }
-    
+
     func toLocalNotification() -> LocalNotification {
         return LocalNotification(
             id: self.id,
-            title: self.description == nil ? "Perroquet" : self.title,
+            title: self.description == nil ? "Perroquet says:" : self.title,
             description: self.description == nil ? self.title : self.description!,
             frequency: self.frequency,
             triggerAt: self.triggerAt
         )
     }
-    
+
     static func randomPlaceholder() -> String {
         return [
             "drink more water",

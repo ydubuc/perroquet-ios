@@ -9,7 +9,7 @@ import Foundation
 
 struct SignoutDto: Codable {
     let deviceId: String
-    
+
     enum CodingKeys: String, CodingKey {
         case deviceId = "device_id"
     }

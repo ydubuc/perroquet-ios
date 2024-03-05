@@ -13,7 +13,7 @@ struct Device: Codable {
     let refreshedAt: Int
     let updatedAt: Int
     let createdAt: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case userId = "user_id"

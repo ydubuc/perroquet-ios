@@ -8,14 +8,16 @@
 import Foundation
 
 struct CreateReminderDto: Codable {
+    let id: String
     let title: String
     let description: String?
     let tags: [String]?
     let frequency: String?
     let visibility: Int
     let triggerAt: Int
-    
+
     enum CodingKeys: String, CodingKey {
+        case id = "id"
         case title = "title"
         case description = "description"
         case tags = "tags"

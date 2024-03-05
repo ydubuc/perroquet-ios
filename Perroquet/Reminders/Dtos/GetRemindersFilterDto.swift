@@ -16,10 +16,10 @@ struct GetRemindersFilterDto: QueryDto {
     let sort: String?
     let cursor: String?
     let limit: Int?
-    
+
     func toQueryItems() -> [URLQueryItem] {
         var queries: [URLQueryItem] = []
-        
+
         if let id = id {
             queries.append(.init(name: "id", value: id))
         }
@@ -44,7 +44,7 @@ struct GetRemindersFilterDto: QueryDto {
         if let limit = limit {
             queries.append(.init(name: "limit", value: "\(limit)"))
         }
-        
+
         return queries
     }
 }

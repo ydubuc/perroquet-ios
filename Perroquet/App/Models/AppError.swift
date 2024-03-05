@@ -9,7 +9,7 @@ import Foundation
 
 struct AppError: Equatable {
     let message: String
-    
+
     init(_ message: String) {
         self.message = message
     }

@@ -23,7 +23,7 @@ struct Dims {
     static let sizeAvatarLargePlus: CGFloat = 64
     static let sizeAvatarHeaderRegular: CGFloat = 128
     static let sizeAvatarHeaderLarge: CGFloat = 192
-    
+
     static let formMaxWidth: CGFloat = 400
     static let viewMaxWidth1: CGFloat = 600
     static let viewMaxWidth2: CGFloat = 800

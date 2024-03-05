@@ -11,25 +11,25 @@ struct ReminderView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: ReminderViewModel
-    
+
     @FocusState var isFocusingTextfield: Bool
-    
+
     init(vm: StateObject<ReminderViewModel>) {
         _vm = vm
     }
-    
+
     var body: some View {
-        
+
         GeometryReader { geometry in
-            
+
             VStack(alignment: .center, spacing: 0) {
-                
+
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
-                    
+
                     HStack(alignment: .center, spacing: Dims.spacingRegular) {
-                        
+
                         Spacer()
-                        
+
                         Menu {
                             Button(action: {
                                 vm.deleteReminder()
@@ -42,10 +42,10 @@ struct ReminderView: View {
                                 .foregroundColor(appVm.theme.fontDim)
                                 .font(.title2.weight(.bold))
                         }
-                        
+
                     } // HStack
                     .frame(maxWidth: Dims.formMaxWidth)
-                    
+
                     FormTextfieldMultilineComponent(
                         text: $vm.title,
                         title: .constant("Remind me to..."),
@@ -54,7 +54,7 @@ struct ReminderView: View {
                     )
                     .focused($isFocusingTextfield)
                     .frame(maxWidth: Dims.formMaxWidth)
-                    .onChange(of: vm.title, perform: { value in
+                    .onChange(of: vm.title, perform: { _ in
                         DispatchQueue.main.async {
                             let dates = vm.title.findDates()
                             if let date = dates.last {
@@ -62,9 +62,9 @@ struct ReminderView: View {
                             }
                         }
                     })
-                    
+
                     HStack(alignment: .center, spacing: Dims.spacingRegular) {
-                        
+
                         Button(action: {
                             vm.isPresentingDatePickerView = true
                         }, label: {
@@ -79,9 +79,9 @@ struct ReminderView: View {
                             DatePickerView(date: $vm.triggerAtDate, theme: appVm.theme)
                                 .background(ClearBackgroundView())
                         }
-                        
+
                         Spacer()
-                        
+
                         Button(action: {
                             vm.editReminder()
                             presentationMode.wrappedValue.dismiss()
@@ -93,21 +93,21 @@ struct ReminderView: View {
                                 .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
-                        
+
                     } // HStack
                     .frame(maxWidth: Dims.formMaxWidth)
-                    
+
                     Spacer()
-                    
+
                 } // VStack
                 .padding(Dims.spacingRegular)
                 .frame(width: geometry.size.width)
                 .background(appVm.theme.primary.ignoresSafeArea(.all))
-                
+
             } // VStack
-            
+
         } // GeometryReader
-        
+
     }
 }
 
@@ -127,4 +127,5 @@ struct ReminderView: View {
         ),
         listener: nil
     )))
+    .environmentObject(AppViewModel())
 }

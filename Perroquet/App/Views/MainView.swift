@@ -11,15 +11,15 @@ struct MainView: View {
     @Environment(\.safeAreaInsets) private var safeAreaInsets
     @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: MainViewModel
-    
+
     init(vm: StateObject<MainViewModel> = .init(wrappedValue: .init())) {
         _vm = vm
     }
 
     var body: some View {
-        
+
         ZStack(alignment: .center) {
-            
+
             LazyView(loadWhen: $vm.shouldLoadRemindersView) {
                 RemindersView(
                     vm: .init(wrappedValue: .init(
@@ -38,7 +38,7 @@ struct MainView: View {
                 )
             }
             .opacity(vm.currentTab == 0 ? 1 : 0)
-            
+
             LazyView(loadWhen: $vm.shouldLoadDiscoverView) {
                 DiscoverView(vm: .init(wrappedValue: .init(dto: .init(
                     id: nil,
@@ -52,27 +52,27 @@ struct MainView: View {
                 ))))
             }
             .opacity(vm.currentTab == 1 ? 1 : 0)
-            
+
             LazyView(loadWhen: $vm.shouldLoadRemindersView) {
                 Text("requests")
             }
             .opacity(vm.currentTab == 3 ? 1 : 0)
-            
+
             LazyView(loadWhen: $vm.shouldLoadProfileView) {
                 ProfileView()
             }
             .opacity(vm.currentTab == 4 ? 1 : 0)
-            
+
             VStack(alignment: .center, spacing: 0) {
-                
+
                 appVm.theme.primary
                     .frame(height: safeAreaInsets.top)
                     .ignoresSafeArea()
 
                 Spacer()
-                
+
                 HStack(alignment: .center, spacing: 0) {
-                    
+
                     Button {
                         vm.switchToTab(0)
                     } label: {
@@ -82,7 +82,7 @@ struct MainView: View {
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
-                    
+
                     Button {
                         vm.switchToTab(1)
                     } label: {
@@ -92,7 +92,7 @@ struct MainView: View {
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
-                    
+
                     Button {
                         appVm.isPresentingCreateReminderView = true
                     } label: {
@@ -102,7 +102,7 @@ struct MainView: View {
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
-                    
+
                     Button {
                         vm.switchToTab(3)
                     } label: {
@@ -112,7 +112,7 @@ struct MainView: View {
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
-                    
+
                     Button {
                         vm.switchToTab(4)
                     } label: {
@@ -122,20 +122,20 @@ struct MainView: View {
                             .dynamicTypeSize(.xSmall ... .accessibility1)
                             .padding(Dims.spacingRegular)
                     }
-                    
+
                 } // HStack
                 .background(appVm.theme.primaryLight)
                 .cornerRadius(Dims.cornerRadius)
-                
+
             }
-                        
+
         } // ZStack
         .environmentObject(appVm)
         .background(appVm.theme.primary)
         .onAppear {
             UIApplication.setWindowBackgroundColor(UIColor(appVm.theme.primaryDark))
         }
-        
+
     }
 }
 

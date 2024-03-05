@@ -12,20 +12,20 @@ class CreateReminderViewModel: ObservableObject {
     let notificator: Notificator
     let stash: Stash
     let remindersService: RemindersService
-    
+
     var listener: ReminderListener?
-    
+
     @Published var title: String = ""
     @Published var description: String = ""
     @Published var tags: [String] = []
     @Published var frequency: String = ""
     @Published var visibility: Int = 0
     @Published var triggerAtDate: Date = Date.now
-    
+
     @Published var placeholder = Reminder.randomPlaceholder()
-    
+
     @Published var isPresentingDatePickerView = false
-    
+
     init(
         authMan: AuthMan = AuthMan.shared,
         notificator: Notificator = Notificator(),
@@ -37,17 +37,18 @@ class CreateReminderViewModel: ObservableObject {
         self.notificator = notificator
         self.stash = stash
         self.remindersService = remindersService
-        
+
         self.listener = listener
     }
-    
+
     func createReminder() {
         Task {
-            let tempId = "temp-\(UUID().uuidString)"
+            let id = "\(UUID().uuidString.lowercased())"
             let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
             let triggerAt = triggerAtDate.timeIntervalSince1970.milliseconds
-            let tempReminder = Reminder(
-                id: tempId,
+
+            let reminder = Reminder(
+                id: id,
                 userId: authMan.accessTokenClaims?.id ?? "",
                 title: title,
                 description: description.isEmpty ? nil : description,
@@ -58,15 +59,16 @@ class CreateReminderViewModel: ObservableObject {
                 updatedAt: currentTimeInMillis,
                 createdAt: currentTimeInMillis
             )
-            
-            stash.insertReminder(reminder: tempReminder)
-            await notificator.schedule(notification: tempReminder.toLocalNotification())
-            
-            DispatchQueue.main.async {
-                self.listener?.onCreateReminder(tempReminder)
+
+            stash.insertReminder(reminder: reminder)
+            await notificator.schedule(notification: reminder.toLocalNotification())
+
+            DispatchQueue.main.async { [weak self] in
+                self?.listener?.onCreateReminder(reminder)
             }
-            
+
             let dto = CreateReminderDto(
+                id: id,
                 title: title,
                 description: description.isEmpty ? nil : description,
                 tags: tags.isEmpty ? nil : tags,
@@ -74,15 +76,13 @@ class CreateReminderViewModel: ObservableObject {
                 visibility: visibility,
                 triggerAt: triggerAt
             )
-            
+
             guard let accessToken = await authMan.accessToken() else { return }
             let result = await remindersService.createReminder(dto: dto, accessToken: accessToken)
-            
+
             switch result {
-            case .success(let reminder):
-                stash.deleteReminder(id: tempId)
-                self.notificator.delete(ids: [tempId])
-                await notificator.schedule(notification: reminder.toLocalNotification())
+            case .success:
+                print("success")
             case .failure(let apiError):
                 print(apiError.message)
             }

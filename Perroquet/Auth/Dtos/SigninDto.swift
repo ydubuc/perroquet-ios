@@ -10,7 +10,7 @@ import Foundation
 struct SigninDto: Codable {
     let email: String
     let passw: String
-    
+
     enum CodingKeys: String, CodingKey {
         case email = "email"
         case passw = "password"

@@ -12,22 +12,22 @@ struct FormTextfieldMultilineComponent: View {
     @Binding var title: String
     @Binding var placeholder: String
     let theme: Theme
-    
+
     var body: some View {
-        
+
         VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-            
+
             Text(title.uppercased())
                 .foregroundColor(theme.fontDim)
                 .font(.footnote.weight(.bold))
-            
+
             ZStack {
-                
+
                 Text(text)
                     .font(.body.weight(.regular))
                     .padding(Dims.spacingRegular)
                     .opacity(0)
-                
+
                 TextField("", text: $text, axis: .vertical)
                     .foregroundColor(theme.fontNormal)
                     .font(.body.weight(.regular))
@@ -40,13 +40,13 @@ struct FormTextfieldMultilineComponent: View {
                     .padding(Dims.spacingRegular)
                     .disableAutocorrection(true)
                     .multilineTextAlignment(.leading)
-                
+
             }
             .background(theme.primaryDark)
             .cornerRadius(Dims.cornerRadius)
-            
+
         } // VStack
-        
+
     }
 }
 

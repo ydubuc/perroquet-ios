@@ -14,34 +14,34 @@ struct MainEntry: TimelineEntry {
     let date: Date
 }
 
-struct CreateReminderWidgetEntryView : View {
+struct CreateReminderWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        
+
         VStack(alignment: .leading, spacing: 8) {
-            
+
             HStack(alignment: .center, spacing: 8) {
-                
+
                 Image("perroquet-app-icon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 24, height: 24)
                     .cornerRadius(12)
-                
+
                 Text("\(entry.quote)")
                     .font(.system(size: 11, weight: .medium))
                     .foregroundColor(Color(hex: 0xffffff))
-                
+
             }
-            
+
             Spacer(minLength: 0)
-            
+
             Text("REMIND ME TO...")
                 .font(.system(size: 11, weight: .medium))
                 .foregroundColor(Color(hex: 0x444758))
                 .lineLimit(1)
-            
+
             Text(entry.placeholder)
                 .font(.system(size: 10, weight: .medium))
                 .foregroundColor(Color(hex: 0x444758))
@@ -50,10 +50,10 @@ struct CreateReminderWidgetEntryView : View {
                 .padding(12)
                 .background(Color(hex: 0x111216))
                 .cornerRadius(8)
-            
+
         } // VStack
         .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-reminder")!)
-        
+
     }
 }
 
@@ -98,9 +98,9 @@ struct Provider: TimelineProvider {
         "Bless your heart... is that code for something?",
         "You're lucky I like you... otherwise, watch out for those tiny chompers.",
         "You think I'm loud? Wait until you hear my inside voice.",
-        "Let's practice our dance moves. I'm really good at the head bob.",
+        "Let's practice our dance moves. I'm really good at the head bob."
     ]
-    
+
     static let placeholders = [
         "drink more water",
         "do laundry",
@@ -112,9 +112,9 @@ struct Provider: TimelineProvider {
         "water plants",
         "take out the trash",
         "replace filter",
-        "clean room",
+        "clean room"
     ]
-    
+
     func placeholder(in context: Context) -> MainEntry {
         MainEntry(
             quote: Provider.quotes.randomElement()!,
@@ -123,7 +123,7 @@ struct Provider: TimelineProvider {
         )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (MainEntry) -> ()) {
+    func getSnapshot(in context: Context, completion: @escaping (MainEntry) -> Void) {
         let entry = MainEntry(
             quote: Provider.quotes.randomElement()!,
             placeholder: Provider.placeholders.randomElement()!,
@@ -132,10 +132,10 @@ struct Provider: TimelineProvider {
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<MainEntry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<MainEntry>) -> Void) {
         var entries: [MainEntry] = []
         let currentDate = Date()
-        
+
         for hourOffset in 0..<5 {
             let date = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = MainEntry(
@@ -145,21 +145,21 @@ struct Provider: TimelineProvider {
             )
             entries.append(entry)
         }
-        
+
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 }
 
-//#Preview(as: .systemSmall) {
+// #Preview(as: .systemSmall) {
 //    CreateReminderWidget()
-//} timeline: {
+// } timeline: {
 //    MainEntry(
 //        quote: Provider.quotes.randomElement()!,
 //        placeholder: Provider.placeholders.randomElement()!,
 //        date: .now
 //    )
-//}
+// }
 
 extension Color {
     init(hex: Int, opacity: Double = 1) {

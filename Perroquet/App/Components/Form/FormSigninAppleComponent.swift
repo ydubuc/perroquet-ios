@@ -16,32 +16,32 @@ struct FormSigninAppleComponent: View {
 
     @Binding var type: TitleType
     let theme: Theme
-    let onTapAction: () -> ()
-    
+    let onTapAction: () -> Void
+
     var body: some View {
-        
+
         Button(action: {
             onTapAction()
         }, label: {
-            
+
             HStack(alignment: .center, spacing: Dims.spacingSmall) {
-                
+
                 Image(systemName: "apple.logo")
                     .foregroundColor(theme.colorScheme == .light ? .white : .black)
                     .font(.footnote)
-                
+
                 Text(type.rawValue)
                     .foregroundColor(theme.colorScheme == .light ? .white : .black)
                     .font(.body.weight(.bold))
                     .lineLimit(1)
-                
+
             }
             .padding(Dims.spacingRegular)
             .frame(maxWidth: Dims.formMaxWidth)
             .background(theme.colorScheme == .light ? .black : .white)
             .cornerRadius(Dims.cornerRadius)
         })
-        
+
     }
 }
 

@@ -8,43 +8,44 @@
 import SwiftUI
 
 struct RemindersView: View {
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: RemindersViewModel
-    
+
     init(vm: StateObject<RemindersViewModel> = .init(wrappedValue: .init())) {
         _vm = vm
     }
-    
+
     var body: some View {
-        
+
         ScrollView(.vertical, showsIndicators: true) {
-            
+
             LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {
-                
+
                 reminderSection(
                     title: "Today",
                     placeholder: "All done here! 🦜",
                     reminders: vm.todayReminders
                 )
-                
+
                 reminderSection(
                     title: "In the next 7 days",
                     placeholder: "Smooth sailing ahead! ⛵️",
                     reminders: vm.sevenDaysReminders
                 )
-                
+
                 reminderSection(
                     title: "Later",
                     placeholder: "Nothing planned! 🎉",
                     reminders: vm.laterReminders
                 )
-                
+
                 reminderSection(
                     title: "Previous",
                     placeholder: "Well well well...",
                     reminders: vm.previousReminders
                 )
-                
+
             } // VStack
             .padding(Dims.spacingRegular)
             .padding(.bottom, 200)
@@ -63,26 +64,35 @@ struct RemindersView: View {
                 appVm.isPresentingCreateReminderView = true
             }
         }
-        
+        .onChange(of: scenePhase, perform: { value in
+            switch value {
+            case .active:
+                Task { await vm.load() }
+            default:
+                break
+            }
+        })
+
     }
-    
+
     func reminderSection(
         title: String,
         placeholder: String,
         reminders: [Reminder]
     ) -> some View {
         Group {
-         
+
             Text(title)
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
                 .foregroundColor(appVm.theme.fontNormal)
                 .font(.body.weight(.bold))
                 .lineLimit(2)
-            
+
             if reminders.count > 0 {
                 VStack(alignment: .leading, spacing: Dims.spacingSmall) {
                     ForEach(reminders) { reminder in
-                        ReminderComponent(reminder: reminder, listener: vm, theme: appVm.theme)
+                        ReminderComponent(reminder: reminder, listener: vm)
+                            .environmentObject(appVm)
                     }
                 }
                 .padding(Dims.spacingRegular)
@@ -91,20 +101,20 @@ struct RemindersView: View {
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
             } else {
                 HStack(alignment: .center, spacing: 0) {
-                 
+
                     Text(placeholder)
                         .foregroundColor(appVm.theme.fontDim)
                         .font(.body.weight(.regular))
-                    
+
                     Spacer()
-                    
+
                 }
                 .padding(Dims.spacingRegular)
                 .background(appVm.theme.primaryDark)
                 .cornerRadius(Dims.cornerRadius)
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
             }
-            
+
         }
     }
 }

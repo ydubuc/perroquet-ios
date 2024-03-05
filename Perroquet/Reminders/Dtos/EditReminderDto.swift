@@ -14,7 +14,7 @@ struct EditReminderDto: Codable {
     let frequency: String?
     let visibility: Int?
     let triggerAt: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case title = "title"
         case description = "description"

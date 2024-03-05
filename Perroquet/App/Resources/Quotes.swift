@@ -29,9 +29,9 @@ struct Quotes {
         "Bless your heart... is that code for something?",
         "You're lucky I like you... otherwise, watch out for those tiny chompers.",
         "You think I'm loud? Wait until you hear my inside voice.",
-        "Let's practice our dance moves. I'm really good at the head bob.",
+        "Let's practice our dance moves. I'm really good at the head bob."
     ]
-    
+
     static func randomQuote() -> String {
         return quotes.randomElement()!
     }

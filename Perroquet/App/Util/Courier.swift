@@ -11,7 +11,7 @@ struct CourierError: Error {
     let code: Int
     let message: String
     let data: (Data, URLResponse)?
-    
+
     init(_ code: Int, _ message: String, _ data: (Data, URLResponse)?) {
         self.code = code
         self.message = message
@@ -24,6 +24,12 @@ extension CourierError: LocalizedError {
 }
 
 class Courier {
+    private let session: URLSession
+
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+
     func get<T: Codable>(
         url: URL,
         headers: [String: String] = [:],
@@ -35,29 +41,29 @@ class Courier {
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.key)
         }
-        
+
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
+            let (data, response) = try await session.data(for: request)
+
             let decoder = JSONDecoder()
-            
+
             guard let httpResponse = response as? HTTPURLResponse
             else {
                 return .failure(CourierError(-1, "Failed to get HTTP response.", (data, response)))
             }
-            
+
             guard (200..<300).contains(httpResponse.statusCode)
             else {
                 return .failure(CourierError(httpResponse.statusCode, "Request was not ok.", (data, response)))
             }
-            
+
             let decoded = try decoder.decode(T.self, from: data)
             return .success(decoded)
         } catch let e {
             return .failure(CourierError(-1, e.localizedDescription, nil))
         }
     }
-    
+
     func post<T: Codable>(
         url: URL,
         headers: [String: String],
@@ -69,33 +75,33 @@ class Courier {
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.key)
         }
-        
+
         do {
             let encoder = JSONEncoder()
             let payload = try encoder.encode(body)
             request.httpBody = payload
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
+
+            let (data, response) = try await session.data(for: request)
+
             let decoder = JSONDecoder()
-            
+
             guard let httpResponse = response as? HTTPURLResponse
             else {
                 return .failure(CourierError(-1, "Failed to get HTTP response.", (data, response)))
             }
-            
+
             guard (200..<300).contains(httpResponse.statusCode)
             else {
                 return .failure(CourierError(httpResponse.statusCode, "Request was not ok.", (data, response)))
             }
-            
+
             let decoded = try decoder.decode(T.self, from: data)
             return .success(decoded)
         } catch let e {
             return .failure(CourierError(-1, e.localizedDescription, nil))
         }
     }
-    
+
     func patch<T: Codable>(
         url: URL,
         headers: [String: String],
@@ -107,33 +113,33 @@ class Courier {
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.key)
         }
-        
+
         do {
             let encoder = JSONEncoder()
             let payload = try encoder.encode(body)
             request.httpBody = payload
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
+
+            let (data, response) = try await session.data(for: request)
+
             let decoder = JSONDecoder()
-            
+
             guard let httpResponse = response as? HTTPURLResponse
             else {
                 return .failure(CourierError(-1, "Failed to get HTTP response.", (data, response)))
             }
-            
+
             guard (200..<300).contains(httpResponse.statusCode)
             else {
                 return .failure(CourierError(httpResponse.statusCode, "Request was not ok.", (data, response)))
             }
-            
+
             let decoded = try decoder.decode(T.self, from: data)
             return .success(decoded)
         } catch let e {
             return .failure(CourierError(-1, e.localizedDescription, nil))
         }
     }
-    
+
     func delete(
         url: URL,
         headers: [String: String]
@@ -144,20 +150,20 @@ class Courier {
         for header in headers {
             request.addValue(header.value, forHTTPHeaderField: header.key)
         }
-        
+
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            
+            let (data, response) = try await session.data(for: request)
+
             guard let httpResponse = response as? HTTPURLResponse
             else {
                 return .failure(CourierError(-1, "Failed to get HTTP response.", (data, response)))
             }
-            
+
             guard (200..<300).contains(httpResponse.statusCode)
             else {
                 return .failure(CourierError(httpResponse.statusCode, "Request was not ok.", (data, response)))
             }
-            
+
             return .success(())
         } catch let e {
             return .failure(CourierError(-1, e.localizedDescription, nil))

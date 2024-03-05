@@ -9,7 +9,7 @@ import Foundation
 
 struct RefreshAccessInfoDto: Codable {
     let refreshToken: String
-    
+
     enum CodingKeys: String, CodingKey {
         case refreshToken = "refresh_token"
     }

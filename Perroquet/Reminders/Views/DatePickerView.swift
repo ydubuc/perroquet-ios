@@ -11,13 +11,13 @@ struct DatePickerView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var date: Date
     let theme: Theme
-    
+
     var body: some View {
-        
+
         GeometryReader { geometry in
-            
+
             VStack(alignment: .leading, spacing: 0) {
-                
+
                 Rectangle()
                     .foregroundColor(.clear)
                     .frame(maxHeight: .infinity)
@@ -25,9 +25,9 @@ struct DatePickerView: View {
                     .onTapGesture {
                         presentationMode.wrappedValue.dismiss()
                     }
-                
+
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
-                    
+
                     DatePicker("at", selection: $date, displayedComponents: [.date])
                         .labelsHidden()
                         .datePickerStyle(.graphical)
@@ -37,9 +37,9 @@ struct DatePickerView: View {
                         .frame(maxWidth: Dims.formMaxWidth)
                         .background(theme.primaryDark)
                         .cornerRadius(Dims.cornerRadius)
-                    
+
                     HStack(alignment: .center, spacing: Dims.spacingRegular) {
-                        
+
                         Button(action: {
                             date = Date().addingTimeInterval(TimeInterval(900))
                         }, label: {
@@ -50,7 +50,7 @@ struct DatePickerView: View {
                                 .background(theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
-                        
+
                         Button(action: {
                             date = Date().addingTimeInterval(TimeInterval(1800))
                         }, label: {
@@ -61,7 +61,7 @@ struct DatePickerView: View {
                                 .background(theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
-                        
+
                         Button(action: {
                             date = Date().addingTimeInterval(TimeInterval(3600))
                         }, label: {
@@ -72,7 +72,7 @@ struct DatePickerView: View {
                                 .background(theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
-                        
+
                         Button(action: {
                             date = Date().addingTimeInterval(TimeInterval(7200))
                         }, label: {
@@ -83,25 +83,25 @@ struct DatePickerView: View {
                                 .background(theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
                         })
-                        
+
                         Spacer()
-                        
+
                         DatePicker("at", selection: $date, displayedComponents: .hourAndMinute)
                             .labelsHidden()
                             .colorScheme(theme.colorScheme)
-                        
+
                     } // HStack
                     .frame(maxWidth: Dims.formMaxWidth)
-                    
+
                 } // VStack
                 .padding(Dims.spacingRegular)
                 .frame(width: geometry.size.width)
                 .background(theme.primary.ignoresSafeArea(.all))
-                
+
             } // VStack
-            
+
         }
-        
+
     }
 }
 

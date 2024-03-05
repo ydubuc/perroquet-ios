@@ -14,56 +14,56 @@ import BackgroundTasks
 @main
 struct PerroquetApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+
     @StateObject var appVm = AppViewModel()
     @StateObject var authMan = AuthMan.shared
-    
+
     var body: some Scene {
-        
+
         WindowGroup {
-            
+
             if authMan.isLoggedIn {
                 MainView()
                     .environmentObject(appVm)
+                    .onAppear {
+                        scheduleAppRefresh()
+                    }
             } else {
                 SigninView()
                     .environmentObject(appVm)
             }
-            
+
         }
-        .backgroundTask(.appRefresh("com.beamcove.Perroquet.refresh")) {
+        .backgroundTask(.appRefresh("com.beamcove.Perroquet.app-refresh")) {
+            await scheduleAppRefresh()
             await appVm.refreshApp(authMan: authMan)
         }
 
     }
-}
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-    let devicesService = DevicesService(url: Config.BACKEND_URL)
-    
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
-    ) -> Bool {
-        registerForRemoteNotifications()
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
-        UNUserNotificationCenter.current().delegate = self
-        
-        scheduleAppRefresh()
-        
-        return true
-    }
-    
     func scheduleAppRefresh() {
-        let request = BGAppRefreshTaskRequest(identifier: "com.beamcove.Perroquet.refresh")
+        let request = BGAppRefreshTaskRequest(identifier: "com.beamcove.Perroquet.app-refresh")
         request.earliestBeginDate = Calendar.current.date(byAdding: .minute, value: 5, to: Date())
-        
+
         do {
             try BGTaskScheduler.shared.submit(request)
         } catch {
             print(error)
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        registerForRemoteNotifications()
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+
+        return true
     }
 }
 

@@ -8,37 +8,39 @@
 import SwiftUI
 
 struct ReminderComponent: View {
+    @EnvironmentObject private var appVm: AppViewModel
+
     let reminder: Reminder
     let listener: ReminderListener?
-    let theme: Theme
-    
+
     @State private var isPresentingReminderView = false
-    
+
     var body: some View {
-        
+
         Button(action: {
             isPresentingReminderView = true
         }, label: {
             VStack(alignment: .leading, spacing: Dims.spacingSmallest) {
-                
+
                 Text(reminder.title)
-                    .foregroundColor(theme.fontNormal)
+                    .foregroundColor(appVm.theme.fontNormal)
                     .font(.body.weight(.regular))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
-                
+
                 Text("\(Date(timeIntervalSince1970: TimeInterval(reminder.triggerAt) / 1000).formatted(date: .abbreviated, time: .shortened))")
-                    .foregroundColor(theme.fontBright)
+                    .foregroundColor(appVm.theme.fontBright)
                     .font(.caption.weight(.regular))
                     .lineLimit(1)
-                
+
             }
         })
         .sheet(isPresented: $isPresentingReminderView) {
             ReminderView(vm: .init(wrappedValue: .init(reminder: reminder, listener: listener)))
+                .environmentObject(appVm)
                 .presentationDetents([.medium, .large])
         }
-        
+
     }
 }
 
@@ -56,7 +58,7 @@ struct ReminderComponent: View {
             updatedAt: 1708358620664,
             createdAt: 1708358620664
         ),
-        listener: nil,
-        theme: DarkTheme()
+        listener: nil
     )
+    .environmentObject(AppViewModel())
 }

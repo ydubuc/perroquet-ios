@@ -9,7 +9,7 @@ import Foundation
 
 struct SigninAppleDto: Codable {
     let authCode: String
-    
+
     enum CodingKeys: String, CodingKey {
         case authCode = "auth_code"
     }

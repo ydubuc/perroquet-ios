@@ -11,6 +11,7 @@
 		ED1ACB3C2B902F1A00BABE9C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1ACB3B2B902F1A00BABE9C /* String.swift */; };
 		ED216A262B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */; };
 		ED2279F52B8E81160041FAD2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2279F42B8E81160041FAD2 /* DatePickerView.swift */; };
+		ED29C8592B9794A7006E75E2 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED29C8582B9794A7006E75E2 /* AppService.swift */; };
 		ED317E5C2B7EC77C008A6E52 /* FormSubmitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */; };
 		ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */; };
 		ED317E612B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */; };
@@ -119,6 +120,7 @@
 		ED1ACB3B2B902F1A00BABE9C /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		ED216A252B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextfieldMultilineComponent.swift; sourceTree = "<group>"; };
 		ED2279F42B8E81160041FAD2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		ED29C8582B9794A7006E75E2 /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		ED317E5B2B7EC77C008A6E52 /* FormSubmitComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSubmitComponent.swift; sourceTree = "<group>"; };
 		ED317E5E2B7EC93D008A6E52 /* FormSigninAppleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSigninAppleComponent.swift; sourceTree = "<group>"; };
 		ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateProgressBarComponent.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 		EDC5F5442B7947D300551388 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				ED29C8582B9794A7006E75E2 /* AppService.swift */,
 				EDC5F5452B7947E100551388 /* AppViewModel.swift */,
 				ED5902312B7DB4700009851E /* Config.swift */,
 				EDB8F05C2B72DBAC008A1CEB /* PerroquetApp.swift */,
@@ -602,6 +605,7 @@
 				EDB8F0562B72DBAC008A1CEB /* Frameworks */,
 				EDB8F0572B72DBAC008A1CEB /* Resources */,
 				ED3537762B8FA4C100B65707 /* Embed Foundation Extensions */,
+				ED29C85A2B97AA06006E75E2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -682,6 +686,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ED29C85A2B97AA06006E75E2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n    swiftlint --fix && swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ED3537612B8FA4C000B65707 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -748,6 +773,7 @@
 				ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */,
 				ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */,
 				EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */,
+				ED29C8592B9794A7006E75E2 /* AppService.swift in Sources */,
 				EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */,
 				ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */,
 				ED1ACB382B9014E400BABE9C /* LazyView.swift in Sources */,
@@ -965,6 +991,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Perroquet/Preview Content\"";
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Perroquet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -999,6 +1026,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Perroquet/Preview Content\"";
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Perroquet/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";

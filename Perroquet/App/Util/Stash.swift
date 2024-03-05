@@ -14,14 +14,14 @@ class Stash {
     private static let DB_NAME = "defaultdb.sqlite3"
     private static let VERSION = 1
 
-    private var db: Connection? = nil
-    
+    private var db: Connection?
+
     private init() {
         guard let docDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
         else {
             return
         }
-        
+
         let dirPath = docDir.appendingPathComponent(Stash.DIR_PATH)
 
         do {
@@ -36,7 +36,7 @@ class Stash {
     }
 
     static let REMINDERS_TABLE = Table("reminders_v\(VERSION)")
-    
+
     private let REMINDER_ID = Expression<String>("id")
     private let REMINDER_USER_ID = Expression<String>("user_id")
     private let REMINDER_TITLE = Expression<String>("title")
@@ -50,7 +50,7 @@ class Stash {
 
     private func createRemindersTable() {
         guard let db = db else { return }
-        
+
         do {
             try db.run(Stash.REMINDERS_TABLE.create(ifNotExists: true) { table in
                 table.column(REMINDER_ID, primaryKey: true)
@@ -68,19 +68,18 @@ class Stash {
             print(error)
         }
     }
-    
+
     func insertReminders(reminders: [Reminder]) {
         for reminder in reminders {
             insertReminder(reminder: reminder)
         }
     }
-    
+
     func insertReminder(reminder: Reminder) {
         guard let db = db else { return }
-        
+
         do {
-//            let _ = try db.run(Stash.REMINDERS.insert(or: .replace, encodable: reminder))
-            let _ = try db.run(Stash.REMINDERS_TABLE.insert(
+            _ = try db.run(Stash.REMINDERS_TABLE.insert(
                 or: .replace,
                 REMINDER_ID <- reminder.id,
                 REMINDER_USER_ID <- reminder.userId,
@@ -97,13 +96,13 @@ class Stash {
             print(error)
         }
     }
-    
+
     func getReminders(dto: GetRemindersFilterDto? = nil) -> [Reminder]? {
         guard let db = db else { return nil }
-        
+
         do {
             var reminders: [Reminder] = []
-            
+
             for row in try db.prepare(Stash.REMINDERS_TABLE) {
                 let reminder = Reminder(
                     id: row[REMINDER_ID],
@@ -119,17 +118,17 @@ class Stash {
                 )
                 reminders.append(reminder)
             }
-            
+
             return reminders
         } catch {
             print(error)
             return nil
         }
     }
-    
+
     func updateReminder(reminder: Reminder) {
         guard let db = db else { return }
-        
+
         do {
             let row = Stash.REMINDERS_TABLE.filter(REMINDER_ID == reminder.id)
             try db.run(row.update(reminder))
@@ -138,10 +137,10 @@ class Stash {
             return
         }
     }
-    
+
     func deleteReminder(id reminderId: String) {
         guard let db = db else { return }
-        
+
         do {
             let row = Stash.REMINDERS_TABLE.filter(REMINDER_ID == reminderId)
             try db.run(row.delete())

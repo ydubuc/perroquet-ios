@@ -9,13 +9,13 @@ import SwiftUI
 
 struct FormHeaderComponent: View {
     let image: ImageResource
-    
+
     var body: some View {
-        
+
         Image(image)
             .resizable()
             .aspectRatio(contentMode: .fit)
-        
+
     }
 }
 

@@ -11,13 +11,13 @@ import SwiftUI
 class MainViewModel: ObservableObject {
     let authMan: AuthMan
     let stash: Stash
-    
+
     @Published var currentTab: Int = 0
     @Published var shouldLoadRemindersView = true
     @Published var shouldLoadDiscoverView = false
     @Published var shouldLoadRequestsView = false
     @Published var shouldLoadProfileView = false
-    
+
     init(
         authMan: AuthMan = AuthMan.shared,
         stash: Stash = Stash.shared
@@ -25,7 +25,7 @@ class MainViewModel: ObservableObject {
         self.authMan = authMan
         self.stash = stash
     }
-    
+
     func switchToTab(_ tab: Int) {
         switch tab {
         case 0:
@@ -39,7 +39,7 @@ class MainViewModel: ObservableObject {
         default:
             fatalError("Tab not implemented.")
         }
-        
+
         currentTab = tab
     }
 }

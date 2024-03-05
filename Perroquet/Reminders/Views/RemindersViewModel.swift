@@ -13,13 +13,13 @@ class RemindersViewModel: ObservableObject, ReminderListener {
     let stash: Stash
     let notificator: Notificator
     let remindersService: RemindersService
-    
+
     @Published var reminders: [Reminder]
     @Published var todayReminders: [Reminder]
     @Published var sevenDaysReminders: [Reminder]
     @Published var laterReminders: [Reminder]
     @Published var previousReminders: [Reminder]
-    
+
     @Published var userId: String?
     @Published var search: String?
     @Published var tags: String?
@@ -27,9 +27,11 @@ class RemindersViewModel: ObservableObject, ReminderListener {
     @Published var sort: String?
     @Published var cursor: String?
     @Published var limit: Int?
-    
+
     @Published var errorMessage: String = ""
-    
+
+    @Published var isLoading = false
+
     init(
         authMan: AuthMan = AuthMan.shared,
         stash: Stash = Stash.shared,
@@ -42,14 +44,14 @@ class RemindersViewModel: ObservableObject, ReminderListener {
         self.stash = stash
         self.notificator = notificator
         self.remindersService = remindersService
-        
+
         let reminders = reminders ?? []
         self.reminders = reminders.isEmpty ? reminders : reminders.sorted { $0.updatedAt > $1.updatedAt }
-        
+
         let currentTimestamp = Date().timeIntervalSince1970.milliseconds
         let endOfDayTimestamp = Calendar.endOfDayTimestamp()
         let sevenDaysTimestamp = Calendar.endOfDayTimestampAfterSevenDays()
-        
+
         self.todayReminders = reminders
             .filter { $0.triggerAt > currentTimestamp && $0.triggerAt < endOfDayTimestamp && $0.triggerAt < sevenDaysTimestamp }
             .sorted { $0.triggerAt < $1.triggerAt }
@@ -62,29 +64,24 @@ class RemindersViewModel: ObservableObject, ReminderListener {
         self.previousReminders = reminders
             .filter { $0.triggerAt < currentTimestamp }
             .sorted { $0.triggerAt > $1.triggerAt }
-        
+
         self.userId = dto.userId
         self.search = dto.search
         self.tags = dto.tags
         self.visibility = dto.visibility
-        self.sort = dto.sort
+        self.sort = !reminders.isEmpty ? "updated_at,asc" : dto.sort
         self.cursor = dto.cursor
         self.limit = dto.limit
-        
-        self.afterInit()
     }
-    
-    func afterInit() {
-        if !reminders.isEmpty {
-            self.sort = "updated_at,asc"
-        }
-        
-        Task { await self.load() }
-    }
-    
+
     func load() async {
+        guard !isLoading else { return }
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+
         guard let accessToken = await authMan.accessToken() else { return }
-        
+
         let dto = GetRemindersFilterDto(
             id: nil,
             userId: userId,
@@ -95,23 +92,25 @@ class RemindersViewModel: ObservableObject, ReminderListener {
             cursor: getCursor(sort: sort),
             limit: limit
         )
-        
+
         let result = await remindersService.getReminders(dto: dto, accessToken: accessToken)
-        
+
         switch result {
         case .success(let reminders):
             DispatchQueue.main.async {
                 self.insertAndOrderReminders(newReminders: reminders)
                 self.scheduleReminders()
+                self.isLoading = false
             }
         case .failure(let apiError):
             DispatchQueue.main.async {
                 print(apiError.localizedDescription)
                 self.errorMessage = apiError.message
+                self.isLoading = false
             }
         }
     }
-    
+
     private func getCursor(sort: String?) -> String? {
         guard !reminders.isEmpty else { return cursor }
 
@@ -132,24 +131,24 @@ class RemindersViewModel: ObservableObject, ReminderListener {
             fatalError("Sort not implemented.")
         }
     }
-    
+
     func insertAndOrderReminders(newReminders: [Reminder]) {
         let idSet = Set(newReminders.map { $0.id })
-        
+
         var array = self.reminders.filter { !idSet.contains($0.id) }
-        
+
         if sort?.hasSuffix("asc") == true {
             array.insert(contentsOf: newReminders, at: 0)
         } else {
             array.append(contentsOf: newReminders)
         }
-        
+
         self.reminders = array
-        
+
         let currentTimestamp = Date().timeIntervalSince1970.milliseconds
         let endOfDayTimestamp = Calendar.endOfDayTimestamp()
         let sevenDaysTimestamp = Calendar.endOfDayTimestampAfterSevenDays()
-        
+
         self.todayReminders = self.reminders
             .filter { $0.triggerAt > currentTimestamp && $0.triggerAt < endOfDayTimestamp && $0.triggerAt < sevenDaysTimestamp }
             .sorted { $0.triggerAt < $1.triggerAt }
@@ -175,15 +174,15 @@ class RemindersViewModel: ObservableObject, ReminderListener {
             }
         }
     }
-    
+
     func onCreateReminder(_ reminder: Reminder) {
         insertAndOrderReminders(newReminders: [reminder])
     }
-    
+
     func onEditReminder(_ reminder: Reminder) {
         insertAndOrderReminders(newReminders: [reminder])
     }
-    
+
     func onDeleteReminder(_ reminder: Reminder) {
         self.reminders = self.reminders.filter { $0.id != reminder.id }
         self.todayReminders = self.todayReminders.filter { $0.id != reminder.id }

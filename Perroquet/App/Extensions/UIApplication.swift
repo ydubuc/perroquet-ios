@@ -16,7 +16,7 @@ extension UIApplication {
             .flatMap { $0.windows }
             .first { $0.isKeyWindow }
     }
-    
+
     static func setWindowBackgroundColor(_ color: UIColor) {
 //        if let windowScene = self.shared.connectedScenes.first as? UIWindowScene,
 //           let window = windowScene.windows.first

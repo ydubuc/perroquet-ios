@@ -9,7 +9,7 @@ import Foundation
 
 struct EditDeviceDto: Codable {
     let messagingToken: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case messagingToken = "messaging_token"
     }

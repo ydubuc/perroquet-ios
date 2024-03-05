@@ -12,15 +12,15 @@ import AuthenticationServices
 class SignupViewModel: NSObject, ObservableObject {
     let authMan: AuthMan
     let authService: AuthService
-    
+
     @Published var email: String = ""
     @Published var passw: String = ""
-    
+
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var errorMessage: String = ""
-    
+
     @Published var isPresentingSafariView = false
-    
+
     init(
         authMan: AuthMan = AuthMan.shared,
         authService: AuthService = AuthService(url: Config.BACKEND_URL)
@@ -28,7 +28,7 @@ class SignupViewModel: NSObject, ObservableObject {
         self.authMan = authMan
         self.authService = authService
     }
-    
+
     func lock(_ state: Bool) {
         switch state {
         case true:
@@ -38,25 +38,25 @@ class SignupViewModel: NSObject, ObservableObject {
             isLoading = false
         }
     }
-    
+
     func clearErrorMessage() {
         errorMessage = ""
     }
-    
+
     func signup() {
         lock(true)
-        
+
         let email = email
         let passw = passw
-        
+
         let dto = SignupDto(email: email, passw: passw)
-        
+
         Task {
             let result = await authService.signup(dto: dto)
-            
+
             DispatchQueue.main.async {
                 self.lock(false)
-                
+
                 switch result {
                 case .success(let accessInfo):
                     self.authMan.onSignin(accessInfo: accessInfo)
@@ -67,7 +67,7 @@ class SignupViewModel: NSObject, ObservableObject {
             }
         }
     }
-    
+
     func requestSigninApple() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.email]
@@ -79,15 +79,15 @@ class SignupViewModel: NSObject, ObservableObject {
 
     private func signinApple(authCode: String) {
         lock(true)
-        
+
         let dto = SigninAppleDto(authCode: authCode)
-        
+
         Task {
             let result = await authService.signinApple(dto: dto)
-            
+
             DispatchQueue.main.async {
                 self.lock(false)
-                
+
                 switch result {
                 case .success(let accessInfo):
                     self.authMan.onSignin(accessInfo: accessInfo)
@@ -111,7 +111,7 @@ extension SignupViewModel: ASAuthorizationControllerDelegate {
         else {
             return
         }
-        
+
         signinApple(authCode: authCode)
     }
 }

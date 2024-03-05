@@ -11,9 +11,9 @@ struct IndeterminateProgressBarComponent: View {
     static private let height: CGFloat = 4
     static private let indicatorWidth: CGFloat = 100
     @State private var offset: CGFloat = -indicatorWidth
-    
+
     var body: some View {
-        
+
         ZStack(alignment: .leading) {
 
             GeometryReader { geo in
@@ -44,26 +44,25 @@ struct IndeterminateProgressBarComponent: View {
 
         } // ZStack
         .frame(height: IndeterminateProgressBarComponent.height)
-        
+
     }
 }
 
 extension View {
     func progressBar(isLoading: Bool) -> some View {
-        
+
         ZStack(alignment: .top) {
-            
+
             self
 
             if isLoading {
                 IndeterminateProgressBarComponent()
                     .zIndex(1)
             }
-            
+
         } // ZStack
     }
 }
-
 
 #Preview {
     IndeterminateProgressBarComponent()

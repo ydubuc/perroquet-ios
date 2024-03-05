@@ -11,17 +11,17 @@ struct FormSecureTextfieldComponent: View {
     @Binding var text: String
     @Binding var placeholder: String
     let theme: Theme
-    
+
     var body: some View {
-        
+
         VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-            
+
             Text(placeholder.uppercased())
                 .foregroundColor(theme.fontDim)
                 .font(.footnote.weight(.bold))
-            
+
             HStack(alignment: .center, spacing: 0) {
-                
+
                 SecureField("", text: $text)
                     .foregroundColor(theme.fontNormal)
                     .font(.footnote.weight(.regular))
@@ -34,7 +34,7 @@ struct FormSecureTextfieldComponent: View {
                     }
                     .padding(Dims.spacingRegular)
                     .disableAutocorrection(true)
-                
+
                 if !text.isEmpty {
                     Button {
                         text.removeAll()
@@ -45,13 +45,13 @@ struct FormSecureTextfieldComponent: View {
                             .padding(Dims.spacingRegular)
                     }
                 }
-                
+
             } // HStack
             .background(theme.primaryDark)
             .cornerRadius(Dims.cornerRadius)
-            
+
         } // VStack
-        
+
     }
 }
 

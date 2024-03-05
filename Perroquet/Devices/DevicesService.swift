@@ -10,16 +10,16 @@ import Foundation
 class DevicesService {
     private let url: String
     private let courier = Courier()
-    
+
     init(url: String) {
         self.url = url.appending("/devices")
     }
-    
+
     func editDevice(id: String, dto: EditDeviceDto, accessToken: String) async -> Result<Device, ApiError> {
         guard let url = URL(string: url.appending("/\(id)")) else {
             return .failure(ApiError.invalidUrl())
         }
-        
+
         let headers = courier.headerBearerToken(accessToken: accessToken)
         let result: Result<Device, CourierError> = await courier.patch(url: url, headers: headers, body: dto)
         switch result {
