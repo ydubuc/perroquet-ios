@@ -30,7 +30,7 @@ struct MainView: View {
                             search: nil,
                             tags: nil,
                             visibility: nil,
-                            sort: "trigger_at,desc",
+                            sort: "updated_at,asc",
                             cursor: nil,
                             limit: nil
                         )

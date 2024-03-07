@@ -42,6 +42,12 @@ struct ProfileView: View {
                 }
                 .frame(maxWidth: Dims.viewMaxWidth2)
 
+                Button {
+                    Stash.shared.clear()
+                } label: {
+                    Text("clear cache")
+                }
+
                 Button(action: {
                     AuthMan.shared.onSignout()
                 }, label: {

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "perroquet-app-icon.png",
+      "filename" : "perroquet-app-icon-release.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

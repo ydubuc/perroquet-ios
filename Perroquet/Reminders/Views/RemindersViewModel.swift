@@ -69,17 +69,12 @@ class RemindersViewModel: ObservableObject, ReminderListener {
         self.search = dto.search
         self.tags = dto.tags
         self.visibility = dto.visibility
-        self.sort = !reminders.isEmpty ? "updated_at,asc" : dto.sort
+        self.sort = dto.sort
         self.cursor = dto.cursor
         self.limit = dto.limit
     }
 
     func load() async {
-        guard !isLoading else { return }
-        DispatchQueue.main.async {
-            self.isLoading = true
-        }
-
         guard let accessToken = await authMan.accessToken() else { return }
 
         let dto = GetRemindersFilterDto(
@@ -104,7 +99,7 @@ class RemindersViewModel: ObservableObject, ReminderListener {
             }
         case .failure(let apiError):
             DispatchQueue.main.async {
-                print(apiError.localizedDescription)
+                print(apiError.message)
                 self.errorMessage = apiError.message
                 self.isLoading = false
             }

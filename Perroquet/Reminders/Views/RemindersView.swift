@@ -51,9 +51,6 @@ struct RemindersView: View {
             .padding(.bottom, 200)
 
         } // ScrollView
-        .refreshable {
-            await vm.load()
-        }
         .sheet(isPresented: $appVm.isPresentingCreateReminderView) {
             CreateReminderView(vm: .init(wrappedValue: .init(listener: vm)))
                 .environmentObject(appVm)
@@ -64,9 +61,16 @@ struct RemindersView: View {
                 appVm.isPresentingCreateReminderView = true
             }
         }
+        .refreshable {
+            guard !vm.isLoading else { return }
+            vm.isLoading = true
+            Task { await vm.load() }
+        }
         .onChange(of: scenePhase, perform: { value in
             switch value {
             case .active:
+                guard !vm.isLoading else { return }
+                vm.isLoading = true
                 Task { await vm.load() }
             default:
                 break

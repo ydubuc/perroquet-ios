@@ -35,6 +35,17 @@ class Stash {
         }
     }
 
+    func clear() {
+        guard let db = db else { return }
+
+        do {
+            try db.run(Stash.REMINDERS_TABLE.drop(ifExists: true))
+            createRemindersTable()
+        } catch {
+            print(error)
+        }
+    }
+
     static let REMINDERS_TABLE = Table("reminders_v\(VERSION)")
 
     private let REMINDER_ID = Expression<String>("id")
