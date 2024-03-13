@@ -28,7 +28,7 @@ class Stash {
             try FileManager.default.createDirectory(atPath: dirPath.path, withIntermediateDirectories: true, attributes: nil)
             let dbPath = dirPath.appendingPathComponent(Stash.DB_NAME).path
             db = try Connection(dbPath)
-            createRemindersTable()
+            createMemosTable()
         } catch {
             db = nil
             print("sqlite init error: \(error)")
@@ -39,121 +39,124 @@ class Stash {
         guard let db = db else { return }
 
         do {
-            try db.run(Stash.REMINDERS_TABLE.drop(ifExists: true))
-            createRemindersTable()
+            try db.run(Stash.MEMOS_TABLE.drop(ifExists: true))
+            createMemosTable()
         } catch {
             print(error)
         }
     }
 
-    static let REMINDERS_TABLE = Table("reminders_v\(VERSION)")
+    static let MEMOS_TABLE = Table("memos_v\(VERSION)")
 
-    private let REMINDER_ID = Expression<String>("id")
-    private let REMINDER_USER_ID = Expression<String>("user_id")
-    private let REMINDER_TITLE = Expression<String>("title")
-    private let REMINDER_DESCRIPTION = Expression<String?>("description")
-    private let REMINDER_TAGS = Expression<String?>("tags")
-    private let REMINDER_FREQUENCY = Expression<String?>("frequency")
-    private let REMINDER_VISIBILITY = Expression<Int>("visibility")
-    private let REMINDER_TRIGGER_AT = Expression<Int>("trigger_at")
-    private let REMINDER_UPDATED_AT = Expression<Int>("updated_at")
-    private let REMINDER_CREATED_AT = Expression<Int>("created_at")
+    private let MEMO_ID = Expression<String>("id")
+    private let MEMO_USER_ID = Expression<String>("user_id")
+    private let MEMO_TITLE = Expression<String>("title")
+    private let MEMO_DESCRIPTION = Expression<String?>("description")
+    private let MEMO_PRIORITY = Expression<String?>("priority")
+    private let MEMO_STATUS = Expression<String>("status")
+    private let MEMO_VISIBILITY = Expression<Int>("visibility")
+    private let MEMO_FREQUENCY = Expression<String?>("frequency")
+    private let MEMO_TRIGGER_AT = Expression<Int>("trigger_at")
+    private let MEMO_UPDATED_AT = Expression<Int>("updated_at")
+    private let MEMO_CREATED_AT = Expression<Int>("created_at")
 
-    private func createRemindersTable() {
+    private func createMemosTable() {
         guard let db = db else { return }
 
         do {
-            try db.run(Stash.REMINDERS_TABLE.create(ifNotExists: true) { table in
-                table.column(REMINDER_ID, primaryKey: true)
-                table.column(REMINDER_USER_ID)
-                table.column(REMINDER_TITLE)
-                table.column(REMINDER_DESCRIPTION)
-                table.column(REMINDER_TAGS)
-                table.column(REMINDER_FREQUENCY)
-                table.column(REMINDER_VISIBILITY)
-                table.column(REMINDER_TRIGGER_AT)
-                table.column(REMINDER_UPDATED_AT)
-                table.column(REMINDER_CREATED_AT)
+            try db.run(Stash.MEMOS_TABLE.create(ifNotExists: true) { table in
+                table.column(MEMO_ID, primaryKey: true)
+                table.column(MEMO_USER_ID)
+                table.column(MEMO_TITLE)
+                table.column(MEMO_DESCRIPTION)
+                table.column(MEMO_PRIORITY)
+                table.column(MEMO_STATUS)
+                table.column(MEMO_VISIBILITY)
+                table.column(MEMO_FREQUENCY)
+                table.column(MEMO_TRIGGER_AT)
+                table.column(MEMO_UPDATED_AT)
+                table.column(MEMO_CREATED_AT)
             })
         } catch {
             print(error)
         }
     }
 
-    func insertReminders(reminders: [Reminder]) {
-        for reminder in reminders {
-            insertReminder(reminder: reminder)
+    func insertMemos(memos: [Memo]) {
+        for memo in memos {
+            insertMemo(memo: memo)
         }
     }
 
-    func insertReminder(reminder: Reminder) {
+    func insertMemo(memo: Memo) {
         guard let db = db else { return }
 
         do {
-            _ = try db.run(Stash.REMINDERS_TABLE.insert(
+            _ = try db.run(Stash.MEMOS_TABLE.insert(
                 or: .replace,
-                REMINDER_ID <- reminder.id,
-                REMINDER_USER_ID <- reminder.userId,
-                REMINDER_TITLE <- reminder.title,
-                REMINDER_DESCRIPTION <- reminder.description,
-                REMINDER_TAGS <- reminder.tags?.joined(separator: ","),
-                REMINDER_FREQUENCY <- reminder.frequency,
-                REMINDER_VISIBILITY <- reminder.visibility,
-                REMINDER_TRIGGER_AT <- reminder.triggerAt,
-                REMINDER_UPDATED_AT <- reminder.updatedAt,
-                REMINDER_CREATED_AT <- reminder.createdAt
+                MEMO_ID <- memo.id,
+                MEMO_USER_ID <- memo.userId,
+                MEMO_TITLE <- memo.title,
+                MEMO_DESCRIPTION <- memo.description,
+                MEMO_PRIORITY <- memo.priority,
+                MEMO_VISIBILITY <- memo.visibility,
+                MEMO_FREQUENCY <- memo.frequency,
+                MEMO_TRIGGER_AT <- memo.triggerAt,
+                MEMO_UPDATED_AT <- memo.updatedAt,
+                MEMO_CREATED_AT <- memo.createdAt
             ))
         } catch {
             print(error)
         }
     }
 
-    func getReminders(dto: GetRemindersFilterDto? = nil) -> [Reminder]? {
+    func getMemos(dto: GetMemosDto? = nil) -> [Memo]? {
         guard let db = db else { return nil }
 
         do {
-            var reminders: [Reminder] = []
+            var memos: [Memo] = []
 
-            for row in try db.prepare(Stash.REMINDERS_TABLE) {
-                let reminder = Reminder(
-                    id: row[REMINDER_ID],
-                    userId: row[REMINDER_USER_ID],
-                    title: row[REMINDER_TITLE],
-                    description: row[REMINDER_DESCRIPTION],
-                    tags: row[REMINDER_TAGS]?.components(separatedBy: ","),
-                    frequency: row[REMINDER_FREQUENCY],
-                    visibility: row[REMINDER_VISIBILITY],
-                    triggerAt: row[REMINDER_TRIGGER_AT],
-                    updatedAt: row[REMINDER_UPDATED_AT],
-                    createdAt: row[REMINDER_CREATED_AT]
+            for row in try db.prepare(Stash.MEMOS_TABLE) {
+                let memo = Memo(
+                    id: row[MEMO_ID],
+                    userId: row[MEMO_USER_ID],
+                    title: row[MEMO_TITLE],
+                    description: row[MEMO_DESCRIPTION],
+                    priority: row[MEMO_PRIORITY],
+                    status: row[MEMO_STATUS],
+                    visibility: row[MEMO_VISIBILITY],
+                    frequency: row[MEMO_FREQUENCY],
+                    triggerAt: row[MEMO_TRIGGER_AT],
+                    updatedAt: row[MEMO_UPDATED_AT],
+                    createdAt: row[MEMO_CREATED_AT]
                 )
-                reminders.append(reminder)
+                memos.append(memo)
             }
 
-            return reminders
+            return memos
         } catch {
             print(error)
             return nil
         }
     }
 
-    func updateReminder(reminder: Reminder) {
+    func updateMemo(memo: Memo) {
         guard let db = db else { return }
 
         do {
-            let row = Stash.REMINDERS_TABLE.filter(REMINDER_ID == reminder.id)
-            try db.run(row.update(reminder))
+            let row = Stash.MEMOS_TABLE.filter(MEMO_ID == memo.id)
+            try db.run(row.update(memo))
         } catch {
             print(error)
             return
         }
     }
 
-    func deleteReminder(id reminderId: String) {
+    func deleteMemo(id: String) {
         guard let db = db else { return }
 
         do {
-            let row = Stash.REMINDERS_TABLE.filter(REMINDER_ID == reminderId)
+            let row = Stash.MEMOS_TABLE.filter(MEMO_ID == id)
             try db.run(row.delete())
         } catch {
             print(error)

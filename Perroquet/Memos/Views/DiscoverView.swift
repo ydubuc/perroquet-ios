@@ -15,7 +15,8 @@ struct DiscoverView: View {
         id: nil,
         userId: nil,
         search: nil,
-        tags: nil,
+        priority: nil,
+        status: nil,
         visibility: nil,
         sort: nil,
         cursor: nil,
@@ -36,10 +37,10 @@ struct DiscoverView: View {
                     .font(.body.weight(.bold))
                     .lineLimit(1)
 
-                if !vm.reminders.isEmpty {
+                if !vm.memos.isEmpty {
                     VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                        ForEach(vm.reminders) { reminder in
-                            ReminderComponent(reminder: reminder, listener: vm)
+                        ForEach(vm.memos) { memo in
+                            MemoComponent(memo: memo, listener: vm)
                                 .environmentObject(appVm)
                         }
                     }

@@ -20,15 +20,16 @@ struct MainView: View {
 
         ZStack(alignment: .center) {
 
-            LazyView(loadWhen: $vm.shouldLoadRemindersView) {
-                RemindersView(
+            LazyView(loadWhen: $vm.shouldLoadMemosView) {
+                MemosView(
                     vm: .init(wrappedValue: .init(
-                        reminders: vm.stash.getReminders(),
+                        memos: vm.stash.getMemos(),
                         dto: .init(
                             id: nil,
                             userId: vm.authMan.accessTokenClaims?.id,
                             search: nil,
-                            tags: nil,
+                            priority: nil,
+                            status: nil,
                             visibility: nil,
                             sort: "updated_at,asc",
                             cursor: nil,
@@ -44,7 +45,8 @@ struct MainView: View {
                     id: nil,
                     userId: nil,
                     search: nil,
-                    tags: nil,
+                    priority: nil,
+                    status: nil,
                     visibility: 1,
                     sort: "trigger_at,asc",
                     cursor: "\(Date().timeIntervalSince1970.milliseconds),\(UUID().uuidString)",
@@ -53,7 +55,7 @@ struct MainView: View {
             }
             .opacity(vm.currentTab == 1 ? 1 : 0)
 
-            LazyView(loadWhen: $vm.shouldLoadRemindersView) {
+            LazyView(loadWhen: $vm.shouldLoadMemosView) {
                 Text("requests")
             }
             .opacity(vm.currentTab == 3 ? 1 : 0)
@@ -94,7 +96,7 @@ struct MainView: View {
                     }
 
                     Button {
-                        appVm.isPresentingCreateReminderView = true
+                        appVm.isPresentingCreateMemoView = true
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(vm.currentTab == 2 ? appVm.theme.fontBright : appVm.theme.fontNormal)

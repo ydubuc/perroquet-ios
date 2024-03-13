@@ -1,5 +1,5 @@
 //
-//  CreateReminderViewModel.swift
+//  CreateMemoViewModel.swift
 //  Perroquet
 //
 //  Created by Yoan Dubuc on 2/19/24.
@@ -7,22 +7,22 @@
 
 import Foundation
 
-class CreateReminderViewModel: ObservableObject {
+class CreateMemoViewModel: ObservableObject {
     let authMan: AuthMan
     let notificator: Notificator
     let stash: Stash
-    let remindersService: RemindersService
+    let memosService: MemosService
 
-    var listener: ReminderListener?
+    var listener: MemoListener?
 
     @Published var title: String = ""
     @Published var description: String = ""
-    @Published var tags: [String] = []
-    @Published var frequency: String = ""
+    @Published var priority: String = ""
     @Published var visibility: Int = 0
+    @Published var frequency: String = ""
     @Published var triggerAtDate: Date = Date.now
 
-    @Published var placeholder = Reminder.randomPlaceholder()
+    @Published var placeholder = Memo.randomPlaceholder()
 
     @Published var isPresentingDatePickerView = false
 
@@ -30,55 +30,56 @@ class CreateReminderViewModel: ObservableObject {
         authMan: AuthMan = AuthMan.shared,
         notificator: Notificator = Notificator(),
         stash: Stash = Stash.shared,
-        remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL),
-        listener: ReminderListener?
+        memosService: MemosService = MemosService(url: Config.BACKEND_URL),
+        listener: MemoListener?
     ) {
         self.authMan = authMan
         self.notificator = notificator
         self.stash = stash
-        self.remindersService = remindersService
+        self.memosService = memosService
 
         self.listener = listener
     }
 
-    func createReminder() {
+    func createMemo() {
         Task {
             let id = "\(UUID().uuidString.lowercased())"
             let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
             let triggerAt = triggerAtDate.timeIntervalSince1970.milliseconds
 
-            let reminder = Reminder(
+            let memo = Memo(
                 id: id,
                 userId: authMan.accessTokenClaims?.id ?? "",
                 title: title,
                 description: description.isEmpty ? nil : description,
-                tags: tags.isEmpty ? nil : tags,
-                frequency: frequency.isEmpty ? nil : frequency,
+                priority: priority.isEmpty ? nil : priority,
+                status: "pending",
                 visibility: visibility,
+                frequency: frequency.isEmpty ? nil : frequency,
                 triggerAt: triggerAt,
                 updatedAt: currentTimeInMillis,
                 createdAt: currentTimeInMillis
             )
 
-            stash.insertReminder(reminder: reminder)
-            await notificator.schedule(notification: reminder.toLocalNotification())
+            stash.insertMemo(memo: memo)
+            await notificator.schedule(notification: memo.toLocalNotification())
 
             DispatchQueue.main.async { [weak self] in
-                self?.listener?.onCreateReminder(reminder)
+                self?.listener?.onCreateMemo(memo)
             }
 
-            let dto = CreateReminderDto(
+            let dto = CreateMemoDto(
                 id: id,
                 title: title,
                 description: description.isEmpty ? nil : description,
-                tags: tags.isEmpty ? nil : tags,
-                frequency: frequency.isEmpty ? nil : frequency,
+                priority: priority.isEmpty ? nil : priority,
                 visibility: visibility,
+                frequency: frequency.isEmpty ? nil : frequency,
                 triggerAt: triggerAt
             )
 
             guard let accessToken = await authMan.accessToken() else { return }
-            let result = await remindersService.createReminder(dto: dto, accessToken: accessToken)
+            let result = await memosService.createMemo(dto: dto, accessToken: accessToken)
 
             switch result {
             case .success:

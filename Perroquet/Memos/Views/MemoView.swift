@@ -1,5 +1,5 @@
 //
-//  ReminderView.swift
+//  MemoView.swift
 //  Perroquet
 //
 //  Created by Yoan Dubuc on 2/29/24.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ReminderView: View {
+struct MemoView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var appVm: AppViewModel
-    @StateObject var vm: ReminderViewModel
+    @StateObject var vm: MemoViewModel
 
     @FocusState var isFocusingTextfield: Bool
 
-    init(vm: StateObject<ReminderViewModel>) {
+    init(vm: StateObject<MemoViewModel>) {
         _vm = vm
     }
 
@@ -32,10 +32,10 @@ struct ReminderView: View {
 
                         Menu {
                             Button(action: {
-                                vm.deleteReminder()
+                                vm.deleteMemo()
                                 presentationMode.wrappedValue.dismiss()
                             }, label: {
-                                Label("Delete reminder", systemImage: "trash.circle")
+                                Label("Delete", systemImage: "trash.circle")
                             })
                         } label: {
                             Image(systemName: "ellipsis.circle")
@@ -83,7 +83,7 @@ struct ReminderView: View {
                         Spacer()
 
                         Button(action: {
-                            vm.editReminder()
+                            vm.editMemo()
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Text("Save")
@@ -112,15 +112,16 @@ struct ReminderView: View {
 }
 
 #Preview {
-    ReminderView(vm: .init(wrappedValue: .init(
-        reminder: .init(
+    MemoView(vm: .init(wrappedValue: .init(
+        memo: .init(
             id: "123",
             userId: "321",
             title: "Hello, World!",
             description: "Testing one two",
-            tags: ["test", "one", "two"],
-            frequency: nil,
+            priority: "low",
+            status: "pending",
             visibility: 0,
+            frequency: nil,
             triggerAt: 1709222686678,
             updatedAt: 1709222686678,
             createdAt: 1709222686678

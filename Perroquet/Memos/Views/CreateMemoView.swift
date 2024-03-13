@@ -1,5 +1,5 @@
 //
-//  CreateReminderView.swift
+//  CreateMemoView.swift
 //  Perroquet
 //
 //  Created by Yoan Dubuc on 2/19/24.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct CreateReminderView: View {
+struct CreateMemoView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject private var appVm: AppViewModel
-    @StateObject var vm: CreateReminderViewModel
+    @StateObject var vm: CreateMemoViewModel
 
     @FocusState var isFocusingTextfield: Bool
 
-    init(vm: StateObject<CreateReminderViewModel> = .init(wrappedValue: .init(listener: nil))) {
+    init(vm: StateObject<CreateMemoViewModel> = .init(wrappedValue: .init(listener: nil))) {
         _vm = vm
     }
 
@@ -119,7 +119,7 @@ struct CreateReminderView: View {
                         Spacer()
 
                         Button(action: {
-                            vm.createReminder()
+                            vm.createMemo()
                             presentationMode.wrappedValue.dismiss()
                         }, label: {
                             Text("Save")
@@ -163,5 +163,5 @@ struct CreateReminderView: View {
 }
 
 #Preview {
-    CreateReminderView()
+    CreateMemoView()
 }

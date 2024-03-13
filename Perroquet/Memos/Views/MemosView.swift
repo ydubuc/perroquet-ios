@@ -1,5 +1,5 @@
 //
-//  RemindersView.swift
+//  MemosView.swift
 //  Perroquet
 //
 //  Created by Yoan Dubuc on 2/17/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct RemindersView: View {
+struct MemosView: View {
     @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject private var appVm: AppViewModel
-    @StateObject var vm: RemindersViewModel
+    @StateObject var vm: MemosViewModel
 
-    init(vm: StateObject<RemindersViewModel> = .init(wrappedValue: .init())) {
+    init(vm: StateObject<MemosViewModel> = .init(wrappedValue: .init())) {
         _vm = vm
     }
 
@@ -22,28 +22,28 @@ struct RemindersView: View {
 
             LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {
 
-                reminderSection(
+                memoSection(
                     title: "Today",
                     placeholder: "All done here! 🦜",
-                    reminders: vm.todayReminders
+                    memos: vm.todayMemos
                 )
 
-                reminderSection(
+                memoSection(
                     title: "In the next 7 days",
                     placeholder: "Smooth sailing ahead! ⛵️",
-                    reminders: vm.sevenDaysReminders
+                    memos: vm.sevenDaysMemos
                 )
 
-                reminderSection(
+                memoSection(
                     title: "Later",
                     placeholder: "Nothing planned! 🎉",
-                    reminders: vm.laterReminders
+                    memos: vm.laterMemos
                 )
 
-                reminderSection(
+                memoSection(
                     title: "Previous",
                     placeholder: "Well well well...",
-                    reminders: vm.previousReminders
+                    memos: vm.previousMemos
                 )
 
             } // VStack
@@ -51,14 +51,14 @@ struct RemindersView: View {
             .padding(.bottom, 200)
 
         } // ScrollView
-        .sheet(isPresented: $appVm.isPresentingCreateReminderView) {
-            CreateReminderView(vm: .init(wrappedValue: .init(listener: vm)))
+        .sheet(isPresented: $appVm.isPresentingCreateMemoView) {
+            CreateMemoView(vm: .init(wrappedValue: .init(listener: vm)))
                 .environmentObject(appVm)
                 .background(ClearBackgroundView())
         }
         .onOpenURL { url in
-            if url.scheme == "widget" && url.host == "com.beamcove.perroquet.create-reminder" {
-                appVm.isPresentingCreateReminderView = true
+            if url.scheme == "widget" && url.host == "com.beamcove.perroquet.create-memo" {
+                appVm.isPresentingCreateMemoView = true
             }
         }
         .refreshable {
@@ -79,10 +79,10 @@ struct RemindersView: View {
 
     }
 
-    func reminderSection(
+    func memoSection(
         title: String,
         placeholder: String,
-        reminders: [Reminder]
+        memos: [Memo]
     ) -> some View {
         Group {
 
@@ -92,10 +92,10 @@ struct RemindersView: View {
                 .font(.body.weight(.bold))
                 .lineLimit(2)
 
-            if reminders.count > 0 {
+            if memos.count > 0 {
                 VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                    ForEach(reminders) { reminder in
-                        ReminderComponent(reminder: reminder, listener: vm)
+                    ForEach(memos) { memo in
+                        MemoComponent(memo: memo, listener: vm)
                             .environmentObject(appVm)
                     }
                 }
@@ -124,53 +124,57 @@ struct RemindersView: View {
 }
 
 #Preview {
-    RemindersView(
+    MemosView(
         vm: .init(wrappedValue: .init(
-            reminders: [
-                Reminder(
+            memos: [
+                Memo(
                     id: "1",
                     userId: "321",
                     title: "Hello, World! 1",
                     description: "This is a test",
-                    tags: ["test", "one", "two"],
-                    frequency: nil,
+                    priority: "high",
+                    status: "pending",
                     visibility: 0,
+                    frequency: nil,
                     triggerAt: 1709231354445,
                     updatedAt: 1709231354445,
                     createdAt: 1709231354445
                 ),
-                Reminder(
+                Memo(
                     id: "2",
                     userId: "321",
                     title: "Hello, World! 2",
                     description: "This is a test",
-                    tags: ["test", "one", "two"],
-                    frequency: nil,
+                    priority: "medium",
+                    status: "pending",
                     visibility: 0,
+                    frequency: nil,
                     triggerAt: 1709231354445,
                     updatedAt: 1709231354445,
                     createdAt: 1709231354445
                 ),
-                Reminder(
+                Memo(
                     id: "3",
                     userId: "321",
                     title: "Hello, World! 3 This one goes over multiple lines to test whether or not it is aligned properly therefore it needs to be very long like this",
                     description: "This is a test that goes over multiple lines to test whether or not it is aligned properly therefore it needs to be very long like this",
-                    tags: ["test", "one", "two"],
-                    frequency: nil,
+                    priority: "low",
+                    status: "completed",
                     visibility: 0,
+                    frequency: nil,
                     triggerAt: 1709231354445,
                     updatedAt: 1709231354445,
                     createdAt: 1709231354445
                 ),
-                Reminder(
+                Memo(
                     id: "4",
                     userId: "321",
                     title: "Hello, World! 4",
                     description: "This is a test",
-                    tags: ["test", "one", "two"],
-                    frequency: nil,
+                    priority: nil,
+                    status: "completed",
                     visibility: 0,
+                    frequency: nil,
                     triggerAt: 1709231354445,
                     updatedAt: 1709231354445,
                     createdAt: 1709231354445
@@ -180,7 +184,8 @@ struct RemindersView: View {
                 id: nil,
                 userId: nil,
                 search: nil,
-                tags: nil,
+                priority: nil,
+                status: nil,
                 visibility: nil,
                 sort: nil,
                 cursor: nil,

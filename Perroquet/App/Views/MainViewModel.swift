@@ -13,7 +13,7 @@ class MainViewModel: ObservableObject {
     let stash: Stash
 
     @Published var currentTab: Int = 0
-    @Published var shouldLoadRemindersView = true
+    @Published var shouldLoadMemosView = true
     @Published var shouldLoadDiscoverView = false
     @Published var shouldLoadRequestsView = false
     @Published var shouldLoadProfileView = false
@@ -29,7 +29,7 @@ class MainViewModel: ObservableObject {
     func switchToTab(_ tab: Int) {
         switch tab {
         case 0:
-            shouldLoadRemindersView = true
+            shouldLoadMemosView = true
         case 1:
             shouldLoadDiscoverView = true
         case 3:

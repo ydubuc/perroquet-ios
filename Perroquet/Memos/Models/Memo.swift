@@ -1,5 +1,5 @@
 //
-//  Reminder.swift
+//  Memo.swift
 //  Perroquet
 //
 //  Created by Yoan Dubuc on 2/16/24.
@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct Reminder: Codable, Identifiable, Hashable {
+struct Memo: Codable, Identifiable, Hashable {
     let id: String
     let userId: String
     let title: String
     let description: String?
-    let tags: [String]?
-    let frequency: String?
+    let priority: String?
+    let status: String
     let visibility: Int
+    let frequency: String?
     let triggerAt: Int
     let updatedAt: Int
     let createdAt: Int
@@ -24,9 +25,10 @@ struct Reminder: Codable, Identifiable, Hashable {
         case userId = "user_id"
         case title = "title"
         case description = "description"
-        case tags = "tags"
-        case frequency = "frequency"
+        case priority = "priority"
+        case status = "status"
         case visibility = "visibility"
+        case frequency = "frequency"
         case triggerAt = "trigger_at"
         case updatedAt = "updated_at"
         case createdAt = "created_at"

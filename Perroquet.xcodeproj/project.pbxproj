@@ -23,27 +23,27 @@
 		ED317E712B801C23008A6E52 /* RefreshAccessInfoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E702B801C23008A6E52 /* RefreshAccessInfoDto.swift */; };
 		ED317E742B801C8D008A6E52 /* JwtDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E732B801C8D008A6E52 /* JwtDecoder.swift */; };
 		ED317E762B801CC6008A6E52 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E752B801CC6008A6E52 /* AppError.swift */; };
-		ED317E792B80261A008A6E52 /* RemindersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E782B80261A008A6E52 /* RemindersService.swift */; };
-		ED317E7E2B80263D008A6E52 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E7D2B80263D008A6E52 /* Reminder.swift */; };
+		ED317E792B80261A008A6E52 /* MemosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E782B80261A008A6E52 /* MemosService.swift */; };
+		ED317E7E2B80263D008A6E52 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E7D2B80263D008A6E52 /* Memo.swift */; };
 		ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E862B8159B3008A6E52 /* SignoutDto.swift */; };
 		ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E882B815DBF008A6E52 /* Nothing.swift */; };
 		ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */; };
-		ED317E8D2B816110008A6E52 /* GetRemindersFilterDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8C2B816110008A6E52 /* GetRemindersFilterDto.swift */; };
-		ED317E8F2B816164008A6E52 /* CreateReminderDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8E2B816164008A6E52 /* CreateReminderDto.swift */; };
-		ED317E912B8161AB008A6E52 /* EditReminderDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E902B8161AB008A6E52 /* EditReminderDto.swift */; };
+		ED317E8D2B816110008A6E52 /* GetMemosDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8C2B816110008A6E52 /* GetMemosDto.swift */; };
+		ED317E8F2B816164008A6E52 /* CreateMemoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E8E2B816164008A6E52 /* CreateMemoDto.swift */; };
+		ED317E912B8161AB008A6E52 /* EditMemoDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E902B8161AB008A6E52 /* EditMemoDto.swift */; };
 		ED317E942B816978008A6E52 /* QueryDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E932B816978008A6E52 /* QueryDto.swift */; };
-		ED317E962B816BF6008A6E52 /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E952B816BF6008A6E52 /* RemindersView.swift */; };
+		ED317E962B816BF6008A6E52 /* MemosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E952B816BF6008A6E52 /* MemosView.swift */; };
 		ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E982B816CFA008A6E52 /* DiscoverView.swift */; };
-		ED317E9B2B816F3F008A6E52 /* RemindersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */; };
+		ED317E9B2B816F3F008A6E52 /* MemosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9A2B816F3F008A6E52 /* MemosViewModel.swift */; };
 		ED317E9D2B817136008A6E52 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */; };
 		ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */; };
 		ED317EA22B8174A1008A6E52 /* SimpleKeychain in Frameworks */ = {isa = PBXBuildFile; productRef = ED317EA12B8174A1008A6E52 /* SimpleKeychain */; };
 		ED3537682B8FA4C000B65707 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3537672B8FA4C000B65707 /* WidgetKit.framework */; };
 		ED35376A2B8FA4C000B65707 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3537692B8FA4C000B65707 /* SwiftUI.framework */; };
-		ED35376D2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */; };
-		ED35376F2B8FA4C000B65707 /* CreateReminderWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376E2B8FA4C000B65707 /* CreateReminderWidget.swift */; };
+		ED35376D2B8FA4C000B65707 /* CreateMemoWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376C2B8FA4C000B65707 /* CreateMemoWidgetBundle.swift */; };
+		ED35376F2B8FA4C000B65707 /* CreateMemoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376E2B8FA4C000B65707 /* CreateMemoWidget.swift */; };
 		ED3537712B8FA4C100B65707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3537702B8FA4C100B65707 /* Assets.xcassets */; };
-		ED3537752B8FA4C100B65707 /* CreateReminderWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ED3537752B8FA4C100B65707 /* CreateMemoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ED3537652B8FA4C000B65707 /* CreateMemoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902092B7D2A460009851E /* SigninViewModel.swift */; };
 		ED59020D2B7D2B790009851E /* Dims.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59020C2B7D2B790009851E /* Dims.swift */; };
 		ED5902122B7D2E390009851E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902112B7D2E390009851E /* Color.swift */; };
@@ -60,20 +60,20 @@
 		ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902342B7DBB6A0009851E /* SigninDto.swift */; };
 		ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */; };
 		ED5902392B7E6B2B0009851E /* Courier.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902382B7E6B2B0009851E /* Courier.swift */; };
-		ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7486292B83B28A006D7FDB /* ReminderComponent.swift */; };
+		ED74862A2B83B28A006D7FDB /* MemoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7486292B83B28A006D7FDB /* MemoComponent.swift */; };
 		ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED74862B2B83D301006D7FDB /* AuthMan.swift */; };
 		ED88C3A92B9125EB0020CC08 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED88C3A82B9125EB0020CC08 /* Calendar.swift */; };
 		ED92850B2B92B7EF00CFDFC4 /* SQLiteSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED92850A2B92B7EF00CFDFC4 /* SQLiteSwift */; };
 		EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */; };
 		EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */; };
-		EDAF59A62B90E9E7006BD197 /* ReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59A52B90E9E7006BD197 /* ReminderViewModel.swift */; };
-		EDAF59A82B90E9EF006BD197 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59A72B90E9EF006BD197 /* ReminderView.swift */; };
+		EDAF59A62B90E9E7006BD197 /* MemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59A52B90E9E7006BD197 /* MemoViewModel.swift */; };
+		EDAF59A82B90E9EF006BD197 /* MemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59A72B90E9EF006BD197 /* MemoView.swift */; };
 		EDAF59AD2B90F630006BD197 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59AC2B90F630006BD197 /* UsersService.swift */; };
 		EDAF59B02B90F64A006BD197 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59AF2B90F64A006BD197 /* ProfileView.swift */; };
 		EDAF59B22B90F655006BD197 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59B12B90F655006BD197 /* ProfileViewModel.swift */; };
 		EDAF59B42B9109FC006BD197 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAF59B32B9109FC006BD197 /* Quotes.swift */; };
-		EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */; };
-		EDB1DA972B83FC6300FE8EBD /* CreateReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */; };
+		EDB1DA952B83FC5300FE8EBD /* CreateMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA942B83FC5300FE8EBD /* CreateMemoView.swift */; };
+		EDB1DA972B83FC6300FE8EBD /* CreateMemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DA962B83FC6300FE8EBD /* CreateMemoViewModel.swift */; };
 		EDB1DA992B8416EF00FE8EBD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */; };
 		EDB1DA9C2B8418C400FE8EBD /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = EDB1DA9B2B8418C400FE8EBD /* FirebaseMessaging */; };
 		EDB1DAA12B85261000FE8EBD /* DevicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB1DAA02B85261000FE8EBD /* DevicesService.swift */; };
@@ -108,7 +108,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				ED3537752B8FA4C100B65707 /* CreateReminderWidgetExtension.appex in Embed Foundation Extensions */,
+				ED3537752B8FA4C100B65707 /* CreateMemoWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,25 +132,25 @@
 		ED317E702B801C23008A6E52 /* RefreshAccessInfoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshAccessInfoDto.swift; sourceTree = "<group>"; };
 		ED317E732B801C8D008A6E52 /* JwtDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtDecoder.swift; sourceTree = "<group>"; };
 		ED317E752B801CC6008A6E52 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		ED317E782B80261A008A6E52 /* RemindersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersService.swift; sourceTree = "<group>"; };
-		ED317E7D2B80263D008A6E52 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		ED317E782B80261A008A6E52 /* MemosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemosService.swift; sourceTree = "<group>"; };
+		ED317E7D2B80263D008A6E52 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		ED317E862B8159B3008A6E52 /* SignoutDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignoutDto.swift; sourceTree = "<group>"; };
 		ED317E882B815DBF008A6E52 /* Nothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nothing.swift; sourceTree = "<group>"; };
 		ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		ED317E8C2B816110008A6E52 /* GetRemindersFilterDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRemindersFilterDto.swift; sourceTree = "<group>"; };
-		ED317E8E2B816164008A6E52 /* CreateReminderDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderDto.swift; sourceTree = "<group>"; };
-		ED317E902B8161AB008A6E52 /* EditReminderDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReminderDto.swift; sourceTree = "<group>"; };
+		ED317E8C2B816110008A6E52 /* GetMemosDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMemosDto.swift; sourceTree = "<group>"; };
+		ED317E8E2B816164008A6E52 /* CreateMemoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoDto.swift; sourceTree = "<group>"; };
+		ED317E902B8161AB008A6E52 /* EditMemoDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoDto.swift; sourceTree = "<group>"; };
 		ED317E932B816978008A6E52 /* QueryDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryDto.swift; sourceTree = "<group>"; };
-		ED317E952B816BF6008A6E52 /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
+		ED317E952B816BF6008A6E52 /* MemosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemosView.swift; sourceTree = "<group>"; };
 		ED317E982B816CFA008A6E52 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
-		ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModel.swift; sourceTree = "<group>"; };
+		ED317E9A2B816F3F008A6E52 /* MemosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemosViewModel.swift; sourceTree = "<group>"; };
 		ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		ED317E9E2B8173B7008A6E52 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
-		ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CreateReminderWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED3537652B8FA4C000B65707 /* CreateMemoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CreateMemoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED3537672B8FA4C000B65707 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		ED3537692B8FA4C000B65707 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidgetBundle.swift; sourceTree = "<group>"; };
-		ED35376E2B8FA4C000B65707 /* CreateReminderWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderWidget.swift; sourceTree = "<group>"; };
+		ED35376C2B8FA4C000B65707 /* CreateMemoWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoWidgetBundle.swift; sourceTree = "<group>"; };
+		ED35376E2B8FA4C000B65707 /* CreateMemoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoWidget.swift; sourceTree = "<group>"; };
 		ED3537702B8FA4C100B65707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED3537722B8FA4C100B65707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED5902092B7D2A460009851E /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
@@ -169,19 +169,19 @@
 		ED5902342B7DBB6A0009851E /* SigninDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninDto.swift; sourceTree = "<group>"; };
 		ED5902362B7DBD4A0009851E /* SigninAppleDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninAppleDto.swift; sourceTree = "<group>"; };
 		ED5902382B7E6B2B0009851E /* Courier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courier.swift; sourceTree = "<group>"; };
-		ED7486292B83B28A006D7FDB /* ReminderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderComponent.swift; sourceTree = "<group>"; };
+		ED7486292B83B28A006D7FDB /* MemoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComponent.swift; sourceTree = "<group>"; };
 		ED74862B2B83D301006D7FDB /* AuthMan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMan.swift; sourceTree = "<group>"; };
 		ED88C3A82B9125EB0020CC08 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
-		EDAF59A52B90E9E7006BD197 /* ReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewModel.swift; sourceTree = "<group>"; };
-		EDAF59A72B90E9EF006BD197 /* ReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
+		EDAF59A52B90E9E7006BD197 /* MemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewModel.swift; sourceTree = "<group>"; };
+		EDAF59A72B90E9EF006BD197 /* MemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoView.swift; sourceTree = "<group>"; };
 		EDAF59AC2B90F630006BD197 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
 		EDAF59AF2B90F64A006BD197 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EDAF59B12B90F655006BD197 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		EDAF59B32B9109FC006BD197 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
-		EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderView.swift; sourceTree = "<group>"; };
-		EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderViewModel.swift; sourceTree = "<group>"; };
+		EDB1DA942B83FC5300FE8EBD /* CreateMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoView.swift; sourceTree = "<group>"; };
+		EDB1DA962B83FC6300FE8EBD /* CreateMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewModel.swift; sourceTree = "<group>"; };
 		EDB1DA982B8416EF00FE8EBD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EDB1DAA02B85261000FE8EBD /* DevicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesService.swift; sourceTree = "<group>"; };
 		EDB1DAA42B85262500FE8EBD /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
@@ -233,24 +233,24 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		ED317E772B8025FC008A6E52 /* Reminders */ = {
+		ED317E772B8025FC008A6E52 /* Memos */ = {
 			isa = PBXGroup;
 			children = (
-				ED317E782B80261A008A6E52 /* RemindersService.swift */,
+				ED317E782B80261A008A6E52 /* MemosService.swift */,
 				ED7486282B83B278006D7FDB /* Components */,
 				ED317E7A2B802620008A6E52 /* Dtos */,
 				ED317E7B2B802625008A6E52 /* Models */,
 				ED317E7C2B80262B008A6E52 /* Views */,
 			);
-			path = Reminders;
+			path = Memos;
 			sourceTree = "<group>";
 		};
 		ED317E7A2B802620008A6E52 /* Dtos */ = {
 			isa = PBXGroup;
 			children = (
-				ED317E8C2B816110008A6E52 /* GetRemindersFilterDto.swift */,
-				ED317E8E2B816164008A6E52 /* CreateReminderDto.swift */,
-				ED317E902B8161AB008A6E52 /* EditReminderDto.swift */,
+				ED317E8C2B816110008A6E52 /* GetMemosDto.swift */,
+				ED317E8E2B816164008A6E52 /* CreateMemoDto.swift */,
+				ED317E902B8161AB008A6E52 /* EditMemoDto.swift */,
 			);
 			path = Dtos;
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 		ED317E7B2B802625008A6E52 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				ED317E7D2B80263D008A6E52 /* Reminder.swift */,
+				ED317E7D2B80263D008A6E52 /* Memo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -266,15 +266,15 @@
 		ED317E7C2B80262B008A6E52 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EDB1DA942B83FC5300FE8EBD /* CreateReminderView.swift */,
-				EDB1DA962B83FC6300FE8EBD /* CreateReminderViewModel.swift */,
+				EDB1DA942B83FC5300FE8EBD /* CreateMemoView.swift */,
+				EDB1DA962B83FC6300FE8EBD /* CreateMemoViewModel.swift */,
 				ED2279F42B8E81160041FAD2 /* DatePickerView.swift */,
 				ED317E982B816CFA008A6E52 /* DiscoverView.swift */,
 				ED317E9C2B817136008A6E52 /* DiscoverViewModel.swift */,
-				ED317E952B816BF6008A6E52 /* RemindersView.swift */,
-				ED317E9A2B816F3F008A6E52 /* RemindersViewModel.swift */,
-				EDAF59A72B90E9EF006BD197 /* ReminderView.swift */,
-				EDAF59A52B90E9E7006BD197 /* ReminderViewModel.swift */,
+				ED317E952B816BF6008A6E52 /* MemosView.swift */,
+				ED317E9A2B816F3F008A6E52 /* MemosViewModel.swift */,
+				EDAF59A72B90E9EF006BD197 /* MemoView.swift */,
+				EDAF59A52B90E9E7006BD197 /* MemoViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,15 +296,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		ED35376B2B8FA4C000B65707 /* CreateReminderWidget */ = {
+		ED35376B2B8FA4C000B65707 /* CreateMemoWidget */ = {
 			isa = PBXGroup;
 			children = (
-				ED35376C2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift */,
-				ED35376E2B8FA4C000B65707 /* CreateReminderWidget.swift */,
+				ED35376C2B8FA4C000B65707 /* CreateMemoWidgetBundle.swift */,
+				ED35376E2B8FA4C000B65707 /* CreateMemoWidget.swift */,
 				ED3537702B8FA4C100B65707 /* Assets.xcassets */,
 				ED3537722B8FA4C100B65707 /* Info.plist */,
 			);
-			path = CreateReminderWidget;
+			path = CreateMemoWidget;
 			sourceTree = "<group>";
 		};
 		ED5902082B7D2A300009851E /* Views */ = {
@@ -435,7 +435,7 @@
 		ED7486282B83B278006D7FDB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				ED7486292B83B28A006D7FDB /* ReminderComponent.swift */,
+				ED7486292B83B28A006D7FDB /* MemoComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -496,7 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB8F05B2B72DBAC008A1CEB /* Perroquet */,
-				ED35376B2B8FA4C000B65707 /* CreateReminderWidget */,
+				ED35376B2B8FA4C000B65707 /* CreateMemoWidget */,
 				ED3537662B8FA4C000B65707 /* Frameworks */,
 				EDB8F05A2B72DBAC008A1CEB /* Products */,
 			);
@@ -506,7 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				EDB8F0592B72DBAC008A1CEB /* Perroquet.app */,
-				ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */,
+				ED3537652B8FA4C000B65707 /* CreateMemoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -522,7 +522,7 @@
 				EDC5F5472B7947F200551388 /* Auth */,
 				EDB1DA9D2B8525F600FE8EBD /* Devices */,
 				EDB8F0622B72DBAD008A1CEB /* Preview Content */,
-				ED317E772B8025FC008A6E52 /* Reminders */,
+				ED317E772B8025FC008A6E52 /* Memos */,
 				EDAF59A92B90F5CF006BD197 /* Users */,
 			);
 			path = Perroquet;
@@ -580,9 +580,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ED3537642B8FA4C000B65707 /* CreateReminderWidgetExtension */ = {
+		ED3537642B8FA4C000B65707 /* CreateMemoWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED3537792B8FA4C100B65707 /* Build configuration list for PBXNativeTarget "CreateReminderWidgetExtension" */;
+			buildConfigurationList = ED3537792B8FA4C100B65707 /* Build configuration list for PBXNativeTarget "CreateMemoWidgetExtension" */;
 			buildPhases = (
 				ED3537612B8FA4C000B65707 /* Sources */,
 				ED3537622B8FA4C000B65707 /* Frameworks */,
@@ -592,9 +592,9 @@
 			);
 			dependencies = (
 			);
-			name = CreateReminderWidgetExtension;
+			name = CreateMemoWidgetExtension;
 			productName = CreateReminderWidgetExtension;
-			productReference = ED3537652B8FA4C000B65707 /* CreateReminderWidgetExtension.appex */;
+			productReference = ED3537652B8FA4C000B65707 /* CreateMemoWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		EDB8F0582B72DBAC008A1CEB /* Perroquet */ = {
@@ -659,7 +659,7 @@
 			projectRoot = "";
 			targets = (
 				EDB8F0582B72DBAC008A1CEB /* Perroquet */,
-				ED3537642B8FA4C000B65707 /* CreateReminderWidgetExtension */,
+				ED3537642B8FA4C000B65707 /* CreateMemoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -712,8 +712,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED35376D2B8FA4C000B65707 /* CreateReminderWidgetBundle.swift in Sources */,
-				ED35376F2B8FA4C000B65707 /* CreateReminderWidget.swift in Sources */,
+				ED35376D2B8FA4C000B65707 /* CreateMemoWidgetBundle.swift in Sources */,
+				ED35376F2B8FA4C000B65707 /* CreateMemoWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,26 +727,26 @@
 				EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */,
 				ED1ACB3C2B902F1A00BABE9C /* String.swift in Sources */,
 				EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */,
-				EDAF59A82B90E9EF006BD197 /* ReminderView.swift in Sources */,
+				EDAF59A82B90E9EF006BD197 /* MemoView.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
 				EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */,
 				EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */,
-				EDB1DA952B83FC5300FE8EBD /* CreateReminderView.swift in Sources */,
+				EDB1DA952B83FC5300FE8EBD /* CreateMemoView.swift in Sources */,
 				ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */,
 				ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */,
 				ED317E762B801CC6008A6E52 /* AppError.swift in Sources */,
 				ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */,
 				ED317E6D2B7FCF5C008A6E52 /* SafariView.swift in Sources */,
 				EDAF59AD2B90F630006BD197 /* UsersService.swift in Sources */,
-				ED317E792B80261A008A6E52 /* RemindersService.swift in Sources */,
+				ED317E792B80261A008A6E52 /* MemosService.swift in Sources */,
 				EDAF59B22B90F655006BD197 /* ProfileViewModel.swift in Sources */,
-				ED317E962B816BF6008A6E52 /* RemindersView.swift in Sources */,
+				ED317E962B816BF6008A6E52 /* MemosView.swift in Sources */,
 				EDC5F54B2B7948AF00551388 /* SigninView.swift in Sources */,
 				ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */,
 				ED5902322B7DB4700009851E /* Config.swift in Sources */,
 				EDB1DAAF2B85720A00FE8EBD /* Stash.swift in Sources */,
 				ED5902392B7E6B2B0009851E /* Courier.swift in Sources */,
-				ED74862A2B83B28A006D7FDB /* ReminderComponent.swift in Sources */,
+				ED74862A2B83B28A006D7FDB /* MemoComponent.swift in Sources */,
 				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
 				ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */,
 				EDAF59B02B90F64A006BD197 /* ProfileView.swift in Sources */,
@@ -756,19 +756,19 @@
 				ED317E712B801C23008A6E52 /* RefreshAccessInfoDto.swift in Sources */,
 				ED59022A2B7D72190009851E /* FormSecureTextfieldComponent.swift in Sources */,
 				ED317E672B7FBDDB008A6E52 /* SignupView.swift in Sources */,
-				ED317E7E2B80263D008A6E52 /* Reminder.swift in Sources */,
+				ED317E7E2B80263D008A6E52 /* Memo.swift in Sources */,
 				ED317E692B7FBDE7008A6E52 /* SignupViewModel.swift in Sources */,
 				ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */,
 				ED317E5C2B7EC77C008A6E52 /* FormSubmitComponent.swift in Sources */,
 				ED317E612B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift in Sources */,
 				EDB1DAA12B85261000FE8EBD /* DevicesService.swift in Sources */,
 				ED5902232B7D6A350009851E /* DarkTheme.swift in Sources */,
-				EDB1DA972B83FC6300FE8EBD /* CreateReminderViewModel.swift in Sources */,
+				EDB1DA972B83FC6300FE8EBD /* CreateMemoViewModel.swift in Sources */,
 				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
 				ED317E6B2B7FC160008A6E52 /* SignupDto.swift in Sources */,
 				ED59021E2B7D697C0009851E /* Themes.swift in Sources */,
-				ED317E9B2B816F3F008A6E52 /* RemindersViewModel.swift in Sources */,
-				ED317E912B8161AB008A6E52 /* EditReminderDto.swift in Sources */,
+				ED317E9B2B816F3F008A6E52 /* MemosViewModel.swift in Sources */,
+				ED317E912B8161AB008A6E52 /* EditMemoDto.swift in Sources */,
 				ED59020D2B7D2B790009851E /* Dims.swift in Sources */,
 				ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */,
 				ED5902372B7DBD4A0009851E /* SigninAppleDto.swift in Sources */,
@@ -777,15 +777,15 @@
 				EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */,
 				ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */,
 				ED1ACB382B9014E400BABE9C /* LazyView.swift in Sources */,
-				EDAF59A62B90E9E7006BD197 /* ReminderViewModel.swift in Sources */,
+				EDAF59A62B90E9E7006BD197 /* MemoViewModel.swift in Sources */,
 				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
 				ED317E6F2B801BB5008A6E52 /* AccessTokenClaims.swift in Sources */,
 				EDAF59B42B9109FC006BD197 /* Quotes.swift in Sources */,
 				ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */,
 				EDB1DAA72B8526A600FE8EBD /* EditDeviceDto.swift in Sources */,
 				EDC5F5492B7947FD00551388 /* AuthService.swift in Sources */,
-				ED317E8F2B816164008A6E52 /* CreateReminderDto.swift in Sources */,
-				ED317E8D2B816110008A6E52 /* GetRemindersFilterDto.swift in Sources */,
+				ED317E8F2B816164008A6E52 /* CreateMemoDto.swift in Sources */,
+				ED317E8D2B816110008A6E52 /* GetMemosDto.swift in Sources */,
 				ED5902302B7D95DD0009851E /* AccessInfo.swift in Sources */,
 				ED317E9D2B817136008A6E52 /* DiscoverViewModel.swift in Sources */,
 				ED5902252B7D6AEB0009851E /* LightTheme.swift in Sources */,
@@ -798,7 +798,7 @@
 /* Begin PBXTargetDependency section */
 		ED3537742B8FA4C100B65707 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ED3537642B8FA4C000B65707 /* CreateReminderWidgetExtension */;
+			target = ED3537642B8FA4C000B65707 /* CreateMemoWidgetExtension */;
 			targetProxy = ED3537732B8FA4C100B65707 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -813,8 +813,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CreateReminderWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CreateReminderWidget;
+				INFOPLIST_FILE = CreateMemoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CreateMemoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -823,7 +823,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet.CreateReminderWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet.CreateMemoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -841,8 +841,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UKJX8BM7T;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CreateReminderWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CreateReminderWidget;
+				INFOPLIST_FILE = CreateMemoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CreateMemoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -851,7 +851,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet.CreateReminderWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beamcove.Perroquet.CreateMemoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1052,7 +1052,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ED3537792B8FA4C100B65707 /* Build configuration list for PBXNativeTarget "CreateReminderWidgetExtension" */ = {
+		ED3537792B8FA4C100B65707 /* Build configuration list for PBXNativeTarget "CreateMemoWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED3537772B8FA4C100B65707 /* Debug */,

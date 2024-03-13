@@ -1,6 +1,6 @@
 //
-//  CreateReminderWidget.swift
-//  CreateReminderWidget
+//  CreateMemoWidget.swift
+//  CreateMemoWidget
 //
 //  Created by Yoan Dubuc on 2/28/24.
 //
@@ -14,7 +14,7 @@ struct MainEntry: TimelineEntry {
     let date: Date
 }
 
-struct CreateReminderWidgetEntryView: View {
+struct CreateMemoWidgetEntryView: View {
     var entry: Provider.Entry
 
     @Environment(\.widgetFamily) private var family
@@ -31,9 +31,9 @@ struct CreateReminderWidgetEntryView: View {
     }
 
     func accessoryCircularWidget() -> some View {
-        Image(systemName: "plus.circle")
+        Image(.perroquetAppIconMonochrome)
             .resizable()
-            .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-reminder")!)
+            .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-Memo")!)
     }
 
     func smallWidget() -> some View {
@@ -70,20 +70,20 @@ struct CreateReminderWidgetEntryView: View {
                 .cornerRadius(8)
 
         } // VStack
-        .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-reminder")!)
+        .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-memo")!)
     }
 }
 
-struct CreateReminderWidget: Widget {
-    let kind: String = "CreateReminderWidget"
+struct CreateMemoWidget: Widget {
+    let kind: String = "CreateMemoWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
-                CreateReminderWidgetEntryView(entry: entry)
+                CreateMemoWidgetEntryView(entry: entry)
                     .containerBackground(Color(hex: 0x1c1d22), for: .widget)
             } else {
-                CreateReminderWidgetEntryView(entry: entry)
+                CreateMemoWidgetEntryView(entry: entry)
                     .background(Color(hex: 0x1c1d22))
             }
         }
@@ -169,7 +169,7 @@ struct Provider: TimelineProvider {
 }
 
  #Preview(as: .accessoryCircular) {
-    CreateReminderWidget()
+    CreateMemoWidget()
  } timeline: {
     MainEntry(
         quote: Provider.quotes.randomElement()!,

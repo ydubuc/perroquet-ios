@@ -13,7 +13,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.beamcove.perroquet.create-reminder</string>
+			<string>com.beamcove.perroquet.create-memo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>widget</string>

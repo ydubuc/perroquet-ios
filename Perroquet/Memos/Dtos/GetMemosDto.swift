@@ -1,5 +1,5 @@
 //
-//  GetRemindersFilterDto.swift
+//  GetMemosDto.swift
 //  Perroquet
 //
 //  Created by Yoan Dubuc on 2/17/24.
@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct GetRemindersFilterDto: QueryDto {
+struct GetMemosDto: QueryDto {
     let id: String?
     let userId: String?
     let search: String?
-    let tags: String?
+    let priority: String?
+    let status: String?
     let visibility: Int?
     let sort: String?
     let cursor: String?
@@ -29,8 +30,11 @@ struct GetRemindersFilterDto: QueryDto {
         if let search = search {
             queries.append(.init(name: "search", value: search))
         }
-        if let tags = tags {
-            queries.append(.init(name: "tags", value: tags))
+        if let priority = priority {
+            queries.append(.init(name: "priority", value: priority))
+        }
+        if let status = status {
+            queries.append(.init(name: "status", value: status))
         }
         if let visibility = visibility {
             queries.append(.init(name: "visibility", value: "\(visibility)"))
@@ -49,12 +53,13 @@ struct GetRemindersFilterDto: QueryDto {
     }
 }
 
-extension GetRemindersFilterDto {
+extension GetMemosDto {
     init() {
         self.id = nil
         self.userId = nil
         self.search = nil
-        self.tags = nil
+        self.priority = nil
+        self.status = nil
         self.visibility = nil
         self.sort = nil
         self.cursor = nil

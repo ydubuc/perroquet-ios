@@ -11,33 +11,34 @@ import SimpleKeychain
 
 class AppViewModel: ObservableObject {
     let notificator: Notificator
-    let remindersService: RemindersService
+    let memosService: MemosService
 
     @Published var theme: Theme
 
-    @Published var isPresentingCreateReminderView = false
+    @Published var isPresentingCreateMemoView = false
 
     private var lastAppRefresh = Date().timeIntervalSince1970.milliseconds
 
     init(
         notificator: Notificator = Notificator(),
-        remindersService: RemindersService = RemindersService(url: Config.BACKEND_URL)
+        memosService: MemosService = MemosService(url: Config.BACKEND_URL)
     ) {
         self.notificator = notificator
-        self.remindersService = remindersService
+        self.memosService = memosService
 
-        self.theme = DarkTheme()
+        self.theme = LightTheme()
     }
 
     func refreshApp(authMan: AuthMan) async {
         guard let accessToken = await authMan.accessToken() else { return }
 
-        let result = await remindersService.getReminders(
+        let result = await memosService.getMemos(
             dto: .init(
                 id: nil,
                 userId: authMan.accessTokenClaims?.id,
                 search: nil,
-                tags: nil,
+                priority: nil,
+                status: "pending",
                 visibility: nil,
                 sort: "updated_at,asc",
                 cursor: "\(lastAppRefresh),\(UUID().uuidString.lowercased())",
@@ -49,20 +50,20 @@ class AppViewModel: ObservableObject {
         self.lastAppRefresh = Date().timeIntervalSince1970.milliseconds
 
         switch result {
-        case .success(let reminders):
-            scheduleReminders(reminders: reminders)
+        case .success(let memos):
+            scheduleMemos(memos: memos)
         case .failure(let apiError):
             print(apiError.message)
             return
         }
     }
 
-    func scheduleReminders(reminders: [Reminder]?) {
-        let reminders = reminders ?? Stash.shared.getReminders() ?? []
+    func scheduleMemos(memos: [Memo]?) {
+        let memos = memos ?? Stash.shared.getMemos() ?? []
 
         Task {
-            for reminder in reminders {
-                await notificator.schedule(notification: reminder.toLocalNotification())
+            for memo in memos {
+                await notificator.schedule(notification: memo.toLocalNotification())
             }
         }
     }
