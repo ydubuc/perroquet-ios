@@ -99,6 +99,7 @@ class Stash {
                 MEMO_TITLE <- memo.title,
                 MEMO_DESCRIPTION <- memo.description,
                 MEMO_PRIORITY <- memo.priority,
+                MEMO_STATUS <- memo.status,
                 MEMO_VISIBILITY <- memo.visibility,
                 MEMO_FREQUENCY <- memo.frequency,
                 MEMO_TRIGGER_AT <- memo.triggerAt,

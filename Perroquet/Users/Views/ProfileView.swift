@@ -43,15 +43,33 @@ struct ProfileView: View {
                 .frame(maxWidth: Dims.viewMaxWidth2)
 
                 Button {
+                    appVm.theme = LightTheme()
+                } label: {
+                    Text("Light Theme")
+                }
+
+                Button {
+                    appVm.theme = DarkTheme()
+                } label: {
+                    Text("Dark Theme")
+                }
+
+                Button {
+                    appVm.theme = SlateTheme()
+                } label: {
+                    Text("Slate Theme")
+                }
+
+                Button {
                     Stash.shared.clear()
                 } label: {
-                    Text("clear cache")
+                    Text("Clear Cache")
                 }
 
                 Button(action: {
                     AuthMan.shared.onSignout()
                 }, label: {
-                    Text("sign out")
+                    Text("Sign Out")
                 })
 
             } // LazyVStack

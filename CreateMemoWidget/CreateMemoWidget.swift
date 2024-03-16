@@ -15,6 +15,8 @@ struct MainEntry: TimelineEntry {
 }
 
 struct CreateMemoWidgetEntryView: View {
+    static let WIDGET_URL = "widget://com.beamcove.perroquet.create-memo"
+    
     var entry: Provider.Entry
 
     @Environment(\.widgetFamily) private var family
@@ -33,7 +35,7 @@ struct CreateMemoWidgetEntryView: View {
     func accessoryCircularWidget() -> some View {
         Image(.perroquetAppIconMonochrome)
             .resizable()
-            .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-Memo")!)
+            .widgetURL(URL(string: CreateMemoWidgetEntryView.WIDGET_URL)!)
     }
 
     func smallWidget() -> some View {
@@ -70,7 +72,7 @@ struct CreateMemoWidgetEntryView: View {
                 .cornerRadius(8)
 
         } // VStack
-        .widgetURL(URL(string: "widget://com.beamcove.perroquet.create-memo")!)
+        .widgetURL(URL(string: CreateMemoWidgetEntryView.WIDGET_URL)!)
     }
 }
 

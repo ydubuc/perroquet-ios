@@ -26,7 +26,7 @@ class AppViewModel: ObservableObject {
         self.notificator = notificator
         self.memosService = memosService
 
-        self.theme = LightTheme()
+        self.theme = SlateTheme()
     }
 
     func refreshApp(authMan: AuthMan) async {

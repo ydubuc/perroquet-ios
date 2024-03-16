@@ -8,5 +8,10 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>webcredentials:perroquet.beamcove.com</string>
+		<string>perroquet.beamcove.com</string>
+	</array>
 </dict>
 </plist>

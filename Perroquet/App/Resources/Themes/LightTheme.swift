@@ -15,7 +15,7 @@ struct LightTheme: Theme {
     var primary: Color = Color(hex: 0xF2F2F7)
     var primaryDark: Color = Color(hex: 0xE3E3E6)
 
-    var fontBright: Color = Color(hex: 0x4AAEFF)
+    var fontBright: Color = Color(hex: 0xFF1D6F)
     var fontNormal: Color = Color(hex: 0x1A1C23)
     var fontDim: Color = Color(hex: 0x2E303E)
 

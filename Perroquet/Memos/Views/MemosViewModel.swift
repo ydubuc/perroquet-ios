@@ -55,16 +55,16 @@ class MemosViewModel: ObservableObject, MemoListener {
 
         self.todayMemos = memos
             .filter { $0.triggerAt > currentTimestamp && $0.triggerAt < endOfDayTimestamp && $0.triggerAt < sevenDaysTimestamp }
-            .sorted { $0.triggerAt < $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
         self.sevenDaysMemos = memos
             .filter { $0.triggerAt > endOfDayTimestamp && $0.triggerAt < sevenDaysTimestamp }
-            .sorted { $0.triggerAt < $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
         self.laterMemos = memos
             .filter { $0.triggerAt > sevenDaysTimestamp }
-            .sorted { $0.triggerAt < $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
         self.previousMemos = memos
             .filter { $0.triggerAt < currentTimestamp }
-            .sorted { $0.triggerAt > $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) > ($1.triggerAt, $1.updatedAt) }
 
         self.userId = dto.userId
         self.search = dto.search
@@ -149,16 +149,16 @@ class MemosViewModel: ObservableObject, MemoListener {
 
         self.todayMemos = self.memos
             .filter { $0.triggerAt > currentTimestamp && $0.triggerAt < endOfDayTimestamp && $0.triggerAt < sevenDaysTimestamp }
-            .sorted { $0.triggerAt < $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
         self.sevenDaysMemos = self.memos
             .filter { $0.triggerAt > endOfDayTimestamp && $0.triggerAt < sevenDaysTimestamp }
-            .sorted { $0.triggerAt < $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
         self.laterMemos = self.memos
             .filter { $0.triggerAt > sevenDaysTimestamp }
-            .sorted { $0.triggerAt < $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
         self.previousMemos = self.memos
             .filter { $0.triggerAt < currentTimestamp }
-            .sorted { $0.triggerAt > $1.triggerAt }
+            .sorted { ($0.triggerAt, $0.updatedAt) > ($1.triggerAt, $1.updatedAt) }
     }
 
     private func scheduleMemos() {
