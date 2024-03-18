@@ -79,31 +79,31 @@ struct CreateMemoView: View {
                             }
 
                             Button {
-                                vm.frequency = "hourly"
+                                vm.frequency = Memo.Frequency.hourly.rawValue
                             } label: {
                                 Text("Hourly")
                             }
 
                             Button {
-                                vm.frequency = "daily"
+                                vm.frequency = Memo.Frequency.daily.rawValue
                             } label: {
                                 Text("Daily")
                             }
 
                             Button {
-                                vm.frequency = "weekly"
+                                vm.frequency = Memo.Frequency.weekly.rawValue
                             } label: {
                                 Text("Weekly")
                             }
 
                             Button {
-                                vm.frequency = "monthly"
+                                vm.frequency = Memo.Frequency.monthly.rawValue
                             } label: {
                                 Text("Monthly")
                             }
 
                             Button {
-                                vm.frequency = "yearly"
+                                vm.frequency = Memo.Frequency.yearly.rawValue
                             } label: {
                                 Text("Yearly")
                             }
@@ -136,9 +136,9 @@ struct CreateMemoView: View {
                     HStack(alignment: .center, spacing: Dims.spacingRegular) {
 
                         Button(action: {
-                            vm.visibility = vm.visibility == 0 ? 1 : 0
+                            vm.visibility = vm.visibility == Memo.Visibility.priv.rawValue ? Memo.Visibility.pub.rawValue : Memo.Visibility.priv.rawValue
                         }, label: {
-                            Text(vm.visibility == 0 ? "Private" : "Public")
+                            Text(vm.visibility == Memo.Visibility.priv.rawValue ? "Private" : "Public")
                                 .foregroundColor(vm.visibility == 0 ? appVm.theme.fontDim : appVm.theme.fontNormal)
                                 .font(.body.weight(.medium))
                                 .padding(Dims.spacingSmall)

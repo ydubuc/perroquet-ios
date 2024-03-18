@@ -20,7 +20,7 @@ struct MemosView: View {
 
         ScrollView(.vertical, showsIndicators: true) {
 
-            LazyVStack(alignment: .center, spacing: Dims.spacingRegular) {
+            VStack(alignment: .center, spacing: Dims.spacingRegular) {
 
                 memoSection(
                     title: "Today",

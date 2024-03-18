@@ -34,6 +34,68 @@ struct Memo: Codable, Identifiable, Hashable {
         case createdAt = "created_at"
     }
 
+    enum Priority: String {
+        case high = "high"
+        case medium = "medium"
+        case low = "low"
+    }
+
+    enum Status: String {
+        case pending = "pending"
+        case complete = "completed"
+        case deleted = "deleted"
+    }
+
+    enum Visibility: Int {
+        case pub = 1
+        case priv = 0
+    }
+
+    enum Frequency: String {
+        case hourly = "hourly"
+        case daily = "daily"
+        case weekly = "weekly"
+        case monthly = "monthly"
+        case yearly = "yearly"
+
+        var calendarComponent: Calendar.Component {
+            switch self {
+            case .hourly:
+                return .hour
+            case .daily:
+                return .day
+            case .weekly:
+                return .weekOfYear
+            case .monthly:
+                return .month
+            case .yearly:
+                return .year
+            }
+        }
+    }
+
+    func nextEffectiveTriggerAt(fromCurrent timeInMilliseconds: Int) -> Int {
+        guard let frequency = self.frequency else { return self.triggerAt }
+
+        let difference = timeInMilliseconds - self.triggerAt
+        guard difference > 0 else { return self.triggerAt }
+
+        switch frequency {
+        case Frequency.hourly.rawValue:
+            return (self.triggerAt + 3600000) + difference
+        case Frequency.daily.rawValue:
+            return (self.triggerAt + 86400000) + difference
+        case Frequency.weekly.rawValue:
+            return (self.triggerAt + 604800000) + difference
+        case Frequency.monthly.rawValue:
+            return (self.triggerAt + 2629746000) + difference
+        case Frequency.yearly.rawValue:
+            return (self.triggerAt + 31556952000) + difference
+        default:
+            return self.triggerAt
+        }
+    }
+
     func toLocalNotification() -> LocalNotification {
         return LocalNotification(
             id: self.id,

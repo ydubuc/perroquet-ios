@@ -24,6 +24,21 @@ struct ProfileView: View {
             VStack(alignment: .center, spacing: Dims.spacingRegular) {
 
                 HStack(alignment: .center, spacing: Dims.spacingRegular) {
+                    Spacer()
+
+                    Button(action: {
+                        AuthMan.shared.onSignout()
+                    }, label: {
+                        Text("Signout")
+                            .foregroundColor(appVm.theme.fontBright)
+                            .font(.caption.weight(.semibold))
+                            .padding(Dims.spacingSmall)
+                            .background(appVm.theme.primaryDark)
+                            .cornerRadius(Dims.cornerRadius)
+                    })
+                }
+
+                HStack(alignment: .center, spacing: Dims.spacingRegular) {
 
                     let imageSize = (UIFont.preferredFont(forTextStyle: .body).pointSize * 3) * scale
 
@@ -38,8 +53,12 @@ struct ProfileView: View {
                         .font(.body.weight(.regular))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .multilineTextAlignment(.leading)
+                        .animation(.easeInOut, value: vm.quote)
 
                 }
+                .padding(Dims.spacingRegular)
+                .background(appVm.theme.primaryDark)
+                .cornerRadius(9999)
                 .frame(maxWidth: Dims.viewMaxWidth2)
 
                 Button {
@@ -66,12 +85,6 @@ struct ProfileView: View {
                     Text("Clear Cache")
                 }
 
-                Button(action: {
-                    AuthMan.shared.onSignout()
-                }, label: {
-                    Text("Sign Out")
-                })
-
             } // LazyVStack
             .padding(Dims.spacingRegular)
 
@@ -79,6 +92,31 @@ struct ProfileView: View {
         .refreshable {
             vm.load()
         }
+
+    }
+
+    func accountSection() -> some View {
+        VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+
+            Text("ACCOUNT")
+                .foregroundColor(appVm.theme.fontDim)
+                .font(.caption.weight(.bold))
+
+            VStack(alignment: .leading, spacing: 0) {
+
+            }
+        }
+    }
+
+    func appSettingsSection() {
+
+    }
+
+    func supportSection() {
+
+    }
+
+    func moreSection() {
 
     }
 }

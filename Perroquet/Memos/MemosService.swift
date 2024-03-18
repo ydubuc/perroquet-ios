@@ -93,7 +93,7 @@ class MemosService {
             title: nil,
             description: nil,
             priority: nil,
-            status: "archived",
+            status: Memo.Status.deleted.rawValue,
             visibility: nil,
             frequency: nil,
             triggerAt: nil
@@ -101,7 +101,7 @@ class MemosService {
         let result = await editMemo(id: id, dto: dto, accessToken: accessToken)
 
         switch result {
-        case .success(let memo):
+        case .success:
             return .success(())
         case .failure(let apiError):
             return .failure(apiError)
