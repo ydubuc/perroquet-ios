@@ -23,7 +23,7 @@ struct MainView: View {
             LazyView(loadWhen: $vm.shouldLoadMemosView) {
                 MemosView(
                     vm: .init(wrappedValue: .init(
-                        memos: vm.stash.getMemos(),
+                        memos: vm.stash.getMemos() ?? [],
                         dto: .init(
                             id: nil,
                             userId: vm.authMan.accessTokenClaims?.id,

@@ -13,6 +13,7 @@ class AuthMan: ObservableObject {
 
     private let authService: AuthService
     private let devicesService: DevicesService
+    private let stash: Stash
     private let notificator: Notificator
     private let simpleKeychain = SimpleKeychain()
 
@@ -25,10 +26,12 @@ class AuthMan: ObservableObject {
     private init(
         authService: AuthService = AuthService(url: Config.BACKEND_URL),
         devicesService: DevicesService = DevicesService(url: Config.BACKEND_URL),
+        stash: Stash = Stash.shared,
         notificator: Notificator = Notificator()
     ) {
         self.authService = authService
         self.devicesService = devicesService
+        self.stash = stash
         self.notificator = notificator
 
         if let accessInfo = getCachedAccessInfo() {
@@ -74,6 +77,7 @@ class AuthMan: ObservableObject {
         self.notificator.deleteAll()
         self.deleteCachedMessagingToken()
         self.deleteCachedAccessInfo()
+        self.stash.clear()
         self.accessInfo = nil
         self.accessTokenClaims = nil
         self.isLoggedIn = false

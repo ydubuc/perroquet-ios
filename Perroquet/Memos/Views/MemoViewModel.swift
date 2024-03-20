@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol MemoListener {
-    func onCreateMemo(_ memo: Memo)
-    func onEditMemo(_ memo: Memo)
-    func onDeleteMemo(_ memo: Memo)
-}
-
 class MemoViewModel: ObservableObject {
     let authMan: AuthMan
     let notificator: Notificator

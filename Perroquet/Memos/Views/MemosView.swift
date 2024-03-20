@@ -12,50 +12,59 @@ struct MemosView: View {
     @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: MemosViewModel
 
+    private var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+
     init(vm: StateObject<MemosViewModel> = .init(wrappedValue: .init())) {
         _vm = vm
     }
 
     var body: some View {
 
-        ScrollView(.vertical, showsIndicators: true) {
+        let content = ScrollView(.vertical, showsIndicators: true) {
 
             VStack(alignment: .center, spacing: Dims.spacingRegular) {
 
                 memoSection(
                     title: "Today",
                     placeholder: "All done here! 🦜",
-                    memos: vm.todayMemos
-                )
+                    memos: vm.todayMemos,
+                    isShowingSection: $vm.isShowingTodayMemos
+                ) {
+                    vm.toggleIsShowingTodayMemos()
+                }
 
                 memoSection(
                     title: "In the next 7 days",
                     placeholder: "Smooth sailing ahead! ⛵️",
-                    memos: vm.sevenDaysMemos
-                )
+                    memos: vm.sevenDaysMemos,
+                    isShowingSection: $vm.isShowingSevenDaysMemos
+                ) {
+                    vm.toggleIsShowingSevenDaysMemos()
+                }
 
                 memoSection(
                     title: "Later",
                     placeholder: "Nothing planned! 🎉",
-                    memos: vm.laterMemos
-                )
+                    memos: vm.laterMemos,
+                    isShowingSection: $vm.isShowingLaterMemos
+                ) {
+                    vm.toggleIsShowingLaterMemos()
+                }
 
                 memoSection(
-                    title: "Previous",
-                    placeholder: "Well well well...",
-                    memos: vm.previousMemos
-                )
+                    title: "Completed",
+                    placeholder: "I see you've been busy...",
+                    memos: vm.completedMemos,
+                    isShowingSection: $vm.isShowingCompletedMemos
+                ) {
+                    vm.toggleIsShowingCompleted()
+                }
 
             } // VStack
             .padding(Dims.spacingRegular)
             .padding(.bottom, 200)
 
         } // ScrollView
-        .sheet(isPresented: $appVm.isPresentingCreateMemoView) {
-            CreateMemoView(vm: .init(wrappedValue: .init(listener: vm)))
-                .environmentObject(appVm)
-                .background(ClearBackgroundView())
-        }
         .onOpenURL { url in
             if url.scheme == "widget" && url.host == "com.beamcove.perroquet.create-memo" {
                 appVm.isPresentingCreateMemoView = true
@@ -77,46 +86,81 @@ struct MemosView: View {
             }
         })
 
+        if idiom == .pad {
+            content
+                .fullScreenCover(isPresented: $appVm.isPresentingCreateMemoView) {
+                    CreateMemoView(vm: .init(wrappedValue: .init(listener: vm)))
+                        .environmentObject(appVm)
+                        .background(ClearBackgroundView())
+                }
+        } else {
+            content
+                .sheet(isPresented: $appVm.isPresentingCreateMemoView) {
+                    CreateMemoView(vm: .init(wrappedValue: .init(listener: vm)))
+                        .environmentObject(appVm)
+                        .background(ClearBackgroundView())
+                }
+        }
+
     }
 
     func memoSection(
         title: String,
         placeholder: String,
-        memos: [Memo]
+        memos: [Memo],
+        isShowingSection: Binding<Bool>,
+        onTapTitle: @escaping () -> Void
     ) -> some View {
-        Group {
+        VStack(alignment: .leading, spacing: 0) {
 
-            Text(title)
-                .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-                .foregroundColor(appVm.theme.fontNormal)
-                .font(.body.weight(.bold))
-                .lineLimit(2)
-
-            if memos.count > 0 {
-                VStack(alignment: .leading, spacing: Dims.spacingSmall) {
-                    ForEach(memos) { memo in
-                        MemoComponent(memo: memo, listener: vm)
-                            .environmentObject(appVm)
-                    }
-                }
-                .padding(Dims.spacingRegular)
-                .background(appVm.theme.primaryDark)
-                .cornerRadius(Dims.cornerRadius)
-                .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
-            } else {
+            Button {
+                onTapTitle()
+            } label: {
                 HStack(alignment: .center, spacing: 0) {
-
-                    Text(placeholder)
-                        .foregroundColor(appVm.theme.fontDim)
-                        .font(.body.weight(.regular))
+                    Text(title)
+                        .foregroundColor(appVm.theme.fontNormal)
+                        .font(.body.weight(.bold))
+                        .lineLimit(2)
 
                     Spacer()
 
+                    Image(systemName: isShowingSection.wrappedValue ? "chevron.up.circle" : "chevron.down.circle")
+                        .foregroundColor(appVm.theme.fontDim)
+                        .font(.body.weight(.bold))
                 }
                 .padding(Dims.spacingRegular)
-                .background(appVm.theme.primaryDark)
+                .background(isShowingSection.wrappedValue ? .clear : appVm.theme.primaryDark)
                 .cornerRadius(Dims.cornerRadius)
                 .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+            }
+
+            if isShowingSection.wrappedValue {
+                if memos.count > 0 {
+                    VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+                        ForEach(memos) { memo in
+                            MemoComponent(memo: memo, listener: vm)
+                                .environmentObject(appVm)
+                        }
+                    }
+                    .padding(Dims.spacingRegular)
+                    .background(appVm.theme.primaryDark)
+                    .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+                } else {
+                    HStack(alignment: .center, spacing: 0) {
+
+                        Text(placeholder)
+                            .foregroundColor(appVm.theme.fontDim)
+                            .font(.body.weight(.regular))
+
+                        Spacer()
+
+                    }
+                    .padding(Dims.spacingRegular)
+                    .background(appVm.theme.primaryDark)
+                    .cornerRadius(Dims.cornerRadius)
+                    .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+                }
             }
 
         }
@@ -193,4 +237,5 @@ struct MemosView: View {
             )
         ))
     )
+    .environmentObject(AppViewModel())
 }

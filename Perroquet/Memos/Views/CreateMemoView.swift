@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateMemoView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var appVm: AppViewModel
     @StateObject var vm: CreateMemoViewModel
 
@@ -29,7 +29,7 @@ struct CreateMemoView: View {
                     .frame(maxHeight: .infinity)
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }
 
                 VStack(alignment: .leading, spacing: Dims.spacingRegular) {
@@ -120,7 +120,7 @@ struct CreateMemoView: View {
 
                         Button(action: {
                             vm.createMemo()
-                            presentationMode.wrappedValue.dismiss()
+                            dismiss()
                         }, label: {
                             Text("Save")
                                 .foregroundColor(appVm.theme.fontBright)
