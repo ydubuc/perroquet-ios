@@ -71,52 +71,17 @@ struct CreateMemoView: View {
                                 .background(ClearBackgroundView())
                         }
 
-                        Menu {
-                            Button {
-                                vm.frequency = ""
-                            } label: {
-                                Text("Once")
-                            }
+                        MemoFrequencyComponent(
+                            frequency: $vm.frequency,
+                            theme: appVm.theme
+                        )
 
-                            Button {
-                                vm.frequency = Memo.Frequency.hourly.rawValue
-                            } label: {
-                                Text("Hourly")
-                            }
+                        MemoPriorityComponent(
+                            priority: $vm.priority,
+                            theme: appVm.theme
+                        )
 
-                            Button {
-                                vm.frequency = Memo.Frequency.daily.rawValue
-                            } label: {
-                                Text("Daily")
-                            }
-
-                            Button {
-                                vm.frequency = Memo.Frequency.weekly.rawValue
-                            } label: {
-                                Text("Weekly")
-                            }
-
-                            Button {
-                                vm.frequency = Memo.Frequency.monthly.rawValue
-                            } label: {
-                                Text("Monthly")
-                            }
-
-                            Button {
-                                vm.frequency = Memo.Frequency.yearly.rawValue
-                            } label: {
-                                Text("Yearly")
-                            }
-                        } label: {
-                            Text("\(vm.frequency.isEmpty ? "Repeat" : vm.frequency.capitalized)")
-                                .foregroundColor(appVm.theme.fontBright)
-                                .font(.body.weight(.medium))
-                                .padding(Dims.spacingSmall)
-                                .background(appVm.theme.primaryDark)
-                                .cornerRadius(Dims.cornerRadius)
-                        }
-
-                        Spacer()
+                        Spacer(minLength: 0)
 
                         Button(action: {
                             vm.createMemo()
@@ -164,4 +129,5 @@ struct CreateMemoView: View {
 
 #Preview {
     CreateMemoView()
+        .environmentObject(AppViewModel())
 }

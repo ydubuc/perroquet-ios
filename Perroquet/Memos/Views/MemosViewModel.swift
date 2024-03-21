@@ -207,8 +207,13 @@ class MemosViewModel: ObservableObject {
             let memos = memos.filter { memo in
                 memo.triggerAt > currentTimeInMillis || memo.frequency != nil
             }
+
             for memo in memos {
-                await notificator.schedule(notification: memo.toLocalNotification())
+                if memo.status == Memo.Status.complete.rawValue {
+                    notificator.delete(ids: [memo.id])
+                } else {
+                    await notificator.schedule(notification: memo.toLocalNotification())
+                }
             }
         }
     }

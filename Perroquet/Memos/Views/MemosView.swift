@@ -113,25 +113,24 @@ struct MemosView: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: 0) {
 
-            Button {
+            HStack(alignment: .center, spacing: 0) {
+                Text(title)
+                    .foregroundColor(appVm.theme.fontNormal)
+                    .font(.body.weight(.bold))
+                    .lineLimit(2)
+
+                Spacer()
+
+                Image(systemName: isShowingSection.wrappedValue ? "chevron.up.circle" : "chevron.down.circle")
+                    .foregroundColor(appVm.theme.fontDim)
+                    .font(.body.weight(.bold))
+            }
+            .padding(Dims.spacingRegular)
+            .background(isShowingSection.wrappedValue ? .clear : appVm.theme.primaryDark)
+            .cornerRadius(Dims.cornerRadius)
+            .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
+            .onTapGesture {
                 onTapTitle()
-            } label: {
-                HStack(alignment: .center, spacing: 0) {
-                    Text(title)
-                        .foregroundColor(appVm.theme.fontNormal)
-                        .font(.body.weight(.bold))
-                        .lineLimit(2)
-
-                    Spacer()
-
-                    Image(systemName: isShowingSection.wrappedValue ? "chevron.up.circle" : "chevron.down.circle")
-                        .foregroundColor(appVm.theme.fontDim)
-                        .font(.body.weight(.bold))
-                }
-                .padding(Dims.spacingRegular)
-                .background(isShowingSection.wrappedValue ? .clear : appVm.theme.primaryDark)
-                .cornerRadius(Dims.cornerRadius)
-                .frame(maxWidth: Dims.viewMaxWidth2, alignment: .leading)
             }
 
             if isShowingSection.wrappedValue {

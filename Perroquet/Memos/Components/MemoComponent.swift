@@ -17,51 +17,50 @@ struct MemoComponent: View {
 
     var body: some View {
 
-        VStack(alignment: .leading, spacing: 0) {
+        HStack(alignment: .center, spacing: Dims.spacingRegular) {
 
-            HStack(alignment: .firstTextBaseline, spacing: Dims.spacingRegular) {
-
-                Button(action: {
-                    onTapMarkAsComplete()
-                }, label: {
-                    Image(systemName: memo.status == Memo.Status.pending.rawValue ? "circle" : "checkmark.circle.fill")
-                        .foregroundColor(buttonColor())
-                        .font(.body.weight(.bold))
-                        .dynamicTypeSize(.small ... .accessibility1)
-                })
-                .opacity(memo.frequency == nil ? 1 : 0)
-                .disabled(memo.frequency != nil)
-
-                Button(action: {
-                    isPresentingMemoView = true
-                }, label: {
-                    Text(memo.title)
-                        .foregroundColor(appVm.theme.fontNormal)
-                        .font(.body.weight(.regular))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .multilineTextAlignment(.leading)
-                })
-                .sheet(isPresented: $isPresentingMemoView) {
-                    MemoView(vm: .init(wrappedValue: .init(memo: memo, listener: listener)))
-                        .environmentObject(appVm)
-                        .presentationDetents([.medium, .large])
-                }
-
-            }
-
-            HStack(alignment: .center, spacing: Dims.spacingRegular) {
-
-                Image(systemName: "repeat.circle")
-                    .foregroundColor(.yellow)
+            Button(action: {
+                onTapMarkAsComplete()
+            }, label: {
+                Image(systemName: memo.status == Memo.Status.pending.rawValue ? "circle" : "checkmark.circle.fill")
+                    .foregroundColor(buttonColor())
                     .font(.body.weight(.bold))
                     .dynamicTypeSize(.small ... .accessibility1)
-                    .opacity(memo.frequency != nil ? 1 : 0)
+            })
+            .opacity(memo.frequency == nil ? 1 : 0)
+            .disabled(memo.frequency != nil)
 
-                Text("\(Date(timeIntervalSince1970: TimeInterval(memo.triggerAt) / 1000).formatted(date: .abbreviated, time: .shortened))")
-                    .foregroundColor(appVm.theme.fontBright)
-                    .font(.caption.weight(.regular))
-                    .lineLimit(1)
+            Button(action: {
+                isPresentingMemoView = true
+            }, label: {
+                VStack(alignment: .leading, spacing: Dims.spacingSmallest) {
 
+                    Text(memo.title)
+                        .foregroundColor(appVm.theme.fontNormal)
+                        .font(.body.weight(.medium))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+
+                    HStack(alignment: .center, spacing: Dims.spacingSmall) {
+                        Text("\(Date(timeIntervalSince1970: TimeInterval(memo.triggerAt) / 1000).formatted(date: .abbreviated, time: .shortened))")
+                            .foregroundColor(appVm.theme.fontBright)
+                            .font(.caption2.weight(.medium))
+                            .lineLimit(1)
+
+                        if memo.frequency != nil {
+                            Text("\(memo.frequency!.capitalized)")
+                                .foregroundColor(.yellow)
+                                .font(.caption2.weight(.medium))
+                                .lineLimit(1)
+                        }
+                    }
+
+                }
+            })
+            .sheet(isPresented: $isPresentingMemoView) {
+                MemoView(vm: .init(wrappedValue: .init(memo: memo, listener: listener)))
+                    .environmentObject(appVm)
+                    .presentationDetents([.medium, .large])
             }
 
         }
@@ -79,7 +78,7 @@ struct MemoComponent: View {
         case Memo.Priority.medium.rawValue:
             return Color.yellow
         case Memo.Priority.low.rawValue:
-            return Color.gray
+            return Color.blue
         default:
             return appVm.theme.fontDim
         }
@@ -149,7 +148,8 @@ struct MemoComponent: View {
             priority: Memo.Priority.medium.rawValue,
             status: Memo.Status.pending.rawValue,
             visibility: 0,
-            frequency: Memo.Frequency.daily.rawValue,
+//            frequency: Memo.Frequency.daily.rawValue,
+            frequency: nil,
             triggerAt: 1708358620664,
             updatedAt: 1708358620664,
             createdAt: 1708358620664

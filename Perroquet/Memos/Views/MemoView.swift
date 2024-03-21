@@ -80,6 +80,16 @@ struct MemoView: View {
                                 .background(ClearBackgroundView())
                         }
 
+                        MemoFrequencyComponent(
+                            frequency: $vm.frequency,
+                            theme: appVm.theme
+                        )
+
+                        MemoPriorityComponent(
+                            priority: $vm.priority,
+                            theme: appVm.theme
+                        )
+
                         Spacer()
 
                         Button(action: {

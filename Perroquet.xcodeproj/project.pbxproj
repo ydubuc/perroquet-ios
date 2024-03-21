@@ -66,6 +66,8 @@
 		ED92850B2B92B7EF00CFDFC4 /* SQLiteSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED92850A2B92B7EF00CFDFC4 /* SQLiteSwift */; };
 		EDA109482BA8DD5C006AF2B4 /* ListSectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA109472BA8DD5C006AF2B4 /* ListSectionRow.swift */; };
 		EDA1094B2BAA14C4006AF2B4 /* MemoListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1094A2BAA14C4006AF2B4 /* MemoListener.swift */; };
+		EDA1094D2BAB332B006AF2B4 /* MemoFrequencyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1094C2BAB332B006AF2B4 /* MemoFrequencyComponent.swift */; };
+		EDA1094F2BAB3399006AF2B4 /* MemoPriorityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1094E2BAB3399006AF2B4 /* MemoPriorityComponent.swift */; };
 		EDA1B5802BA2209700ED8CF2 /* SlateTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA1B57F2BA2209700ED8CF2 /* SlateTheme.swift */; };
 		EDA40B7F2B8F9D0F00344085 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */; };
 		EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */; };
@@ -177,6 +179,8 @@
 		ED88C3A82B9125EB0020CC08 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 		EDA109472BA8DD5C006AF2B4 /* ListSectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionRow.swift; sourceTree = "<group>"; };
 		EDA1094A2BAA14C4006AF2B4 /* MemoListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListener.swift; sourceTree = "<group>"; };
+		EDA1094C2BAB332B006AF2B4 /* MemoFrequencyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFrequencyComponent.swift; sourceTree = "<group>"; };
+		EDA1094E2BAB3399006AF2B4 /* MemoPriorityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoPriorityComponent.swift; sourceTree = "<group>"; };
 		EDA1B57F2BA2209700ED8CF2 /* SlateTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlateTheme.swift; sourceTree = "<group>"; };
 		EDA40B7E2B8F9D0F00344085 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearBackgroundView.swift; sourceTree = "<group>"; };
@@ -444,6 +448,8 @@
 			isa = PBXGroup;
 			children = (
 				ED7486292B83B28A006D7FDB /* MemoComponent.swift */,
+				EDA1094C2BAB332B006AF2B4 /* MemoFrequencyComponent.swift */,
+				EDA1094E2BAB3399006AF2B4 /* MemoPriorityComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -769,6 +775,7 @@
 				ED317E962B816BF6008A6E52 /* MemosView.swift in Sources */,
 				EDC5F54B2B7948AF00551388 /* SigninView.swift in Sources */,
 				ED317E892B815DBF008A6E52 /* Nothing.swift in Sources */,
+				EDA1094D2BAB332B006AF2B4 /* MemoFrequencyComponent.swift in Sources */,
 				ED5902322B7DB4700009851E /* Config.swift in Sources */,
 				EDB1DAAF2B85720A00FE8EBD /* Stash.swift in Sources */,
 				ED5902392B7E6B2B0009851E /* Courier.swift in Sources */,
@@ -794,6 +801,7 @@
 				EDB1DA972B83FC6300FE8EBD /* CreateMemoViewModel.swift in Sources */,
 				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
 				ED317E6B2B7FC160008A6E52 /* SignupDto.swift in Sources */,
+				EDA1094F2BAB3399006AF2B4 /* MemoPriorityComponent.swift in Sources */,
 				ED59021E2B7D697C0009851E /* Themes.swift in Sources */,
 				ED317E9B2B816F3F008A6E52 /* MemosViewModel.swift in Sources */,
 				ED317E912B8161AB008A6E52 /* EditMemoDto.swift in Sources */,
