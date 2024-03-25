@@ -17,7 +17,7 @@ class CreateMemoViewModel: ObservableObject {
 
     @Published var title: String = ""
     @Published var description: String = ""
-    @Published var priority: String = ""
+    @Published var priority: Int = 0
     @Published var visibility: Int = Memo.Visibility.priv.rawValue
     @Published var frequency: String = ""
     @Published var triggerAtDate: Date = Date.now
@@ -52,7 +52,7 @@ class CreateMemoViewModel: ObservableObject {
                 userId: authMan.accessTokenClaims?.id ?? "",
                 title: title,
                 description: description.isEmpty ? nil : description,
-                priority: priority.isEmpty ? nil : priority,
+                priority: priority,
                 status: Memo.Status.pending.rawValue,
                 visibility: visibility,
                 frequency: frequency.isEmpty ? nil : frequency,
@@ -72,7 +72,7 @@ class CreateMemoViewModel: ObservableObject {
                 id: id,
                 title: title,
                 description: description.isEmpty ? nil : description,
-                priority: priority.isEmpty ? nil : priority,
+                priority: priority,
                 visibility: visibility,
                 frequency: frequency.isEmpty ? nil : frequency,
                 triggerAt: triggerAt

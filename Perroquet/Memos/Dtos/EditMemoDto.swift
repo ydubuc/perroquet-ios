@@ -10,7 +10,7 @@ import Foundation
 struct EditMemoDto: Codable {
     let title: String?
     let description: String?
-    let priority: String?
+    let priority: Int?
     let status: String?
     let visibility: Int?
     let frequency: String?

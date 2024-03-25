@@ -105,10 +105,12 @@ struct MemoComponent: View {
 
             Stash.shared.insertMemo(memo: tempMemo)
 
+            let notificator = Notificator()
             if newStatus == Memo.Status.complete.rawValue {
-                let notificator = Notificator()
                 notificator.clearNotifications(ids: [memo.id])
                 notificator.delete(ids: [memo.id])
+            } else if newStatus == Memo.Status.pending.rawValue {
+                await notificator.schedule(notification: memo.toLocalNotification())
             }
 
             DispatchQueue.main.async {

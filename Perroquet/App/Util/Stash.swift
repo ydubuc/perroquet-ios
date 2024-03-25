@@ -12,7 +12,7 @@ class Stash {
     static let shared = Stash()
     private static let DIR_PATH = "stash"
     private static let DB_NAME = "defaultdb.sqlite3"
-    private static let VERSION = 1
+    private static let VERSION = 2
 
     private var db: Connection?
 
@@ -52,7 +52,7 @@ class Stash {
     private let MEMO_USER_ID = Expression<String>("user_id")
     private let MEMO_TITLE = Expression<String>("title")
     private let MEMO_DESCRIPTION = Expression<String?>("description")
-    private let MEMO_PRIORITY = Expression<String?>("priority")
+    private let MEMO_PRIORITY = Expression<Int>("priority")
     private let MEMO_STATUS = Expression<String>("status")
     private let MEMO_VISIBILITY = Expression<Int>("visibility")
     private let MEMO_FREQUENCY = Expression<String?>("frequency")

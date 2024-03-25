@@ -11,7 +11,7 @@ struct GetMemosDto: QueryDto {
     let id: String?
     let userId: String?
     let search: String?
-    let priority: String?
+    let priority: Int?
     let status: String?
     let visibility: Int?
     let sort: String?
@@ -31,7 +31,7 @@ struct GetMemosDto: QueryDto {
             queries.append(.init(name: "search", value: search))
         }
         if let priority = priority {
-            queries.append(.init(name: "priority", value: priority))
+            queries.append(.init(name: "priority", value: "\(priority)"))
         }
         if let status = status {
             queries.append(.init(name: "status", value: status))

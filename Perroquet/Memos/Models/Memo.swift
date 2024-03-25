@@ -12,7 +12,7 @@ struct Memo: Codable, Identifiable, Hashable {
     let userId: String
     let title: String
     let description: String?
-    let priority: String?
+    let priority: Int
     let status: String
     let visibility: Int
     let frequency: String?
@@ -34,10 +34,26 @@ struct Memo: Codable, Identifiable, Hashable {
         case createdAt = "created_at"
     }
 
-    enum Priority: String {
-        case high = "high"
-        case medium = "medium"
-        case low = "low"
+    enum Priority: Int {
+        case high = 3
+        case medium = 2
+        case low = 1
+        case none = 0
+
+        static func displayName(value: Int) -> String {
+            switch value {
+            case Priority.high.rawValue:
+                return "High"
+            case Priority.medium.rawValue:
+                return "Medium"
+            case Priority.low.rawValue:
+                return "Low"
+            case Priority.none.rawValue:
+                return "None"
+            default:
+                return "None"
+            }
+        }
     }
 
     enum Status: String {

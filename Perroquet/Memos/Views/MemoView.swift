@@ -128,7 +128,7 @@ struct MemoView: View {
             userId: "321",
             title: "Hello, World!",
             description: "Testing one two",
-            priority: "low",
+            priority: 2,
             status: "pending",
             visibility: 0,
             frequency: nil,

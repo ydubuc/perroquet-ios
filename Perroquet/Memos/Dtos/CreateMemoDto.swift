@@ -11,7 +11,7 @@ struct CreateMemoDto: Codable {
     let id: String
     let title: String
     let description: String?
-    let priority: String?
+    let priority: Int
     let visibility: Int
     let frequency: String?
     let triggerAt: Int

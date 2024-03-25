@@ -246,11 +246,11 @@
 		ED317E772B8025FC008A6E52 /* Memos */ = {
 			isa = PBXGroup;
 			children = (
-				EDA109492BAA14B9006AF2B4 /* Protocols */,
 				ED317E782B80261A008A6E52 /* MemosService.swift */,
 				ED7486282B83B278006D7FDB /* Components */,
 				ED317E7A2B802620008A6E52 /* Dtos */,
 				ED317E7B2B802625008A6E52 /* Models */,
+				EDA109492BAA14B9006AF2B4 /* Protocols */,
 				ED317E7C2B80262B008A6E52 /* Views */,
 			);
 			path = Memos;

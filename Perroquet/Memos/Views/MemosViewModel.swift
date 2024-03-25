@@ -14,7 +14,6 @@ class MemosViewModel: ObservableObject {
     let notificator: Notificator
     let memosService: MemosService
 
-    @Published var memos: [Memo]
     @Published var todayMemos: [Memo]
     @Published var sevenDaysMemos: [Memo]
     @Published var laterMemos: [Memo]
@@ -22,7 +21,7 @@ class MemosViewModel: ObservableObject {
 
     @Published var userId: String?
     @Published var search: String?
-    @Published var priority: String?
+    @Published var priority: Int?
     @Published var status: String?
     @Published var visibility: Int?
     @Published var sort: String?
@@ -50,7 +49,7 @@ class MemosViewModel: ObservableObject {
         self.notificator = notificator
         self.memosService = memosService
 
-        self.memos = memos.isEmpty ? memos : memos
+        let memos = memos.isEmpty ? memos : memos
             .filter { $0.status != Memo.Status.deleted.rawValue }
             .sorted { $0.updatedAt > $1.updatedAt }
 
@@ -59,28 +58,29 @@ class MemosViewModel: ObservableObject {
         let sevenDaysTimestamp = Calendar.endOfDayTimestampAfterSevenDays()
 
         self.todayMemos = MemosViewModel.sortedTodayMemos(
-            from: memos,
+            withNew: memos,
+            intoExisting: [],
             currentTimestamp: currentTimestamp,
             endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
         self.sevenDaysMemos = MemosViewModel.sortedSevenDaysMemo(
-            from: memos,
+            withNew: memos,
+            intoExisting: [],
             currentTimestamp: currentTimestamp,
             endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
         self.laterMemos = MemosViewModel.sortedLaterMemos(
-            from: memos,
+            withNew: memos,
+            intoExisting: [],
             currentTimestamp: currentTimestamp,
-            endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
         self.completedMemos = MemosViewModel.sortedCompletedMemos(
-            from: memos,
-            currentTimestamp: currentTimestamp,
-            endOfDayTimestamp: endOfDayTimestamp,
-            sevenDaysTimestamp: sevenDaysTimestamp
+            withNew: memos,
+            intoExisting: [],
+            currentTimestamp: currentTimestamp
         )
 
         self.userId = dto.userId
@@ -97,6 +97,7 @@ class MemosViewModel: ObservableObject {
         self.isShowingLaterMemos = !UserDefaults.standard.bool(forKey: MemosViewModel.KEY_HIDE_LATER_MEMOS)
         self.isShowingCompletedMemos = !UserDefaults.standard.bool(forKey: MemosViewModel.KEY_HIDE_COMPLETED_MEMOS)
 
+        self.setCursor(memos: memos)
         self.afterInit()
     }
 
@@ -115,7 +116,7 @@ class MemosViewModel: ObservableObject {
             status: status,
             visibility: visibility,
             sort: sort,
-            cursor: getCursor(sort: sort),
+            cursor: cursor,
             limit: limit
         )
 
@@ -124,8 +125,9 @@ class MemosViewModel: ObservableObject {
         switch result {
         case .success(let memos):
             DispatchQueue.main.async {
+                self.setCursor(memos: memos)
                 self.insertAndOrderMemos(newMemos: memos)
-                self.scheduleMemos()
+                self.scheduleMemos(newMemos: memos)
                 self.isLoading = false
             }
         case .failure(let apiError):
@@ -137,83 +139,151 @@ class MemosViewModel: ObservableObject {
         }
     }
 
-    private func getCursor(sort: String?) -> String? {
-        guard !memos.isEmpty else { return cursor }
+    private func setCursor(memos: [Memo]) {
+        guard !memos.isEmpty else { return }
 
         switch sort {
         case "trigger_at,asc":
-            return "\(memos.first!.triggerAt),\(memos.first!.id)"
+            cursor = "\(memos.first!.triggerAt),\(memos.first!.id)"
         case "trigger_at,desc":
-            return "\(memos.last!.triggerAt),\(memos.last!.id)"
+            cursor = "\(memos.last!.triggerAt),\(memos.last!.id)"
         case "updated_at,asc":
-            return "\(memos.first!.updatedAt),\(memos.first!.id)"
+            cursor = "\(memos.first!.updatedAt),\(memos.first!.id)"
         case "updated_at,desc":
-            return "\(memos.last!.updatedAt),\(memos.last!.id)"
+            cursor = "\(memos.last!.updatedAt),\(memos.last!.id)"
         case "created_at,asc":
-            return "\(memos.first!.createdAt),\(memos.first!.id)"
+            cursor = "\(memos.first!.createdAt),\(memos.first!.id)"
         case "created_at,desc":
-            return "\(memos.last!.createdAt),\(memos.last!.id)"
+            cursor = "\(memos.last!.createdAt),\(memos.last!.id)"
         default:
             fatalError("Sort not implemented.")
         }
     }
 
     func insertAndOrderMemos(newMemos: [Memo]) {
-        let idSet = Set(newMemos.map { $0.id })
-
-        var array = self.memos.filter { !idSet.contains($0.id) }
-
-        if sort?.hasSuffix("asc") == true {
-            array.insert(contentsOf: newMemos, at: 0)
-        } else {
-            array.append(contentsOf: newMemos)
-        }
-
-        self.memos = array.filter { $0.status != Memo.Status.deleted.rawValue }
-
         let currentTimestamp = Date().timeIntervalSince1970.milliseconds
         let endOfDayTimestamp = Calendar.endOfDayTimestamp()
         let sevenDaysTimestamp = Calendar.endOfDayTimestampAfterSevenDays()
 
-        self.todayMemos = MemosViewModel.sortedTodayMemos(
-            from: self.memos,
+        todayMemos = MemosViewModel.sortedTodayMemos(
+            withNew: newMemos,
+            intoExisting: todayMemos,
             currentTimestamp: currentTimestamp,
             endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
-        self.sevenDaysMemos = MemosViewModel.sortedSevenDaysMemo(
-            from: self.memos,
+        sevenDaysMemos = MemosViewModel.sortedSevenDaysMemo(
+            withNew: newMemos,
+            intoExisting: sevenDaysMemos,
             currentTimestamp: currentTimestamp,
             endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
         self.laterMemos = MemosViewModel.sortedLaterMemos(
-            from: self.memos,
+            withNew: newMemos,
+            intoExisting: laterMemos,
             currentTimestamp: currentTimestamp,
-            endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
         self.completedMemos = MemosViewModel.sortedCompletedMemos(
-            from: self.memos,
-            currentTimestamp: currentTimestamp,
-            endOfDayTimestamp: endOfDayTimestamp,
-            sevenDaysTimestamp: sevenDaysTimestamp
+            withNew: newMemos,
+            intoExisting: completedMemos,
+            currentTimestamp: currentTimestamp
         )
     }
 
-    private func scheduleMemos() {
+    static func sortedTodayMemos(
+        withNew newMemos: [Memo],
+        intoExisting existingMemos: [Memo],
+        currentTimestamp: Int,
+        endOfDayTimestamp: Int,
+        sevenDaysTimestamp: Int
+    ) -> [Memo] {
+        let idSet = Set(newMemos.map { $0.id })
+        var array = existingMemos.filter { !idSet.contains($0.id) }
+
+        array.append(contentsOf: newMemos)
+
+        return array
+            .filter {
+                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
+                return triggerAt < endOfDayTimestamp && triggerAt < sevenDaysTimestamp && $0.status == Memo.Status.pending.rawValue
+            }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
+    }
+
+    static func sortedSevenDaysMemo(
+        withNew newMemos: [Memo],
+        intoExisting existingMemos: [Memo],
+        currentTimestamp: Int,
+        endOfDayTimestamp: Int,
+        sevenDaysTimestamp: Int
+    ) -> [Memo] {
+        let idSet = Set(newMemos.map { $0.id })
+        var array = existingMemos.filter { !idSet.contains($0.id) }
+
+        array.append(contentsOf: newMemos)
+
+        return array
+            .filter {
+                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
+                return triggerAt > endOfDayTimestamp && triggerAt < sevenDaysTimestamp && $0.status == Memo.Status.pending.rawValue
+            }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
+    }
+
+    static func sortedLaterMemos(
+        withNew newMemos: [Memo],
+        intoExisting existingMemos: [Memo],
+        currentTimestamp: Int,
+        sevenDaysTimestamp: Int
+    ) -> [Memo] {
+        let idSet = Set(newMemos.map { $0.id })
+        var array = existingMemos.filter { !idSet.contains($0.id) }
+
+        array.append(contentsOf: newMemos)
+
+        return array
+            .filter {
+                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
+                return triggerAt > sevenDaysTimestamp && $0.status == Memo.Status.pending.rawValue
+            }
+            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
+    }
+
+    static func sortedCompletedMemos(
+        withNew newMemos: [Memo],
+        intoExisting existingMemos: [Memo],
+        currentTimestamp: Int
+    ) -> [Memo] {
+        let idSet = Set(newMemos.map { $0.id })
+        var array = existingMemos.filter { !idSet.contains($0.id) }
+
+        array.append(contentsOf: newMemos)
+
+        return array
+            .filter {
+                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
+                return triggerAt < currentTimestamp && $0.status == Memo.Status.complete.rawValue
+            }
+            .sorted { ($0.triggerAt, $0.updatedAt) > ($1.triggerAt, $1.updatedAt) }
+    }
+
+    private func scheduleMemos(newMemos: [Memo]) {
         Task {
             let currentTimeInMillis = Date().timeIntervalSince1970.milliseconds
-            let memos = memos.filter { memo in
-                memo.triggerAt > currentTimeInMillis || memo.frequency != nil
+
+            let memoIdsToClear = newMemos.filter { $0.status != Memo.Status.pending.rawValue }.map { $0.id }
+            let memosToSchedule = newMemos.filter {
+                $0.status == Memo.Status.pending.rawValue &&
+                ($0.triggerAt > currentTimeInMillis || $0.frequency != nil)
             }
 
-            for memo in memos {
-                if memo.status == Memo.Status.complete.rawValue {
-                    notificator.delete(ids: [memo.id])
-                } else {
-                    await notificator.schedule(notification: memo.toLocalNotification())
-                }
+            notificator.clearNotifications(ids: memoIdsToClear)
+            notificator.delete(ids: memoIdsToClear)
+
+            for memo in memosToSchedule {
+                await notificator.schedule(notification: memo.toLocalNotification())
             }
         }
     }
@@ -246,64 +316,6 @@ extension MemosViewModel {
     }
 }
 
-extension MemosViewModel {
-    static func sortedTodayMemos(
-        from memos: [Memo],
-        currentTimestamp: Int,
-        endOfDayTimestamp: Int,
-        sevenDaysTimestamp: Int
-    ) -> [Memo] {
-        return memos
-            .filter {
-                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
-                return triggerAt < endOfDayTimestamp && triggerAt < sevenDaysTimestamp && $0.status == Memo.Status.pending.rawValue
-            }
-            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
-    }
-
-    static func sortedSevenDaysMemo(
-        from memos: [Memo],
-        currentTimestamp: Int,
-        endOfDayTimestamp: Int,
-        sevenDaysTimestamp: Int
-    ) -> [Memo] {
-        return memos
-            .filter {
-                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
-                return triggerAt > endOfDayTimestamp && triggerAt < sevenDaysTimestamp
-            }
-            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
-    }
-
-    static func sortedLaterMemos(
-        from memos: [Memo],
-        currentTimestamp: Int,
-        endOfDayTimestamp: Int,
-        sevenDaysTimestamp: Int
-    ) -> [Memo] {
-        return memos
-            .filter {
-                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
-                return triggerAt > sevenDaysTimestamp
-            }
-            .sorted { ($0.triggerAt, $0.updatedAt) < ($1.triggerAt, $1.updatedAt) }
-    }
-
-    static func sortedCompletedMemos(
-        from memos: [Memo],
-        currentTimestamp: Int,
-        endOfDayTimestamp: Int,
-        sevenDaysTimestamp: Int
-    ) -> [Memo] {
-        return memos
-            .filter {
-                let triggerAt = $0.nextEffectiveTriggerAt(fromCurrent: currentTimestamp)
-                return triggerAt < currentTimestamp && $0.status == Memo.Status.complete.rawValue
-            }
-            .sorted { ($0.triggerAt, $0.updatedAt) > ($1.triggerAt, $1.updatedAt) }
-    }
-}
-
 extension MemosViewModel: MemoListener {
     func onCreateMemo(_ memo: Memo) {
         insertAndOrderMemos(newMemos: [memo])
@@ -314,7 +326,6 @@ extension MemosViewModel: MemoListener {
     }
 
     func onDeleteMemo(_ memo: Memo) {
-        self.memos = self.memos.filter { $0.id != memo.id }
         self.todayMemos = self.todayMemos.filter { $0.id != memo.id }
         self.sevenDaysMemos = self.sevenDaysMemos.filter { $0.id != memo.id }
         self.laterMemos = self.laterMemos.filter { $0.id != memo.id }

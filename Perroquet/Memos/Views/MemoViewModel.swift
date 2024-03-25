@@ -18,7 +18,7 @@ class MemoViewModel: ObservableObject {
 
     @Published var title: String
     @Published var description: String
-    @Published var priority: String
+    @Published var priority: Int
     @Published var status: String
     @Published var visibility: Int
     @Published var frequency: String
@@ -47,7 +47,7 @@ class MemoViewModel: ObservableObject {
 
         self.title = memo.title
         self.description = memo.description ?? ""
-        self.priority = memo.priority ?? ""
+        self.priority = memo.priority
         self.status = memo.status
         self.visibility = memo.visibility
         self.frequency = memo.frequency ?? ""
@@ -63,7 +63,7 @@ class MemoViewModel: ObservableObject {
                 userId: memo.userId,
                 title: title,
                 description: description.isEmpty ? nil : description,
-                priority: priority.isEmpty ? nil : priority,
+                priority: priority,
                 status: status,
                 visibility: visibility,
                 frequency: frequency.isEmpty ? nil : frequency,
@@ -82,7 +82,7 @@ class MemoViewModel: ObservableObject {
             let dto = EditMemoDto(
                 title: title,
                 description: description.isEmpty ? nil : description,
-                priority: priority.isEmpty ? nil : priority,
+                priority: priority,
                 status: status,
                 visibility: visibility,
                 frequency: frequency.isEmpty ? nil : frequency,

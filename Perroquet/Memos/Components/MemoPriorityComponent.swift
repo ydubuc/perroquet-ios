@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MemoPriorityComponent: View {
-    @Binding var priority: String
+    @Binding var priority: Int
     let theme: Theme
 
     var body: some View {
         Menu {
             Button {
-                priority = ""
+                priority = 0
             } label: {
                 Text("None")
             }
@@ -37,7 +37,7 @@ struct MemoPriorityComponent: View {
                 Text("Low")
             }
         } label: {
-            Text("\(priority.isEmpty ? "Priority" : priority.capitalized)")
+            Text("\(Memo.Priority.displayName(value: priority))")
                 .foregroundColor(theme.fontBright)
                 .font(.body.weight(.medium))
                 .padding(Dims.spacingSmall)
@@ -49,7 +49,7 @@ struct MemoPriorityComponent: View {
 
 #Preview {
     MemoPriorityComponent(
-        priority: .constant("high"),
+        priority: .constant(2),
         theme: DarkTheme()
     )
 }

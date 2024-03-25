@@ -17,7 +17,7 @@ class DiscoverViewModel: ObservableObject, MemoListener {
 
     @Published var userId: String?
     @Published var search: String?
-    @Published var priority: String?
+    @Published var priority: Int?
     @Published var status: String?
     @Published var visibility: Int?
     @Published var sort: String?
