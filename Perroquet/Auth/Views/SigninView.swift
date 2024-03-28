@@ -133,4 +133,5 @@ struct SigninView: View {
 
 #Preview {
     SigninView()
+        .environmentObject(AppViewModel())
 }

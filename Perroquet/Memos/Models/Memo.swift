@@ -48,10 +48,8 @@ struct Memo: Codable, Identifiable, Hashable {
                 return "Medium"
             case Priority.low.rawValue:
                 return "Low"
-            case Priority.none.rawValue:
-                return "None"
             default:
-                return "None"
+                return "Priority"
             }
         }
     }

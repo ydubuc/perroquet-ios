@@ -61,6 +61,7 @@ struct MemosView: View {
                 }
 
             } // VStack
+            .frame(maxWidth: .infinity)
             .padding(Dims.spacingRegular)
             .padding(.bottom, 200)
 
@@ -237,4 +238,5 @@ struct MemosView: View {
         ))
     )
     .environmentObject(AppViewModel())
+    .environment(\.scenePhase, .inactive)
 }

@@ -128,6 +128,7 @@ struct MainView: View {
                 } // HStack
                 .background(appVm.theme.primaryLight)
                 .cornerRadius(Dims.cornerRadius)
+                .padding(.bottom, Dims.spacingRegular)
 
             }
 

@@ -156,7 +156,7 @@ class MemosViewModel: ObservableObject {
         case "created_at,desc":
             cursor = "\(memos.last!.createdAt),\(memos.last!.id)"
         default:
-            fatalError("Sort not implemented.")
+            cursor = "\(memos.first!.updatedAt),\(memos.first!.id)"
         }
     }
 
