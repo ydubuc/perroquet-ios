@@ -12,6 +12,8 @@ class ProfileViewModel: ObservableObject {
 
     @Published var quote: String
 
+    @Published var isPresentingAppearanceView = false
+
     init(
         authMan: AuthMan = AuthMan.shared
     ) {

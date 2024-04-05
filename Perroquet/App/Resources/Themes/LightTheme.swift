@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 struct LightTheme: Theme {
-//    var displayName: String = "Light"
-
     var primaryLight: Color = Color(hex: 0xFFFFFF)
     var primary: Color = Color(hex: 0xF2F2F7)
     var primaryDark: Color = Color(hex: 0xE3E3E6)
@@ -20,4 +18,8 @@ struct LightTheme: Theme {
     var fontDim: Color = Color(hex: 0x2E303E)
 
     var colorScheme: ColorScheme = .light
+
+    func displayName() -> String {
+        return "Light"
+    }
 }

@@ -44,6 +44,13 @@
 		ED35376F2B8FA4C000B65707 /* CreateMemoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED35376E2B8FA4C000B65707 /* CreateMemoWidget.swift */; };
 		ED3537712B8FA4C100B65707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED3537702B8FA4C100B65707 /* Assets.xcassets */; };
 		ED3537752B8FA4C100B65707 /* CreateMemoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = ED3537652B8FA4C000B65707 /* CreateMemoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ED49AAF92BB758A700B9904F /* ListSectionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AAF82BB758A700B9904F /* ListSectionComponent.swift */; };
+		ED49AAFB2BB759C000B9904F /* ListItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AAFA2BB759C000B9904F /* ListItemComponent.swift */; };
+		ED49AAFD2BB75D1000B9904F /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AAFC2BB75D1000B9904F /* Haptics.swift */; };
+		ED49AAFF2BB7612400B9904F /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AAFE2BB7612400B9904F /* AppearanceView.swift */; };
+		ED49AB012BB7614E00B9904F /* AppearanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AB002BB7614E00B9904F /* AppearanceViewModel.swift */; };
+		ED49AB032BB763BA00B9904F /* ListItemOptionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AB022BB763BA00B9904F /* ListItemOptionComponent.swift */; };
+		ED520BAD2BC0845B007956BA /* MemoVisibilityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED520BAC2BC0845B007956BA /* MemoVisibilityComponent.swift */; };
 		ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902092B7D2A460009851E /* SigninViewModel.swift */; };
 		ED59020D2B7D2B790009851E /* Dims.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59020C2B7D2B790009851E /* Dims.swift */; };
 		ED5902122B7D2E390009851E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902112B7D2E390009851E /* Color.swift */; };
@@ -158,6 +165,13 @@
 		ED35376E2B8FA4C000B65707 /* CreateMemoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoWidget.swift; sourceTree = "<group>"; };
 		ED3537702B8FA4C100B65707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED3537722B8FA4C100B65707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED49AAF82BB758A700B9904F /* ListSectionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionComponent.swift; sourceTree = "<group>"; };
+		ED49AAFA2BB759C000B9904F /* ListItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemComponent.swift; sourceTree = "<group>"; };
+		ED49AAFC2BB75D1000B9904F /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		ED49AAFE2BB7612400B9904F /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
+		ED49AB002BB7614E00B9904F /* AppearanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewModel.swift; sourceTree = "<group>"; };
+		ED49AB022BB763BA00B9904F /* ListItemOptionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemOptionComponent.swift; sourceTree = "<group>"; };
+		ED520BAC2BC0845B007956BA /* MemoVisibilityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoVisibilityComponent.swift; sourceTree = "<group>"; };
 		ED5902092B7D2A460009851E /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		ED59020C2B7D2B790009851E /* Dims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dims.swift; sourceTree = "<group>"; };
 		ED5902112B7D2E390009851E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -318,6 +332,16 @@
 			path = CreateMemoWidget;
 			sourceTree = "<group>";
 		};
+		ED49AAF72BB7589100B9904F /* List */ = {
+			isa = PBXGroup;
+			children = (
+				ED49AAF82BB758A700B9904F /* ListSectionComponent.swift */,
+				ED49AAFA2BB759C000B9904F /* ListItemComponent.swift */,
+				ED49AB022BB763BA00B9904F /* ListItemOptionComponent.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
 		ED5902082B7D2A300009851E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +382,7 @@
 				ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */,
 				ED317E6C2B7FCF5C008A6E52 /* SafariView.swift */,
 				ED5902162B7D61120009851E /* Form */,
+				ED49AAF72BB7589100B9904F /* List */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -378,11 +403,11 @@
 		ED59021B2B7D69140009851E /* Themes */ = {
 			isa = PBXGroup;
 			children = (
-				ED59021F2B7D69940009851E /* Protocols */,
-				ED59021C2B7D69720009851E /* Enums */,
 				ED5902222B7D6A350009851E /* DarkTheme.swift */,
 				ED5902242B7D6AEB0009851E /* LightTheme.swift */,
 				EDA1B57F2BA2209700ED8CF2 /* SlateTheme.swift */,
+				ED59021C2B7D69720009851E /* Enums */,
+				ED59021F2B7D69940009851E /* Protocols */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -440,6 +465,7 @@
 				ED5902382B7E6B2B0009851E /* Courier.swift */,
 				EDB1DAA92B85489000FE8EBD /* Notificator.swift */,
 				EDB1DAAE2B85720A00FE8EBD /* Stash.swift */,
+				ED49AAFC2BB75D1000B9904F /* Haptics.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -450,6 +476,7 @@
 				ED7486292B83B28A006D7FDB /* MemoComponent.swift */,
 				EDA1094C2BAB332B006AF2B4 /* MemoFrequencyComponent.swift */,
 				EDA1094E2BAB3399006AF2B4 /* MemoPriorityComponent.swift */,
+				ED520BAC2BC0845B007956BA /* MemoVisibilityComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -600,6 +627,8 @@
 		EDC5F54C2B794B1D00551388 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ED49AAFE2BB7612400B9904F /* AppearanceView.swift */,
+				ED49AB002BB7614E00B9904F /* AppearanceViewModel.swift */,
 				EDA40B802B8F9DA600344085 /* ClearBackgroundView.swift */,
 				ED1ACB372B9014E400BABE9C /* LazyView.swift */,
 				EDB8F05E2B72DBAC008A1CEB /* MainView.swift */,
@@ -760,6 +789,7 @@
 				ED1ACB3C2B902F1A00BABE9C /* String.swift in Sources */,
 				EDB1DAAA2B85489000FE8EBD /* Notificator.swift in Sources */,
 				EDAF59A82B90E9EF006BD197 /* MemoView.swift in Sources */,
+				ED49AAF92BB758A700B9904F /* ListSectionComponent.swift in Sources */,
 				ED59022D2B7D94940009851E /* ApiError.swift in Sources */,
 				EDA40B812B8F9DA600344085 /* ClearBackgroundView.swift in Sources */,
 				EDB1DAA52B85262500FE8EBD /* Device.swift in Sources */,
@@ -767,6 +797,7 @@
 				ED317E5F2B7EC93D008A6E52 /* FormSigninAppleComponent.swift in Sources */,
 				ED59021A2B7D625D0009851E /* FormTextfieldComponent.swift in Sources */,
 				ED317E762B801CC6008A6E52 /* AppError.swift in Sources */,
+				ED49AAFF2BB7612400B9904F /* AppearanceView.swift in Sources */,
 				ED74862C2B83D301006D7FDB /* AuthMan.swift in Sources */,
 				ED317E6D2B7FCF5C008A6E52 /* SafariView.swift in Sources */,
 				EDAF59AD2B90F630006BD197 /* UsersService.swift in Sources */,
@@ -799,11 +830,13 @@
 				EDB1DAA12B85261000FE8EBD /* DevicesService.swift in Sources */,
 				ED5902232B7D6A350009851E /* DarkTheme.swift in Sources */,
 				EDB1DA972B83FC6300FE8EBD /* CreateMemoViewModel.swift in Sources */,
+				ED49AAFD2BB75D1000B9904F /* Haptics.swift in Sources */,
 				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
 				ED317E6B2B7FC160008A6E52 /* SignupDto.swift in Sources */,
 				EDA1094F2BAB3399006AF2B4 /* MemoPriorityComponent.swift in Sources */,
 				ED59021E2B7D697C0009851E /* Themes.swift in Sources */,
 				ED317E9B2B816F3F008A6E52 /* MemosViewModel.swift in Sources */,
+				ED520BAD2BC0845B007956BA /* MemoVisibilityComponent.swift in Sources */,
 				ED317E912B8161AB008A6E52 /* EditMemoDto.swift in Sources */,
 				ED59020D2B7D2B790009851E /* Dims.swift in Sources */,
 				ED317E872B8159B3008A6E52 /* SignoutDto.swift in Sources */,
@@ -811,11 +844,14 @@
 				EDB8F05D2B72DBAC008A1CEB /* PerroquetApp.swift in Sources */,
 				ED29C8592B9794A7006E75E2 /* AppService.swift in Sources */,
 				EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */,
+				ED49AAFB2BB759C000B9904F /* ListItemComponent.swift in Sources */,
+				ED49AB032BB763BA00B9904F /* ListItemOptionComponent.swift in Sources */,
 				ED317E992B816CFA008A6E52 /* DiscoverView.swift in Sources */,
 				ED1ACB382B9014E400BABE9C /* LazyView.swift in Sources */,
 				EDAF59A62B90E9E7006BD197 /* MemoViewModel.swift in Sources */,
 				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
 				ED317E6F2B801BB5008A6E52 /* AccessTokenClaims.swift in Sources */,
+				ED49AB012BB7614E00B9904F /* AppearanceViewModel.swift in Sources */,
 				EDAF59B42B9109FC006BD197 /* Quotes.swift in Sources */,
 				ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */,
 				EDB1DAA72B8526A600FE8EBD /* EditDeviceDto.swift in Sources */,

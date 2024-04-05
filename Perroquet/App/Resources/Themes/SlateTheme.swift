@@ -18,4 +18,8 @@ struct SlateTheme: Theme {
     var fontDim: Color = Color(hex: 0xA6A7B1)
 
     var colorScheme: ColorScheme = .dark
+
+    func displayName() -> String {
+        return "Slate"
+    }
 }

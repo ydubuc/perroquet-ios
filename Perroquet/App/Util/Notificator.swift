@@ -41,7 +41,7 @@ class Notificator {
         case "yearly":
             componentsSet = [.year, .month, .day, .hour, .minute, .second]
         default:
-            componentsSet = [.year, .month, .day, .hour, .minute, .second]
+            componentsSet = []
         }
 
         let components = calendar.dateComponents(componentsSet, from: fireDate)

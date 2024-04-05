@@ -16,7 +16,7 @@ struct MemoPriorityComponent: View {
             Button {
                 priority = 0
             } label: {
-                Text("Priority")
+                Text("None")
             }
 
             Button {

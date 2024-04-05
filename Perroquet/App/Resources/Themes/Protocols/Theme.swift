@@ -18,4 +18,6 @@ protocol Theme {
     var fontDim: Color { get }
 
     var colorScheme: ColorScheme { get }
+
+    func displayName() -> String
 }

@@ -31,6 +31,7 @@ struct MemosView: View {
                     isShowingSection: $vm.isShowingTodayMemos
                 ) {
                     vm.toggleIsShowingTodayMemos()
+                    Haptics.shared.play(.rigid)
                 }
 
                 memoSection(
@@ -40,6 +41,7 @@ struct MemosView: View {
                     isShowingSection: $vm.isShowingSevenDaysMemos
                 ) {
                     vm.toggleIsShowingSevenDaysMemos()
+                    Haptics.shared.play(.rigid)
                 }
 
                 memoSection(
@@ -49,6 +51,7 @@ struct MemosView: View {
                     isShowingSection: $vm.isShowingLaterMemos
                 ) {
                     vm.toggleIsShowingLaterMemos()
+                    Haptics.shared.play(.rigid)
                 }
 
                 memoSection(
@@ -58,6 +61,7 @@ struct MemosView: View {
                     isShowingSection: $vm.isShowingCompletedMemos
                 ) {
                     vm.toggleIsShowingCompleted()
+                    Haptics.shared.play(.rigid)
                 }
 
             } // VStack

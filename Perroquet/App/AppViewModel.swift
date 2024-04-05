@@ -65,6 +65,7 @@ class AppViewModel: ObservableObject {
             for memo in memos {
                 if memo.status == Memo.Status.complete.rawValue {
                     notificator.delete(ids: [memo.id])
+                    notificator.clearNotifications(ids: [memo.id])
                 } else {
                     await notificator.schedule(notification: memo.toLocalNotification())
                 }

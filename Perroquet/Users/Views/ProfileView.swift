@@ -37,6 +37,7 @@ struct ProfileView: View {
                             .cornerRadius(Dims.cornerRadius)
                     })
                 }
+                .frame(maxWidth: Dims.viewMaxWidth2)
 
                 HStack(alignment: .center, spacing: Dims.spacingRegular) {
 
@@ -61,32 +62,18 @@ struct ProfileView: View {
                 .cornerRadius(9999)
                 .frame(maxWidth: Dims.viewMaxWidth2)
 
-                Button {
-                    appVm.theme = LightTheme()
-                } label: {
-                    Text("Light Theme")
-                }
+                accountSection()
 
-                Button {
-                    appVm.theme = DarkTheme()
-                } label: {
-                    Text("Dark Theme")
-                }
+                appSettingsSection()
 
-                Button {
-                    appVm.theme = SlateTheme()
-                } label: {
-                    Text("Slate Theme")
-                }
+                supportSection()
 
-                Button {
-                    Stash.shared.clear()
-                } label: {
-                    Text("Clear Cache")
-                }
+                moreSection()
 
-            } // LazyVStack
+            } // VStack
+            .frame(maxWidth: .infinity)
             .padding(Dims.spacingRegular)
+            .padding(.bottom, 200)
 
         } // ScrollView
         .refreshable {
@@ -96,28 +83,122 @@ struct ProfileView: View {
     }
 
     func accountSection() -> some View {
-        VStack(alignment: .leading, spacing: Dims.spacingSmall) {
+        ListSectionComponent(title: "ACCOUNT", theme: appVm.theme) {
 
-            Text("ACCOUNT")
-                .foregroundColor(appVm.theme.fontDim)
-                .font(.caption.weight(.bold))
-
-            VStack(alignment: .leading, spacing: 0) {
-
+            ListItemComponent(
+                icon: "person.crop.circle",
+                title: "Account Settings",
+                theme: appVm.theme
+            ) {
+                print("yay")
             }
+
+            ListItemComponent(
+                icon: "iphone.circle",
+                title: "Devices",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
         }
+        .frame(maxWidth: Dims.viewMaxWidth2)
     }
 
-    func appSettingsSection() {
+    func appSettingsSection() -> some View {
+        ListSectionComponent(title: "APP SETTINGS", theme: appVm.theme) {
 
+            ListItemComponent(
+                icon: "mountain.2.circle",
+                title: "Appearance",
+                theme: appVm.theme
+            ) {
+                vm.isPresentingAppearanceView = true
+            }
+            .sheet(isPresented: $vm.isPresentingAppearanceView) {
+                AppearanceView()
+            }
+
+            ListItemComponent(
+                icon: "bell.circle",
+                title: "Notifications",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+        }
+        .frame(maxWidth: Dims.viewMaxWidth2)
     }
 
-    func supportSection() {
+    func supportSection() -> some View {
+        ListSectionComponent(title: "SUPPORT", theme: appVm.theme) {
 
+            ListItemComponent(
+                icon: "questionmark.circle",
+                title: "Help & FAQ",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+            ListItemComponent(
+                icon: "star.circle",
+                title: "Rate This App",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+            ListItemComponent(
+                icon: "exclamationmark.bubble.circle",
+                title: "Send Feedback",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+            ListItemComponent(
+                icon: "square.and.arrow.up.circle",
+                title: "Share This App",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+        }
+        .frame(maxWidth: Dims.viewMaxWidth2)
     }
 
-    func moreSection() {
+    func moreSection() -> some View {
+        ListSectionComponent(title: "MORE", theme: appVm.theme) {
 
+            ListItemComponent(
+                icon: "lock.circle",
+                title: "Privacy Policy",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+            ListItemComponent(
+                icon: "list.bullet.circle",
+                title: "Terms & Conditions",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+            ListItemComponent(
+                icon: "trophy.circle",
+                title: "Acknowledgements",
+                theme: appVm.theme
+            ) {
+                print("yay")
+            }
+
+        }
+        .frame(maxWidth: Dims.viewMaxWidth2)
     }
 }
 

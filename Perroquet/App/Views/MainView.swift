@@ -85,15 +85,15 @@ struct MainView: View {
                             .padding(Dims.spacingRegular)
                     }
 
-                    Button {
-                        vm.switchToTab(1)
-                    } label: {
-                        Image(systemName: "safari")
-                            .foregroundColor(vm.currentTab == 1 ? appVm.theme.fontBright : appVm.theme.fontNormal)
-                            .font(.body.weight(.bold))
-                            .dynamicTypeSize(.xSmall ... .accessibility1)
-                            .padding(Dims.spacingRegular)
-                    }
+//                    Button {
+//                        vm.switchToTab(1)
+//                    } label: {
+//                        Image(systemName: "safari")
+//                            .foregroundColor(vm.currentTab == 1 ? appVm.theme.fontBright : appVm.theme.fontNormal)
+//                            .font(.body.weight(.bold))
+//                            .dynamicTypeSize(.xSmall ... .accessibility1)
+//                            .padding(Dims.spacingRegular)
+//                    }
 
                     Button {
                         appVm.isPresentingCreateMemoView = true
@@ -105,15 +105,15 @@ struct MainView: View {
                             .padding(Dims.spacingRegular)
                     }
 
-                    Button {
-                        vm.switchToTab(3)
-                    } label: {
-                        Image(systemName: "at.circle")
-                            .foregroundColor(vm.currentTab == 3 ? appVm.theme.fontBright : appVm.theme.fontNormal)
-                            .font(.body.weight(.bold))
-                            .dynamicTypeSize(.xSmall ... .accessibility1)
-                            .padding(Dims.spacingRegular)
-                    }
+//                    Button {
+//                        vm.switchToTab(3)
+//                    } label: {
+//                        Image(systemName: "at.circle")
+//                            .foregroundColor(vm.currentTab == 3 ? appVm.theme.fontBright : appVm.theme.fontNormal)
+//                            .font(.body.weight(.bold))
+//                            .dynamicTypeSize(.xSmall ... .accessibility1)
+//                            .padding(Dims.spacingRegular)
+//                    }
 
                     Button {
                         vm.switchToTab(4)
@@ -144,4 +144,5 @@ struct MainView: View {
 
 #Preview {
     MainView()
+        .environmentObject(AppViewModel())
 }

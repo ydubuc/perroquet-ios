@@ -22,12 +22,11 @@ struct MemoComponent: View {
             Button(action: {
                 onTapMarkAsComplete()
             }, label: {
-                Image(systemName: memo.status == Memo.Status.pending.rawValue ? "circle" : "checkmark.circle.fill")
+                Image(systemName: memo.frequency != nil ? "repeat.circle" : memo.status == Memo.Status.pending.rawValue ? "circle" : "checkmark.circle.fill")
                     .foregroundColor(buttonColor())
                     .font(.body.weight(.bold))
                     .dynamicTypeSize(.small ... .accessibility1)
             })
-            .opacity(memo.frequency == nil ? 1 : 0)
             .disabled(memo.frequency != nil)
 
             Button(action: {
@@ -48,7 +47,7 @@ struct MemoComponent: View {
                             .lineLimit(1)
 
                         if memo.frequency != nil {
-                            Text("\(memo.frequency!.capitalized)")
+                            Text("\(memo.frequency!)")
                                 .foregroundColor(.yellow)
                                 .font(.caption2.weight(.medium))
                                 .lineLimit(1)

@@ -71,6 +71,7 @@ struct MemoView: View {
                             Text("on \(vm.triggerAtDate.formatted(date: .abbreviated, time: .shortened))")
                                 .foregroundColor(appVm.theme.fontBright)
                                 .font(.body.weight(.medium))
+                                .lineLimit(1)
                                 .padding(Dims.spacingSmall)
                                 .background(appVm.theme.primaryDark)
                                 .cornerRadius(Dims.cornerRadius)
@@ -82,11 +83,6 @@ struct MemoView: View {
 
                         MemoFrequencyComponent(
                             frequency: $vm.frequency,
-                            theme: appVm.theme
-                        )
-
-                        MemoPriorityComponent(
-                            priority: $vm.priority,
                             theme: appVm.theme
                         )
 
@@ -105,6 +101,23 @@ struct MemoView: View {
                         })
 
                     } // HStack
+                    .frame(maxWidth: Dims.formMaxWidth)
+
+                    HStack(alignment: .center, spacing: Dims.spacingRegular) {
+
+                        MemoPriorityComponent(
+                            priority: $vm.priority,
+                            theme: appVm.theme
+                        )
+
+                        MemoVisibilityComponent(
+                            visibility: $vm.visibility,
+                            theme: appVm.theme
+                        )
+
+                        Spacer()
+
+                    }
                     .frame(maxWidth: Dims.formMaxWidth)
 
                     Spacer()

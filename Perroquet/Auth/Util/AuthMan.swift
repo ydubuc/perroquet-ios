@@ -115,6 +115,11 @@ class AuthMan: ObservableObject {
             return refreshedAccessInfo.accessToken
         case .failure(let apiError):
             print(apiError.message)
+
+            if apiError.code == 401 {
+                // requires signin again
+            }
+
             self.isRefreshing = false
             return nil
         }
