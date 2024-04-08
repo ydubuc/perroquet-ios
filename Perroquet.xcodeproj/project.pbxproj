@@ -51,6 +51,8 @@
 		ED49AB012BB7614E00B9904F /* AppearanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AB002BB7614E00B9904F /* AppearanceViewModel.swift */; };
 		ED49AB032BB763BA00B9904F /* ListItemOptionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED49AB022BB763BA00B9904F /* ListItemOptionComponent.swift */; };
 		ED520BAD2BC0845B007956BA /* MemoVisibilityComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED520BAC2BC0845B007956BA /* MemoVisibilityComponent.swift */; };
+		ED520BAF2BC48E72007956BA /* AcknowledgementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED520BAE2BC48E72007956BA /* AcknowledgementsView.swift */; };
+		ED520BB12BC48EE2007956BA /* AcknowledgementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED520BB02BC48EE2007956BA /* AcknowledgementComponent.swift */; };
 		ED59020A2B7D2A460009851E /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902092B7D2A460009851E /* SigninViewModel.swift */; };
 		ED59020D2B7D2B790009851E /* Dims.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED59020C2B7D2B790009851E /* Dims.swift */; };
 		ED5902122B7D2E390009851E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5902112B7D2E390009851E /* Color.swift */; };
@@ -101,6 +103,7 @@
 		EDC5F5462B7947E100551388 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5452B7947E100551388 /* AppViewModel.swift */; };
 		EDC5F5492B7947FD00551388 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F5482B7947FD00551388 /* AuthService.swift */; };
 		EDC5F54B2B7948AF00551388 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC5F54A2B7948AF00551388 /* SigninView.swift */; };
+		EDF1D29A2BC49A4E00BED75D /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1D2992BC49A4E00BED75D /* HelpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,8 @@
 		ED49AB002BB7614E00B9904F /* AppearanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewModel.swift; sourceTree = "<group>"; };
 		ED49AB022BB763BA00B9904F /* ListItemOptionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemOptionComponent.swift; sourceTree = "<group>"; };
 		ED520BAC2BC0845B007956BA /* MemoVisibilityComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoVisibilityComponent.swift; sourceTree = "<group>"; };
+		ED520BAE2BC48E72007956BA /* AcknowledgementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsView.swift; sourceTree = "<group>"; };
+		ED520BB02BC48EE2007956BA /* AcknowledgementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementComponent.swift; sourceTree = "<group>"; };
 		ED5902092B7D2A460009851E /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		ED59020C2B7D2B790009851E /* Dims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dims.swift; sourceTree = "<group>"; };
 		ED5902112B7D2E390009851E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -223,6 +228,7 @@
 		EDC5F5482B7947FD00551388 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		EDC5F54A2B7948AF00551388 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		EDC5F54D2B79653200551388 /* Perroquet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Perroquet.entitlements; sourceTree = "<group>"; };
+		EDF1D2992BC49A4E00BED75D /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +385,7 @@
 		ED5902132B7D60D90009851E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				ED520BB02BC48EE2007956BA /* AcknowledgementComponent.swift */,
 				ED317E602B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift */,
 				ED317E6C2B7FCF5C008A6E52 /* SafariView.swift */,
 				ED5902162B7D61120009851E /* Form */,
@@ -633,6 +640,8 @@
 				ED1ACB372B9014E400BABE9C /* LazyView.swift */,
 				EDB8F05E2B72DBAC008A1CEB /* MainView.swift */,
 				ED317E8A2B815EB4008A6E52 /* MainViewModel.swift */,
+				ED520BAE2BC48E72007956BA /* AcknowledgementsView.swift */,
+				EDF1D2992BC49A4E00BED75D /* HelpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -814,6 +823,7 @@
 				ED5902182B7D611F0009851E /* FormHeaderComponent.swift in Sources */,
 				ED317E8B2B815EB4008A6E52 /* MainViewModel.swift in Sources */,
 				EDAF59B02B90F64A006BD197 /* ProfileView.swift in Sources */,
+				ED520BAF2BC48E72007956BA /* AcknowledgementsView.swift in Sources */,
 				EDA1B5802BA2209700ED8CF2 /* SlateTheme.swift in Sources */,
 				ED317E742B801C8D008A6E52 /* JwtDecoder.swift in Sources */,
 				ED216A262B8D4A3000DD42CE /* FormTextfieldMultilineComponent.swift in Sources */,
@@ -829,6 +839,7 @@
 				ED317E612B7ED13D008A6E52 /* IndeterminateProgressBarComponent.swift in Sources */,
 				EDB1DAA12B85261000FE8EBD /* DevicesService.swift in Sources */,
 				ED5902232B7D6A350009851E /* DarkTheme.swift in Sources */,
+				ED520BB12BC48EE2007956BA /* AcknowledgementComponent.swift in Sources */,
 				EDB1DA972B83FC6300FE8EBD /* CreateMemoViewModel.swift in Sources */,
 				ED49AAFD2BB75D1000B9904F /* Haptics.swift in Sources */,
 				ED5902352B7DBB6A0009851E /* SigninDto.swift in Sources */,
@@ -852,6 +863,7 @@
 				ED5902212B7D699D0009851E /* Theme.swift in Sources */,
 				ED317E6F2B801BB5008A6E52 /* AccessTokenClaims.swift in Sources */,
 				ED49AB012BB7614E00B9904F /* AppearanceViewModel.swift in Sources */,
+				EDF1D29A2BC49A4E00BED75D /* HelpView.swift in Sources */,
 				EDAF59B42B9109FC006BD197 /* Quotes.swift in Sources */,
 				ED317E9F2B8173B7008A6E52 /* TimeInterval.swift in Sources */,
 				EDB1DAA72B8526A600FE8EBD /* EditDeviceDto.swift in Sources */,

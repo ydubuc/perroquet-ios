@@ -117,6 +117,7 @@ struct ProfileView: View {
             }
             .sheet(isPresented: $vm.isPresentingAppearanceView) {
                 AppearanceView()
+                    .environmentObject(appVm)
             }
 
             ListItemComponent(
@@ -124,7 +125,7 @@ struct ProfileView: View {
                 title: "Notifications",
                 theme: appVm.theme
             ) {
-                print("yay")
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             }
 
         }
@@ -139,7 +140,11 @@ struct ProfileView: View {
                 title: "Help & FAQ",
                 theme: appVm.theme
             ) {
-                print("yay")
+                vm.isPresentingHelpView = true
+            }
+            .sheet(isPresented: $vm.isPresentingHelpView) {
+                HelpView()
+                    .environmentObject(appVm)
             }
 
             ListItemComponent(
@@ -147,7 +152,7 @@ struct ProfileView: View {
                 title: "Rate This App",
                 theme: appVm.theme
             ) {
-                print("yay")
+                UIApplication.shared.open(URL(string: Config.APP_STORE_URL)!)
             }
 
             ListItemComponent(
@@ -155,15 +160,20 @@ struct ProfileView: View {
                 title: "Send Feedback",
                 theme: appVm.theme
             ) {
-                print("yay")
+                vm.isPresentingSupportView = true
+            }
+            .sheet(isPresented: $vm.isPresentingSupportView) {
+                SafariView(url: URL(string: Config.SUPPORT_URL)!, theme: appVm.theme)
+                    .ignoresSafeArea(.all)
             }
 
-            ListItemComponent(
-                icon: "square.and.arrow.up.circle",
-                title: "Share This App",
-                theme: appVm.theme
-            ) {
-                print("yay")
+            ShareLink(item: URL(string: Config.APP_STORE_URL)!) {
+                ListItemComponent(
+                    icon: "square.and.arrow.up.circle",
+                    title: "Share This App",
+                    theme: appVm.theme
+                ) { }
+                    .disabled(true)
             }
 
         }
@@ -178,7 +188,11 @@ struct ProfileView: View {
                 title: "Privacy Policy",
                 theme: appVm.theme
             ) {
-                print("yay")
+                vm.isPresentingPrivacyView = true
+            }
+            .sheet(isPresented: $vm.isPresentingPrivacyView) {
+                SafariView(url: URL(string: Config.PRIVACY_URL)!, theme: appVm.theme)
+                    .ignoresSafeArea(.all)
             }
 
             ListItemComponent(
@@ -186,7 +200,11 @@ struct ProfileView: View {
                 title: "Terms & Conditions",
                 theme: appVm.theme
             ) {
-                print("yay")
+                vm.isPresentingTermsView = true
+            }
+            .sheet(isPresented: $vm.isPresentingTermsView) {
+                SafariView(url: URL(string: Config.TERMS_URL)!, theme: appVm.theme)
+                    .ignoresSafeArea(.all)
             }
 
             ListItemComponent(
@@ -194,7 +212,11 @@ struct ProfileView: View {
                 title: "Acknowledgements",
                 theme: appVm.theme
             ) {
-                print("yay")
+                vm.isPresentingAcknowledgementsView = true
+            }
+            .sheet(isPresented: $vm.isPresentingAcknowledgementsView) {
+                AcknowledgementsView()
+                    .environmentObject(appVm)
             }
 
         }

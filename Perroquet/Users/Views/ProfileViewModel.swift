@@ -12,7 +12,17 @@ class ProfileViewModel: ObservableObject {
 
     @Published var quote: String
 
+    @Published var isPresentingAccountView = false
+    @Published var isPresentingDevicesView = false
+
     @Published var isPresentingAppearanceView = false
+
+    @Published var isPresentingHelpView = false
+    @Published var isPresentingSupportView = false
+
+    @Published var isPresentingPrivacyView = false
+    @Published var isPresentingTermsView = false
+    @Published var isPresentingAcknowledgementsView = false
 
     init(
         authMan: AuthMan = AuthMan.shared
