@@ -63,7 +63,7 @@ class AppViewModel: ObservableObject {
 
         Task {
             for memo in memos {
-                if memo.status == Memo.Status.complete.rawValue {
+                if memo.status != Memo.Status.pending.rawValue {
                     notificator.delete(ids: [memo.id])
                     notificator.clearNotifications(ids: [memo.id])
                 } else {

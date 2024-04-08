@@ -179,13 +179,13 @@ class MemosViewModel: ObservableObject {
             endOfDayTimestamp: endOfDayTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
-        self.laterMemos = MemosViewModel.sortedLaterMemos(
+        laterMemos = MemosViewModel.sortedLaterMemos(
             withNew: newMemos,
             intoExisting: laterMemos,
             currentTimestamp: currentTimestamp,
             sevenDaysTimestamp: sevenDaysTimestamp
         )
-        self.completedMemos = MemosViewModel.sortedCompletedMemos(
+        completedMemos = MemosViewModel.sortedCompletedMemos(
             withNew: newMemos,
             intoExisting: completedMemos,
             currentTimestamp: currentTimestamp
